@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #666;
+}
+
+a :hover {
+  color: #f60;
+}
+
+body {
+  font: 12px/1.5 "Microsoft Yahei", tahoma, arial, "Hiragino Sans GB";
+  -webkit-font-smoothing: antialiased;
+}
+
+#TOP_ACTIVE {
+  background-color: #ff7b90;
+  height: 100px;
+  width: 100%;
+}
+#TOP_ACTIVE a {
+  width: 100%;
+  height: 100%;
+  min-width: 1190px;
+  display: block;
+  position: relative;
+}
+#TOP_ACTIVE a img {
+  display: block;
+  width: 1190px;
+  margin: 0 auto;
+}
+#TOP_ACTIVE a #TOP_X {
+  position: absolute;
+  top: 3px;
+  right: 56px;
+  z-index: 999;
+}
+#TOP_ACTIVE a #TOP_X img {
+  width: 15px;
+  height: 15px;
+}
+
+.display-none {
+  display: none;
+}
+
+.ng-toolbar {
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #eee;
+  min-width: 1190px;
+  background: #f5f5f5;
+}
+.ng-toolbar .ng-toolbar-con {
+  width: 1190px;
+  height: 100%;
+  margin: 0 auto;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left {
+  float: left;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box {
+  float: left;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box a {
+  display: block;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box a img {
+  padding-left: 3px;
+  vertical-align: center;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box .ng-bar-node {
+  display: flex;
+  align-items: center;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-site-nav-box {
+  width: 65px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .shop-handle {
+  width: 61px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .service-handle {
+  width: 63px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .scale-handle {
+  width: 60px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .index-city-handle {
+  padding: 0 6px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .index-city-handle span {
+  color: rgb(51, 51, 51);
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .index-city-handle .position {
+  padding: 0 6px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .index-city-handle a:hover span {
+  color: rgb(255, 102, 0);
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right {
+  float: right;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .ng-bar-node-box {
+  float: left;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .ng-bar-node-box a {
+  display: block;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .ng-bar-node-box a img {
+  padding-left: 3px;
+  vertical-align: center;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .ng-bar-node-box .ng-bar-node {
+  display: flex;
+  align-items: center;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .username-handle {
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .myorder-handle {
+  width: 63px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .mysuning-handle {
+  width: 63px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .sn-huiyuan {
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .cart-handle {
+  width: 84px;
+  padding: 0 5px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .cart-handle .cart-ico {
+  width: 16px;
+  margin-right: 7px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .cart-handle :nth-child(3) {
+  margin-right: 5px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .yifubao {
+  width: 36px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .qiyecaigou {
+  width: 48px;
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .app-down-box {
+  padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right a:hover {
+  color: #ff6600;
+}

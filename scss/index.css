@@ -154,8 +154,97 @@ body {
   padding: 0 10px;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .app-down-box {
-  padding: 0 10px;
+  padding-left: 10px;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right a:hover {
   color: #ff6600;
+}
+
+.index-header {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  background: #fff;
+}
+.index-header .ng-header-con {
+  position: relative;
+  width: 1190px;
+  min-width: 1190px;
+  height: 100px;
+  margin: 0 auto;
+}
+.index-header .ng-header-con .ng-header-box a {
+  position: absolute;
+  top: 10px;
+}
+.index-header .ng-header-con .ng-header-box a img {
+  width: 190px;
+  height: 90px;
+}
+.index-header .ng-header-con .ng-search {
+  position: absolute;
+  height: 100px;
+  width: 600px;
+  top: 0;
+  left: 300px;
+}
+.index-header .ng-header-con .ng-search .g-search {
+  width: 540px;
+  height: 63px;
+  margin-top: 30px;
+  float: right;
+}
+.index-header .ng-header-con .ng-search .g-search .search-keyword-box {
+  float: left;
+  background: #fff;
+  width: 420px;
+  height: 40px;
+  border-radius: 12px 0 0 12px;
+  border: 2px solid #ff8000;
+  box-sizing: border-box;
+}
+.index-header .ng-header-con .ng-search .g-search .search-keyword-box .search-keyword {
+  width: 380px;
+  padding: 9px 10px 9px 0;
+  height: 18px;
+  line-height: 18px;
+  margin-top: 0;
+  border: 0;
+  font-size: 12px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  float: right;
+  outline: none;
+}
+.index-header .ng-header-con .ng-search .g-search .searchSubmit {
+  float: left;
+  width: 120px;
+  height: 40px;
+  background: #ff8000;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 0;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.swiper {
+  position: relative;
+}
+.swiper .swiper-wrapper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.swiper .swiper-button {
+  width: 812px;
+  position: absolute;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.swiper .swiper-button .swiper-button-prev:after, .swiper .swiper-button .swiper-button-next:after {
+  content: none !important;
 }

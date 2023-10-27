@@ -2,9 +2,15 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: #666;
 }
 
+li {
+  list-style: none;
+}
+
+a {
+  color: #666;
+}
 a :hover {
   color: #f60;
 }
@@ -226,25 +232,354 @@ body {
   border: 0;
   color: #FFF;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 400;
   cursor: pointer;
+}
+
+.ng-nav-bar {
+  position: relative;
+  min-width: 1190px;
+  width: 1190px;
+  margin: 0 auto;
+  height: 38px;
+  display: flex;
+  justify-content: space-between;
+}
+.ng-nav-bar .index-sort {
+  width: 200px;
+}
+.ng-nav-bar .index-sort .index-all-hook {
+  display: block;
+  position: absolute;
+  width: 166px;
+  padding-left: 34px;
+  height: 38px;
+  top: 0;
+  line-height: 38px;
+  background: #ff8000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 12px 12px 0 0;
+  text-decoration: none;
+}
+.ng-nav-bar .index-sort .index-all-hook img {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 14px;
+  height: 13px;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box {
+  position: absolute;
+  top: 38px;
+  width: 200px;
+  height: 476px;
+  background: #fff;
+  z-index: 999;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box .index-list li {
+  width: 166px;
+  height: 31px;
+  padding: 0 6px 0 28px;
+  position: relative;
+  line-height: 29px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box .index-list li .icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 6px;
+  top: 7px;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box .index-list li a {
+  vertical-align: middle;
+  letter-spacing: 1px;
+  color: #000;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box .index-list li a:hover {
+  color: #ff6600;
+}
+.ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box .index-list li span {
+  font-size: 14px;
+  vertical-align: middle;
+  margin: 0 1px;
+}
+.ng-nav-bar .ng-nav-index {
+  width: 794px;
+  height: 38px;
+}
+.ng-nav-bar .ng-nav-index .ng-nav {
+  display: flex;
+}
+.ng-nav-bar .ng-nav-index .ng-nav li {
+  width: 60px;
+  height: 38px;
+  line-height: 38px;
+  font-weight: bold;
+  padding: 0 12px 0 13px;
+  font-size: 15px;
+}
+.ng-nav-bar .ng-nav-index .ng-nav li a {
+  color: #333;
+}
+.ng-nav-bar .ng-nav-index .ng-nav li a:hover {
+  color: #ff6600;
+}
+.ng-nav-bar .ng-nav-index .ng-nav .title-pic {
+  width: 110px;
+  padding: 0;
+}
+.ng-nav-bar .ng-nav-index .ng-nav .title-pic img {
+  height: 38px;
+}
+.ng-nav-bar .ng-nav-right a img {
+  width: 196px;
+  height: 38px;
+  vertical-align: middle;
+}
+.ng-nav-bar .ng-nav-right .nav-right {
+  width: 196px;
+  height: 476px;
+  background: #FFFFFF;
+  position: absolute;
+  z-index: 999;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box {
+  position: relative;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .user-img {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 10px;
+  top: 10px;
+  z-index: 1;
+  border: 1px solid #f7f7f7;
+  border-radius: 50%;
+  background-size: 100% 100%;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .user-img a img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: 0;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login {
+  width: 196px;
+  height: 225px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .user-info {
+  float: left;
+  margin-top: 15px;
+  margin-left: 66px;
+  width: 125px;
+  height: 38px;
+  font-size: 12px;
+  color: #333;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .user-info .hi {
+  width: 122px;
+  height: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .user-info span {
+  display: inline-block;
+  height: 18px;
+  line-height: 18px;
+  color: #fff;
+  font-size: 12px;
+  background: #363636;
+  margin-right: 2px;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .user-info .tips {
+  display: block;
+  color: #ff8000;
+  font-size: 12px;
+  line-height: 17px;
+  height: 17px;
+  text-align: left;
+  margin-top: 8px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 10px;
+  top: 93px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info div {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info div a {
+  color: #333;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info div a .num {
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #ff7800;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info .split-line {
+  width: 1px;
+  height: 14px;
+  background: #ccc;
+  margin-top: 10px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .has-login .order-info .all {
+  width: 25px;
+  height: 34px;
+  color: #EE8031;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .three-entry {
+  position: absolute;
+  width: 196px;
+  height: 85px;
+  left: 0;
+  top: 140px;
+  background: #fff;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .three-entry a {
+  float: left;
+  width: 65px;
+  height: 85px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .three-entry a img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  margin: 6px auto;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .three-entry a p {
+  height: 20px;
+  max-width: 66px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+.ng-nav-bar .ng-nav-right .nav-right .top-box .three-entry a:hover p {
+  color: #ED702D;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box {
+  height: 250px;
+  width: 196px;
+  border-top: 1px solid #f2f2f2;
+  overflow: hidden;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul {
+  margin-right: -2px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul li {
+  float: left;
+  width: 65px;
+  height: 85px;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: #f2f2f2;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul li a img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 12px 20px;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul li a p {
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  max-width: 66px;
+  overflow: hidden;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul li:hover {
+  box-shadow: 0 0 5px #DDDDDD;
+}
+.ng-nav-bar .ng-nav-right .nav-right .bot-box ul li:hover p {
+  color: #ED702D;
 }
 
 .swiper {
   position: relative;
+  min-width: 1190px;
 }
 .swiper .swiper-wrapper .swiper-slide {
   display: flex;
   justify-content: center;
 }
+.swiper .swiper-wrapper .swiper-slide img {
+  width: 794px;
+  height: 476px;
+  position: relative;
+  left: 2px;
+}
+.swiper .swiper-pagination {
+  position: absolute;
+  top: 335px;
+}
+.swiper .swiper-pagination .swiper-pagination-bullet {
+  width: 20px;
+  height: 4px;
+  border-radius: 0;
+}
+.swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background: #ff8000;
+}
 .swiper .swiper-button {
-  width: 812px;
+  width: 814px;
   position: absolute;
   z-index: 999;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: 2px;
+  transform: translate(-50%, 0);
 }
 .swiper .swiper-button .swiper-button-prev:after, .swiper .swiper-button .swiper-button-next:after {
   content: none !important;
+}
+.swiper .four-wrap {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translate(-391px, 0);
+  width: 786px;
+  height: 112px;
+  overflow: hidden;
+  z-index: 998;
+}
+.swiper .four-wrap .four-sm-banner ul {
+  display: flex;
+}
+.swiper .four-wrap .four-sm-banner ul li {
+  position: relative;
+  padding-left: 2px;
+  cursor: pointer;
+}
+.swiper .four-wrap .four-sm-banner ul li a img {
+  width: 194px;
+  height: 112px;
+}
+.swiper .four-wrap .four-sm-banner ul li .white {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 194px;
+  height: 112px;
+  z-index: 999;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+}
+.swiper .four-wrap .four-sm-banner ul li:hover .white {
+  background: rgba(255, 255, 255, 0.3137254902);
 }

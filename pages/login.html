@@ -30,8 +30,22 @@
                     <i></i>
                 </a>
             </div>
-            <div class="pc-login">
-                <div class="username-login">
+            <!--扫码登录-->
+            <div class="scan-login" style="display: block">
+                <div class="scan-box">
+                    <div class="qrcode"><img src="../images/qr.png" alt=""></div>
+                </div>
+                <p class="open-app">
+                    <i></i>
+                    打开
+                    <a href="">苏宁易购APP</a>
+                    扫码登录
+                </p>
+            </div>
+            <!--账户登录-->
+            <div class="pc-login" style="display: none;">
+                <!--账号密码登录-->
+                <div class="username-login" style="display: block">
                     <div style="height: 40px;width: 312px;"></div>
                     <div class="username-box">
                         <div class="input-box">
@@ -58,9 +72,36 @@
                         登录
                     </a>
                 </div>
-                <div class="phone-login"></div>
+                <!--手机验证码登录-->
+                <div class="phone-login" style="display: none">
+                    <div style="height: 40px;width: 312px;"></div>
+                    <div class="phone-box">
+                        <div class="input-box">
+                            <input type="text" placeholder="手机号码">
+                            <div class="icon"></div>
+                        </div>
+                    </div>
+                    <div class="sms-box">
+                        <div class="input-box">
+                            <div class="icon"></div>
+                            <input type="text" placeholder="手机验证码">
+                        </div>
+                        <a href="javascript:void(0)" class="send-sms">获取验证码</a>
+                    </div>
+                    <div class="login-help">
+                        <a href="javascript:void(0)" class="login-switch">
+                            <i></i>
+                            账号密码登录
+                        </a>
+                        <a href="javascript:void(0)" class="forget-password">
+                            忘记密码？
+                        </a>
+                    </div>
+                    <a href="javascript:void(0)" class="login-submit">
+                        登录
+                    </a>
+                </div>
             </div>
-            <div class="scan-login"></div>
 
             <div class="free-reg">
                 <a href="javascript:void(0)">注册 有惊喜 ></a>
@@ -68,5 +109,7 @@
         </div>
     </div>
 </div>
+
+<script src="../js/login.js"></script>
 </body>
 </html>

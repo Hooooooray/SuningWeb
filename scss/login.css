@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -121,26 +126,49 @@ a:hover {
   font-style: normal;
   color: #999;
 }
-.main .login-c .login-form .pc-login .username-login {
+.main .login-c .login-form .pc-login .username-login, .main .login-c .login-form .pc-login .phone-login {
   width: 312px;
   height: 241px;
   padding: 0 24px;
 }
-.main .login-c .login-form .pc-login .username-login .username-box {
+.main .login-c .login-form .pc-login .username-login .username-box, .main .login-c .login-form .pc-login .username-login .phone-box, .main .login-c .login-form .pc-login .phone-login .username-box, .main .login-c .login-form .pc-login .phone-login .phone-box {
   margin-bottom: 20px;
 }
-.main .login-c .login-form .pc-login .username-login .username-box .input-box .icon {
+.main .login-c .login-form .pc-login .username-login .username-box .input-box .icon, .main .login-c .login-form .pc-login .username-login .phone-box .input-box .icon, .main .login-c .login-form .pc-login .phone-login .username-box .input-box .icon, .main .login-c .login-form .pc-login .phone-login .phone-box .input-box .icon {
   z-index: 999;
   background: url("../images/sprite.png") -123px -67px no-repeat;
 }
-.main .login-c .login-form .pc-login .username-login .password-box {
+.main .login-c .login-form .pc-login .username-login .password-box, .main .login-c .login-form .pc-login .phone-login .password-box {
   margin-bottom: 20px;
 }
-.main .login-c .login-form .pc-login .username-login .password-box .input-box .icon {
+.main .login-c .login-form .pc-login .username-login .password-box .input-box .icon, .main .login-c .login-form .pc-login .phone-login .password-box .input-box .icon {
   z-index: 999;
   background: url("../images/sprite.png") 0px -108px no-repeat;
 }
-.main .login-c .login-form .pc-login .username-login .login-help {
+.main .login-c .login-form .pc-login .username-login .sms-box, .main .login-c .login-form .pc-login .phone-login .sms-box {
+  display: flex;
+  margin-bottom: 20px;
+}
+.main .login-c .login-form .pc-login .username-login .sms-box .input-box, .main .login-c .login-form .pc-login .phone-login .sms-box .input-box {
+  width: 140px;
+}
+.main .login-c .login-form .pc-login .username-login .sms-box .input-box .icon, .main .login-c .login-form .pc-login .phone-login .sms-box .input-box .icon {
+  z-index: 999;
+  background: url("../images/sprite.png") 0px -108px no-repeat;
+}
+.main .login-c .login-form .pc-login .username-login .sms-box .send-sms, .main .login-c .login-form .pc-login .phone-login .sms-box .send-sms {
+  display: block;
+  width: 101px;
+  height: 100%;
+  line-height: 36px;
+  text-align: center;
+  background: #eee;
+  border: 1px solid #ddd;
+  border-left: 0 none;
+  font-size: 14px;
+  text-decoration: none;
+}
+.main .login-c .login-form .pc-login .username-login .login-help, .main .login-c .login-form .pc-login .phone-login .login-help {
   line-height: 35px;
   height: 35px;
   font-size: 12px;
@@ -149,11 +177,11 @@ a:hover {
   justify-content: space-between;
   padding-top: 10px;
 }
-.main .login-c .login-form .pc-login .username-login .login-help .login-switch {
+.main .login-c .login-form .pc-login .username-login .login-help .login-switch, .main .login-c .login-form .pc-login .phone-login .login-help .login-switch {
   display: flex;
   align-items: center;
 }
-.main .login-c .login-form .pc-login .username-login .login-help .login-switch i {
+.main .login-c .login-form .pc-login .username-login .login-help .login-switch i, .main .login-c .login-form .pc-login .phone-login .login-help .login-switch i {
   background: url("../images/sprite.png") -21px -149px no-repeat;
   font-style: normal;
   display: block;
@@ -161,7 +189,7 @@ a:hover {
   height: 16px;
   margin-right: 5px;
 }
-.main .login-c .login-form .pc-login .username-login .login-submit {
+.main .login-c .login-form .pc-login .username-login .login-submit, .main .login-c .login-form .pc-login .phone-login .login-submit {
   display: block;
   width: 310px;
   line-height: 40px;
@@ -172,6 +200,44 @@ a:hover {
   font-weight: 700;
   text-align: center;
   color: #fff;
+}
+.main .login-c .scan-login {
+  padding-top: 30px;
+  text-align: center;
+  position: relative;
+}
+.main .login-c .scan-login .scan-box {
+  height: 156px;
+  padding: 20px 34px 0;
+  position: relative;
+  margin-bottom: 17px;
+}
+.main .login-c .scan-login .scan-box .qrcode {
+  width: 141px;
+  height: 141px;
+  margin: 0 auto;
+  transition: 0.3s all;
+  position: relative;
+}
+.main .login-c .scan-login .scan-box .qrcode img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.main .login-c .scan-login .open-app {
+  margin-bottom: 7px;
+  text-align: center;
+}
+.main .login-c .scan-login .open-app i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  background: url("../images/sprite.png") -164px -67px no-repeat;
+  vertical-align: -3px;
+}
+.main .login-c .scan-login .open-app a {
+  color: #f60;
 }
 .main .login-c .free-reg {
   text-align: center;

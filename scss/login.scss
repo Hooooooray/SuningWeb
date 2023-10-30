@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,7 +15,7 @@ a {
   text-decoration: none;
 }
 
-a:hover{
+a:hover {
   color: #ED702D;
 }
 
@@ -138,12 +143,12 @@ a:hover{
           color: #999;
         }
 
-        .username-login {
+        .username-login, .phone-login {
           width: 312px;
           height: 241px;
           padding: 0 24px;
 
-          .username-box {
+          .username-box, .phone-box {
             margin-bottom: 20px;
 
             .input-box {
@@ -154,7 +159,7 @@ a:hover{
             }
           }
 
-          .password-box {
+          .password-box, {
             margin-bottom: 20px;
 
             .input-box {
@@ -162,6 +167,30 @@ a:hover{
                 z-index: 999;
                 background: url("../images/sprite.png") 0px -108px no-repeat
               }
+            }
+          }
+
+          .sms-box{
+            display: flex;
+            margin-bottom: 20px;
+            .input-box {
+              width: 140px;
+              .icon {
+                z-index: 999;
+                background: url("../images/sprite.png") 0px -108px no-repeat
+              }
+            }
+            .send-sms{
+              display: block;
+              width: 101px;
+              height: 100%;
+              line-height: 36px;
+              text-align: center;
+              background: #eee;
+              border: 1px solid #ddd;
+              border-left: 0 none;
+              font-size: 14px;
+              text-decoration: none;
             }
           }
 
@@ -178,6 +207,7 @@ a:hover{
             .login-switch {
               display: flex;
               align-items: center;
+
               i {
                 background: url("../images/sprite.png") -21px -149px no-repeat;
                 font-style: normal;
@@ -189,7 +219,7 @@ a:hover{
             }
           }
 
-          .login-submit{
+          .login-submit {
             display: block;
             width: 310px;
             line-height: 40px;
@@ -210,13 +240,49 @@ a:hover{
     }
 
     .scan-login {
-
+      padding-top: 30px;
+      text-align: center;
+      position: relative;
+      .scan-box{
+        height: 156px;
+        padding: 20px 34px 0;
+        position: relative;
+        margin-bottom: 17px;
+        .qrcode{
+          width: 141px;
+          height: 141px;
+          margin: 0 auto;
+          transition: .3s all;
+          position: relative;
+          img{
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .open-app{
+        margin-bottom: 7px;
+        text-align: center;
+        i{
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+          background: url('../images/sprite.png') -164px -67px no-repeat;
+          vertical-align: -3px;
+        }
+        a{
+          color: #f60;
+        }
+      }
     }
 
-    .free-reg{
+    .free-reg {
       text-align: center;
       margin: 12px 0 35px;
-      a{
+
+      a {
         font-size: 12px;
         color: #ff6600;
       }

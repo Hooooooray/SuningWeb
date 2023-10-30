@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 12px/1.5 "Microsoft Yahei", tahoma, arial, "Hiragino Sans GB";
+  -webkit-font-smoothing: antialiased;
+  background: #F8F8F8;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ED702D;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 88px;
+
+  .ng-header-con {
+    position: relative;
+    width: 990px;
+    min-width: 990px;
+    height: 88px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    .ng-header-box {
+      a {
+        left: 110px;
+        margin-right: 24px;
+
+        img {
+          width: 190px;
+          height: 88px;
+          vertical-align: top;
+        }
+      }
+    }
+
+    .logo-txt {
+      font-size: 18px;
+      color: #666;
+    }
+
+    .login {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+  }
+}
+
+.main {
+  width: 990px;
+  height: 332px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-top: 3px solid #f90;
+  background: #fff;
+  padding: 55px 0;
+  line-height: 1.5;
+
+  .enterReg-form {
+    .reg-form {
+      width: 380px;
+      margin: 0 auto;
+
+      .gift-pkg {
+
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 2px;
+        margin-bottom: 17px;
+
+        i {
+          float: left;
+          width: 19px;
+          height: 17px;
+          margin-right: 6px;
+          background: url('../images/sprite1.png') -75px -93px no-repeat;
+        }
+
+        em {
+          color: #f40;
+          font-style: normal;
+        }
+      }
+
+      .phone-field, .msg-field, .password-field {
+        position: relative;
+
+        .input-box {
+          width: 378px;
+          height: 38px;
+          border: 1px solid #ccc;
+          line-height: 38px;
+          margin-bottom: 25px;
+
+          .title {
+            float: left;
+            width: 76px;
+            padding-left: 11px;
+          }
+
+          .input-wrapper {
+            width: 291px;
+            float: left;
+            height: 100%;
+
+            input {
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+              font-size: 14px;
+              color: #333;
+              border: 0;
+              background: 0;
+              outline: none;
+            }
+          }
+        }
+
+        .error-msg {
+          color: red;
+          position: absolute;
+          top: 42px;
+        }
+        .suggestion{
+          position: absolute;
+          top: 42px;
+          color: #999;
+        }
+      }
+
+      .msg-field {
+        .input-box {
+          .title {
+            float: left;
+            width: 76px;
+            padding-left: 11px;
+          }
+
+          .input-wrapper {
+            width: 142px;
+            position: relative;
+          }
+
+          .send-msg {
+            float: left;
+            width: 148px;
+            height: 100%;
+            line-height: 38px;
+            text-align: center;
+            background: #f5f5f5;
+            border: 1px solid #bbb;
+            font-size: 14px;
+            margin: -1px -1px 0 0;
+            text-decoration: none;
+          }
+        }
+
+        .send-success {
+          height: 34px;
+          line-height: 34px;
+          margin-top: -25px;
+          color: #999;
+          position: absolute;
+          top: 60px;
+
+          .msg-sent {
+            float: left;
+
+            em {
+              color: #f55;
+              font-style: normal;
+            }
+          }
+        }
+      }
+
+      .password-field {
+
+      }
+
+      .submit-btn {
+        width: 100%;
+        line-height: 40px;
+        background: #f60;
+        font-size: 20px;
+        color: #fff;
+        margin: 24px 0 5px;
+        display: block;
+        border-radius: 2px;
+        text-align: center;
+        text-decoration: none;
+
+      }
+    }
+  }
+}

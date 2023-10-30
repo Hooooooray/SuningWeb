@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苏宁易购</title>
+    <link rel="stylesheet" href="../scss/register.css">
+</head>
+<body>
+<div class="header">
+    <div class="ng-header-con">
+        <div class="ng-header-box">
+            <a href=""><img src="../images/logo-set.png" alt=""></a>
+        </div>
+        <div class="logo-txt">欢迎注册</div>
+        <a href="./login.html" class="login">我已经注册，马上登录></a>
+    </div>
+</div>
+<div class="main">
+    <div id="enterReg_form" class="enterReg-form" method="post">
+        <div class="reg-form">
+            <div class="gift-pkg">
+                <i></i>
+                注册领
+                <em>199</em>
+                元大礼包
+            </div>
+            <div class="phone-field">
+                <div class="input-box">
+                    <label class="title">手机号码</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="请输入您常用的手机号">
+                    </div>
+                </div>
+                <div class="error-msg" style="display: none">格式不正确，请您输入正确的手机号。</div>
+            </div>
+            <div class="msg-field">
+                <div class="input-box">
+                    <label class="title">手机验证码</label>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="请输入手机验证码">
+                    </div>
+                    <a href="" id="sendSmsCode" class="send-msg">获取手机验证码</a>
+                </div>
+                <div class="send-success" style="display: none">
+                    <div class="msg-sent">
+                        手机验证码已经成功发送，
+                        <em>5</em>
+                        分钟内有效
+                    </div>
+                </div>
+            </div>
+            <div class="password-field">
+                <div class="input-box">
+                    <label class="title">设置密码</label>
+                    <div class="input-wrapper">
+                        <input type="password" class="encrypt" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div style="height: 40px">
+                   <div class="error-msg" style="display: none">请输入8-20位密码！</div>
+                    <div class="suggestion" style="display: none">8-20个字符，由字母，数字和符号的两种以上组合。</div>
+                </div>
+            </div>
+            <a href="" class="submit-btn">提交注册</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

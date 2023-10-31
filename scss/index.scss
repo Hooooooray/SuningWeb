@@ -85,6 +85,12 @@ body {
             padding-left: 3px;
             vertical-align: center;
           }
+
+          .home{
+            width: 18px;
+            height: 16px;
+            margin-right: 3px;
+          }
         }
 
         .ng-bar-node {
@@ -156,6 +162,21 @@ body {
 
       .username-handle {
         padding: 0 10px;
+      }
+
+      .reg-bar-node{
+        display: block;
+        position: relative;
+        float: left;
+        padding: 0 10px;
+        line-height: 35px;
+        height: 35px;
+        overflow: hidden;
+        .reg-bbb{
+          position: relative;
+          margin-left: 10px;
+          color: #F60;
+        }
       }
 
       .myorder-handle {
@@ -282,8 +303,9 @@ body {
           border: 0;
           color: #FFF;
           font-size: 18px;
-          font-weight: 400;
+          font-weight: 600;
           cursor: pointer;
+          letter-spacing: 2px;
         }
       }
     }

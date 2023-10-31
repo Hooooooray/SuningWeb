@@ -1,0 +1,58 @@
+body{
+  background: #FFFFFF;
+  height: 2000px;
+}
+#main{
+  margin: 0 auto;
+  .index-header .ng-header-con .ng-header-box a {
+    position: absolute;
+    top: 0;
+  }
+
+  .index-header .ng-header-con .ng-search {
+    left: 350px;
+    .g-search .searchSubmit {
+      font-size: 20px ;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+
+  .ng-nav-bg .ng-nav-bar .index-sort .dacu-list-wrapper .index-sort-list-box {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease;
+  }
+
+  .ng-nav-bg .ng-nav-bar .index-sort:hover .dacu-list-wrapper .index-sort-list-box{
+    height: 465px;
+  }
+
+  .sf-navfull{
+    width: 100%;
+    height: 40px;
+    background-color: #333333;
+  }
+
+  .breadcrumb{
+    position: relative;
+    height: 20px;
+    padding: 10px 0;
+    line-height: 20px;
+    z-index: 10;
+    background: #f8f8f8;
+  }
+
+
+  .proinfo{
+    width: 1190px;
+    margin: 10px auto 0;
+    display: flex;
+    .proinfo-right{
+      .proinfo-title{
+        padding: 13px 10px 12px;
+      }
+    }
+  }
+}
+

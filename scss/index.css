@@ -79,6 +79,11 @@ body {
   padding-left: 3px;
   vertical-align: center;
 }
+.ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box a .home {
+  width: 18px;
+  height: 16px;
+  margin-right: 3px;
+}
 .ng-toolbar .ng-toolbar-con .ng-toolbar-left .ng-bar-node-box .ng-bar-node {
   display: flex;
   align-items: center;
@@ -129,6 +134,20 @@ body {
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .username-handle {
   padding: 0 10px;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .reg-bar-node {
+  display: block;
+  position: relative;
+  float: left;
+  padding: 0 10px;
+  line-height: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .reg-bar-node .reg-bbb {
+  position: relative;
+  margin-left: 10px;
+  color: #F60;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .myorder-handle {
   width: 63px;
@@ -233,8 +252,9 @@ body {
   border: 0;
   color: #FFF;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
+  letter-spacing: 2px;
 }
 
 .ng-nav-bg {

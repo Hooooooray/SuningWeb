@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   background: #FFFFFF;
   height: 2000px;
@@ -31,6 +32,41 @@ body {
   height: 40px;
   background-color: #333333;
 }
+#main .sf-navfull .sf-navbar {
+  width: 990px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+#main .sf-navfull .sf-navbar .sf-allcate {
+  width: 145px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+#main .sf-navfull .sf-navbar .sf-allcate span {
+  line-height: 40px;
+  padding-right: 20px;
+  background: url("../images/icon_baracts.png") no-repeat 100px -93px;
+}
+#main .sf-navfull .sf-navbar .sf-navlist {
+  border-left: #CCCCCC solid 1px;
+}
+#main .sf-navfull .sf-navbar .sf-navlist li {
+  padding: 0 20px;
+  color: #fff;
+  display: inline-block;
+}
+#main .sf-navfull .sf-navbar .sf-navlist li a {
+  color: #fff;
+  white-space: nowrap;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 40px;
+}
 #main .breadcrumb {
   position: relative;
   height: 20px;
@@ -46,4 +82,188 @@ body {
 }
 #main .proinfo .proinfo-right .proinfo-title {
   padding: 13px 10px 12px;
+}
+#main .proinfo .proinfo-right .proinfo-title .itemDisplayName {
+  font: 700 16px/1.5 微软雅黑;
+  color: #222;
+  display: flex;
+}
+#main .proinfo .proinfo-right .proinfo-title .itemDisplayName .zy {
+  display: inline-block;
+  min-width: 42px;
+  padding: 0 1px;
+  height: 20px;
+  margin: 2px 5px 0 0;
+  _margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  line-height: 20px;
+  vertical-align: middle;
+  background: #f50;
+}
+#main .proinfo .proinfo-right .proinfo-title .promotionDesc {
+  font: normal 14px/18px 微软雅黑;
+  color: #f60;
+  margin-top: 3px;
+}
+#main .proinfo .proinfo-right .price-container {
+  min-height: 100px;
+  width: 730px;
+  background: rgb(255, 248, 243);
+  border-radius: 2px;
+  padding-top: 12px;
+}
+#main .proinfo .proinfo-right .price-container .price-promo dt {
+  margin-top: 8px;
+  width: 70px;
+  padding-left: 10px;
+  color: #999;
+  float: left;
+}
+#main .proinfo .proinfo-right .price-container .price-promo dt span {
+  display: inline-block;
+  width: 6em;
+}
+#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice {
+  height: 28px;
+  float: left;
+  font: 700 30px/25px Tahoma;
+  color: #e00;
+  font-family: Arial;
+}
+#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice i {
+  font-size: 18px;
+  font-style: normal;
+}
+#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice span {
+  font-size: 24px;
+  font-family: Tahoma;
+}
+#main .proinfo .proinfo-right .tzm {
+  margin-top: 20px;
+}
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex, #main .proinfo .proinfo-right .tzm .proinfo-buytype, #main .proinfo .proinfo-right .tzm .proinfo-num {
+  padding-top: 5px;
+  padding-bottom: 0;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt, #main .proinfo .proinfo-right .tzm .proinfo-buytype dt, #main .proinfo .proinfo-right .tzm .proinfo-num dt {
+  float: left;
+  width: 70px;
+  padding-left: 10px;
+  color: #999;
+  overflow: hidden;
+  font-family: simsun;
+}
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt span, #main .proinfo .proinfo-right .tzm .proinfo-buytype dt span, #main .proinfo .proinfo-right .tzm .proinfo-num dt span {
+  display: inline-block;
+  width: 6em;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor {
+  display: flex;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor .clr-item {
+  margin: 0 4px 5px 0;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor .clr-item a {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  width: 68px;
+  line-height: 38px;
+  padding: 1px 8px 1px 1px;
+  border: 1px solid #ddd;
+  color: #666;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor .clr-item a img {
+  height: 38px;
+  width: 38px;
+  margin-right: 6px;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor .clr-item a span {
+  max-width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#main .proinfo .proinfo-right .tzm .tip-infor .clr-item .selected {
+  border: 1px solid #f50;
+}
+#main .proinfo .proinfo-right .tzm .buy-type {
+  display: flex;
+}
+#main .proinfo .proinfo-right .tzm .buy-type li {
+  margin: 0 5px 5px 0;
+  white-space: nowrap;
+}
+#main .proinfo .proinfo-right .tzm .buy-type li a {
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 8px;
+  border: 1px solid #ddd;
+}
+#main .proinfo .proinfo-right .tzm .buy-type li .selected {
+  border: 1px solid #f50;
+}
+#main .proinfo .proinfo-right .tzm .num-con {
+  display: flex;
+}
+#main .proinfo .proinfo-right .tzm .num-con a {
+  display: block;
+  width: 22px;
+  height: 30px;
+}
+#main .proinfo .proinfo-right .tzm .num-con .minus {
+  background: url("../images/f-icons-ex1.png") -1014px -668px;
+}
+#main .proinfo .proinfo-right .tzm .num-con .plus {
+  background: url("../images/f-icons-ex1.png") -992px -668px;
+}
+#main .proinfo .proinfo-right .tzm .num-con input {
+  width: 25px;
+  height: 18px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+#main .proinfo .proinfo-right .tzm .mainbtns {
+  padding: 8px 0 20px 80px;
+  display: flex;
+}
+#main .proinfo .proinfo-right .tzm .mainbtns .buy-now {
+  font: 16px/40px microsoft yahei;
+  font-weight: 600;
+  border-radius: 3px;
+  height: 40px;
+  background: #663200;
+  color: #fff;
+  width: 115px;
+  display: block;
+  text-align: center;
+  margin-right: 10px;
+}
+#main .proinfo .proinfo-right .tzm .mainbtns .add-cart {
+  background: #f50;
+  color: #fff;
+  font: 16px/40px microsoft yahei;
+  font-weight: 600;
+  border-radius: 3px;
+  width: 135px;
+  height: 40px;
+  display: block;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.w3 {
+  letter-spacing: 0.5em;
+}
+
+.w2 {
+  letter-spacing: 2em;
 }

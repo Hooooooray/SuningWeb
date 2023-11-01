@@ -1,9 +1,11 @@
-body{
+body {
   background: #FFFFFF;
   height: 2000px;
 }
-#main{
+
+#main {
   margin: 0 auto;
+
   .index-header .ng-header-con .ng-header-box a {
     position: absolute;
     top: 0;
@@ -11,8 +13,9 @@ body{
 
   .index-header .ng-header-con .ng-search {
     left: 350px;
+
     .g-search .searchSubmit {
-      font-size: 20px ;
+      font-size: 20px;
       font-weight: 600;
       letter-spacing: 2px;
     }
@@ -24,17 +27,59 @@ body{
     transition: height 0.5s ease;
   }
 
-  .ng-nav-bg .ng-nav-bar .index-sort:hover .dacu-list-wrapper .index-sort-list-box{
+  .ng-nav-bg .ng-nav-bar .index-sort:hover .dacu-list-wrapper .index-sort-list-box {
     height: 465px;
   }
 
-  .sf-navfull{
+  .sf-navfull {
     width: 100%;
     height: 40px;
     background-color: #333333;
+
+    .sf-navbar {
+      width: 990px;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+
+      .sf-allcate {
+        width: 145px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+
+        span {
+          line-height: 40px;
+          padding-right: 20px;
+          background: url('../images/icon_baracts.png') no-repeat 100px -93px;
+
+        }
+      }
+
+      .sf-navlist {
+        border-left: #CCCCCC solid 1px;
+
+        li {
+          padding: 0 20px;
+          color: #fff;
+          display: inline-block;
+
+          a {
+            color: #fff;
+            white-space: nowrap;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 40px;
+          }
+        }
+      }
+    }
   }
 
-  .breadcrumb{
+  .breadcrumb {
     position: relative;
     height: 20px;
     padding: 10px 0;
@@ -44,15 +89,236 @@ body{
   }
 
 
-  .proinfo{
+  .proinfo {
     width: 1190px;
     margin: 10px auto 0;
     display: flex;
-    .proinfo-right{
-      .proinfo-title{
+
+    .proinfo-right {
+      .proinfo-title {
         padding: 13px 10px 12px;
+
+        .itemDisplayName {
+          font: 700 16px/1.5 \5FAE\8F6F\96C5\9ED1;
+          color: #222;
+          display: flex;
+
+          .zy {
+            display: inline-block;
+            min-width: 42px;
+            padding: 0 1px;
+            height: 20px;
+            margin: 2px 5px 0 0;
+            _margin-top: 4px;
+            font-size: 12px;
+            font-weight: 400;
+            text-align: center;
+            color: #fff;
+            line-height: 20px;
+            vertical-align: middle;
+            background: #f50;;
+          }
+        }
+
+        .promotionDesc {
+          font: normal 14px/18px \5FAE\8F6F\96C5\9ED1;
+          color: #f60;
+          margin-top: 3px;
+        }
+      }
+
+      .price-container {
+        //position: relative;
+        min-height: 100px;
+        width: 730px;
+        background: rgb(255, 248, 243);
+        border-radius: 2px;
+        padding-top: 12px;
+
+        .price-promo {
+          dt {
+            margin-top: 8px;
+            width: 70px;
+            padding-left: 10px;
+            color: #999;
+            float: left;
+
+            span {
+              display: inline-block;
+              width: 6em;
+            }
+          }
+
+          dd {
+            .mainprice {
+              height: 28px;
+              float: left;
+              font: 700 30px/25px Tahoma;
+              color: #e00;
+              font-family: Arial;
+
+              i {
+                font-size: 18px;
+                font-style: normal;
+              }
+
+              span {
+                font-size: 24px;
+                font-family: Tahoma;
+              }
+            }
+          }
+        }
+      }
+
+      .tzm {
+        margin-top: 20px;
+
+        .proinfo-color-ex, .proinfo-buytype, .proinfo-num {
+          padding-top: 5px;
+          padding-bottom: 0;
+          margin-bottom: 6px;
+          display: flex;
+          align-items: center;
+
+          dt {
+            float: left;
+            width: 70px;
+            padding-left: 10px;
+            color: #999;
+            overflow: hidden;
+            font-family: simsun;
+
+            span {
+              display: inline-block;
+              width: 6em;
+            }
+          }
+        }
+
+        .tip-infor {
+          display: flex;
+
+          .clr-item {
+            margin: 0 4px 5px 0;
+
+            a {
+              display: flex;
+              align-items: center;
+              height: 38px;
+              width: 68px;
+              line-height: 38px;
+              padding: 1px 8px 1px 1px;
+              border: 1px solid #ddd;
+              color: #666;
+
+              img {
+                height: 38px;
+                width: 38px;
+                margin-right: 6px;
+              }
+
+              span {
+                max-width: 180px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+            }
+
+            .selected {
+              border: 1px solid #f50;
+            }
+          }
+        }
+
+        .buy-type {
+          display: flex;
+
+          li {
+            margin: 0 5px 5px 0;
+            white-space: nowrap;
+
+            a {
+              display: inline-block;
+              height: 32px;
+              line-height: 32px;
+              padding: 0 8px;
+              border: 1px solid #ddd;
+            }
+
+            .selected {
+              border: 1px solid #f50;
+            }
+          }
+        }
+
+        .num-con {
+          display: flex;
+
+          a {
+            display: block;
+            width: 22px;
+            height: 30px;
+          }
+
+          .minus {
+            background: url("../images/f-icons-ex1.png") -1014px -668px;
+          }
+
+          .plus {
+            background: url("../images/f-icons-ex1.png") -992px -668px;
+          }
+
+          input {
+            width: 25px;
+            height: 18px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            text-align: center;
+          }
+        }
+
+        .mainbtns {
+          padding: 8px 0 20px 80px;
+          display: flex;
+
+          .buy-now {
+            font: 16px/40px microsoft yahei;
+            font-weight: 600;
+            border-radius: 3px;
+            height: 40px;
+            background: #663200;
+            color: #fff;
+            width: 115px;
+            display: block;
+            text-align: center;
+            margin-right: 10px;
+          }
+
+          .add-cart {
+            background: #f50;
+            color: #fff;
+            font: 16px/40px microsoft yahei;
+            font-weight: 600;
+            border-radius: 3px;
+            width: 135px;
+            height: 40px;
+            display: block;
+            margin-right: 10px;
+            text-align: center;
+          }
+        }
       }
     }
   }
+}
+
+.w3 {
+  letter-spacing: .5em;
+}
+
+.w2 {
+  letter-spacing: 2em;
 }
 

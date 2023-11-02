@@ -19,9 +19,9 @@ export default class Client {
   static createClient(accessKeyId: string, accessKeySecret: string): Dysmsapi20170525 {
     let config = new $OpenApi.Config({
       // 必填，您的 AccessKey ID
-      accessKeyId: "LTAI5tC2GZdveoTAuuCg3NJY",
+      accessKeyId: "",
       // 必填，您的 AccessKey Secret
-      accessKeySecret: "imlfirsOrv2D2vCfXn8JB6AJQjgOuu",
+      accessKeySecret: "",
     });
     // Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi
     config.endpoint = `dysmsapi.aliyuncs.com`;

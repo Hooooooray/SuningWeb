@@ -54,9 +54,9 @@ var Client = /** @class */ (function () {
     Client.createClient = function (accessKeyId, accessKeySecret) {
         var config = new $OpenApi.Config({
             // 必填，您的 AccessKey ID
-            accessKeyId: "LTAI5tC2GZdveoTAuuCg3NJY",
+            accessKeyId: "",
             // 必填，您的 AccessKey Secret
-            accessKeySecret: "imlfirsOrv2D2vCfXn8JB6AJQjgOuu",
+            accessKeySecret: "",
         });
         // Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi
         config.endpoint = "dysmsapi.aliyuncs.com";

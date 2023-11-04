@@ -21,7 +21,7 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     content: "✔";
     font-size: 14px;
     color: #f60;
@@ -298,6 +298,7 @@ em {
 
       .r-column {
         display: flex;
+
         .cart-collect {
           height: 100%;
           display: flex;
@@ -362,7 +363,8 @@ em {
 
         .cart-checkout {
           margin-left: 15px;
-          .checkout-btn{
+
+          .checkout-btn {
             display: block;
             width: 120px;
             height: 60px;
@@ -375,7 +377,8 @@ em {
             color: #fff;
             background-color: #f60;
           }
-          .checkout-btn:hover{
+
+          .checkout-btn:hover {
             background-color: #EB5428;
           }
         }

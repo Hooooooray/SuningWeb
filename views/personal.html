@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苏宁易购</title>
+    <link rel="stylesheet" href="../public/scss/index.css">
+    <link rel="stylesheet" href="../public/scss/personal.css">
+</head>
+<body>
+<!--导航栏-->
+<div class="ng-toolbar">
+    <div class="ng-toolbar-con">
+        <div class="ng-toolbar-left">
+            <div class="ng-bar-node-box">
+                <a class="ng-bar-node" href="../index.html"><img src="../public/images/home.png" alt="" class="home"><span
+                        style="margin-right: 5px">返回首页</span></a>
+            </div>
+            <div class="ng-bar-node-box ng-site-nav-box">
+                <a class="ng-bar-node" href=""><span>网站导航</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+            <div class="ng-bar-node-box shop-handle">
+                <a class="ng-bar-node" href=""><span>商家入驻</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+            <div class="ng-bar-node-box service-handle">
+                <a class="ng-bar-node" href=""><span>客户服务</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+            <div class="ng-bar-node-box scale-handle">
+                <a class="ng-bar-node" href=""><span>网页无障碍</span></a>
+            </div>
+        </div>
+        <div class="ng-toolbar-right">
+            <div class="reg-bar-node">
+                <a href="login.html">请登录</a>
+                <a href="register.html" class="reg-bbb">注册有礼</a>
+            </div>
+            <div class="ng-bar-node-box username-handle" style="display: none">
+                <a class="ng-bar-node" href=""><span>186******05</span><img src="../public/images/to-bottom.png"
+                                                                            alt=""></a>
+            </div>
+            <div class="ng-bar-node-box myorder-handle">
+                <a class="ng-bar-node" href=""><span>我的订单</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+            <div class="ng-bar-node-box mysuning-handle">
+                <a class="ng-bar-node" href=""><span>我的易购</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+            <div class="ng-bar-node-box"><a class="sn-huiyuan" href="">苏宁会员</a></div>
+            <div class="ng-bar-node-box cart-handle">
+                <a class="ng-bar-node" href=""><img class="cart-ico" src="../public/images/cart.png"
+                                                    alt=""><span>购物车</span><img src="../public/images/to-bottom.png"
+                                                                                   alt=""></a>
+            </div>
+            <div class="ng-bar-node-box yifubao"><a href="">易付宝</a></div>
+            <div class="ng-bar-node-box qiyecaigou"><a href="">企业采购</a></div>
+            <div class="ng-bar-node-box app-down-box">
+                <a class="ng-bar-node" href=""><span>手机苏宁</span><img src="../public/images/to-bottom.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ms-header">
+    <div class="ms-header-menu">
+        <div class="header-con">
+            <img src="../public/images/ms-logo.png" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="main-wrap">
+    <h3><b>个人信息</b></h3>
+    <div class="user-profile">
+        <div class="user-profile-wrap">
+            <div class="profile-avatar">
+                <img src="../public/images/user.png" alt="">
+                <a href="">编辑头像</a>
+                <div class="edit_bg"></div>
+            </div>
+        </div>
+        <div class="profile-info">
+            <div class="control-group ">
+                <div class="controls">
+                    <input type="text" id="username" placeholder="请设置用户名">
+                </div>
+                <div class="userNameErr">
+                    <i class="error"></i>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-list">
+        <form action="">
+            <div class="control-group">
+                <div class="control-label">昵称：</div>
+                <div class="controls">
+                    <input type="text" id="nickname">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label"><em>*</em>性别：</div>
+                <div id="gender" class="controls">
+                    <label class="sex-label">
+                        <input type="radio" name="sex">
+                        <span>男</span>
+                    </label>
+                    <label class="sex-label">
+                        <input type="radio" name="sex">
+                        <span>女</span>
+                    </label>
+                    <label class="sex-label">
+                        <input type="radio" name="sex">
+                        <span>保密</span>
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">手机：</div>
+                <div class="controls">
+                    <span class="mr5">
+                        186******05
+                    </span>
+                    <a href="">修改</a>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">&nbsp</div>
+                <a href="" class="save-profile-btn">保 存</a>
+                <a href="" class="delete-profile-btn">删 除</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../public/js/personal.js"></script>
+</body>
+</html>

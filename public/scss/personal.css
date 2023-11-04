@@ -1,0 +1,178 @@
+body {
+  line-height: 1.4;
+  color: #333;
+  font-size: 12px;
+  font: 12px/1.5 "Microsoft Yahei", tahoma, arial, "Hiragino Sans GB";
+}
+
+.ms-header {
+  height: 65px;
+  background: #fff;
+}
+.ms-header .ms-header-menu {
+  width: 100%;
+  height: 28px;
+  padding: 16px 0;
+  background: #f70;
+}
+.ms-header .ms-header-menu .header-con {
+  margin: 0 auto;
+  width: 1240px;
+}
+
+.main-wrap {
+  width: 1068px;
+  margin: 15px 0 30px 170px;
+  padding: 0 0 39px 0;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.main-wrap h3 {
+  height: 38px;
+  padding: 0 10px;
+  background: #fafafa;
+  color: #666;
+}
+.main-wrap h3 b {
+  font: bold 16px/38px "Microsoft Yahei";
+}
+.main-wrap .user-profile {
+  width: 968px;
+  margin-left: 90px;
+  padding: 30px 0;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+}
+.main-wrap .user-profile .user-profile-wrap {
+  position: relative;
+  width: 125px;
+  height: 125px;
+}
+.main-wrap .user-profile .user-profile-wrap .profile-avatar {
+  position: relative;
+  width: 125px;
+  height: 125px;
+  border: 3px solid #e3e3e3;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.main-wrap .user-profile .user-profile-wrap .profile-avatar img {
+  width: 125px;
+  height: 125px;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.main-wrap .user-profile .user-profile-wrap .profile-avatar a {
+  position: absolute;
+  bottom: 0;
+  width: 125px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  color: #FFF;
+  z-index: 2;
+}
+.main-wrap .user-profile .user-profile-wrap .profile-avatar .edit_bg {
+  position: absolute;
+  left: -3px;
+  bottom: 0;
+  width: 125px;
+  height: 25px;
+  font-size: 0;
+  opacity: 0.5;
+  z-index: 1;
+  background: #000;
+}
+.main-wrap .user-profile .profile-info {
+  margin-left: 25px;
+  padding-top: 35px;
+}
+.main-wrap .control-group {
+  display: flex;
+  align-items: center;
+}
+.main-wrap .control-group .controls {
+  display: flex;
+}
+.main-wrap .control-group .controls input[type=text] {
+  width: 140px;
+  height: 18px;
+  padding: 3px 5px;
+  border: 1px solid #bbb;
+  line-height: 18px;
+  outline: none;
+}
+.main-wrap .control-group .controls .sex-label {
+  display: flex;
+  align-items: center;
+}
+.main-wrap .control-group .controls .sex-label span {
+  margin: 0 20px 0 5px;
+}
+.main-wrap .control-group .controls .mr5 {
+  margin-right: 5px;
+}
+.main-wrap .control-group .controls a {
+  color: #2272c8;
+}
+.main-wrap .control-group .controls a:hover {
+  text-decoration: underline;
+}
+.main-wrap .control-group .save-profile-btn {
+  width: 77px;
+  height: 30px;
+  display: inline-block;
+  background: #F90;
+  border-radius: 3px;
+  font: 14px/30px "Microsoft Yahei";
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+}
+.main-wrap .control-group .delete-profile-btn {
+  width: 77px;
+  height: 30px;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font: 14px/30px "Microsoft Yahei";
+  text-align: center;
+  color: #222;
+  text-decoration: none;
+  margin-left: 42px;
+}
+.main-wrap .control-group .userNameErr {
+  display: flex;
+  align-items: center;
+}
+.main-wrap .control-group .userNameErr .error {
+  font-style: normal;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 5px 0 10px;
+  background: url("../images/tipIcon.png") no-repeat -500px;
+}
+.main-wrap .control-group .userNameErr span {
+  color: #666;
+}
+.main-wrap .form-list {
+  margin-top: 30px;
+}
+.main-wrap .form-list form .control-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+.main-wrap .form-list form .control-group .control-label {
+  width: 194px;
+  text-align: right;
+  line-height: 26px;
+  color: #666;
+}
+.main-wrap .form-list form .control-group .control-label em {
+  color: #f00;
+  font-style: normal;
+}

@@ -2,6 +2,8 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const {exec} = require('child_process');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 // 创建一个二级路由器
 const authRouter = express.Router();
 
@@ -58,28 +60,35 @@ authRouter.post('/register', (req, res) => {
     const {phoneNumber, smsCode, password} = req.body;
 
     if (smsCode === formattedNumber[phoneNumber]) {
-        const connection = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'yyb12345',
-            port: '3306',
-            database: 'suning'
-        });
-        connection.connect();
-        let insertSql = 'INSERT INTO users (password,phone) VALUES (?,?)'; // 用你的表结构和字段名替换
-        const values = [phoneNumber, password]; // 替换为要插入的数据值
-        // 插入数据
-        connection.query(insertSql, values, function (err, result) {
+        bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
-                console.log('[INSERT ERROR] - ', err.message);
-                return;
+                console.error('密码哈希生成失败: ' + err);
+                res.status(500).json({message: '注册失败', error: 'Password hashing error'});
+            } else {
+                const connection = mysql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: 'yyb12345',
+                    port: '3306',
+                    database: 'suning'
+                });
+                connection.connect();
+                let insertSql = 'INSERT INTO users (password,phone) VALUES (?,?)'; // 用你的表结构和字段名替换
+                const values = [hash, phoneNumber]; // 替换为要插入的数据值
+                // 插入数据
+                connection.query(insertSql, values, function (err, result) {
+                    if (err) {
+                        console.log('[INSERT ERROR] - ', err.message);
+                        return;
+                    }
+                    console.log('--------------------------INSERT----------------------------');
+                    console.log('插入成功，受影响的行数：' + result.affectedRows);
+                    console.log('------------------------------------------------------------\n\n');
+                    res.json({message: '注册成功'});
+                });
+                connection.end();
             }
-            console.log('--------------------------INSERT----------------------------');
-            console.log('插入成功，受影响的行数：' + result.affectedRows);
-            console.log('------------------------------------------------------------\n\n');
-        });
-        connection.end();
-        res.json({message: '注册成功'});
+        })
     } else {
         res.status(400).json({message: '验证码不正确', statusCode: 400});
     }
@@ -88,6 +97,7 @@ authRouter.post('/register', (req, res) => {
 
 // 在二级路由器上定义/login路由
 authRouter.post('/login', (req, res) => {
+    const {loginAccount, loginPassword} = req.body;
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -96,21 +106,32 @@ authRouter.post('/login', (req, res) => {
         database: 'suning'
     });
     connection.connect();
-    let selectSql = 'SELECT * FROM users'; // 用你的表结构和字段名替换
+    let selectSql = `SELECT * FROM users WHERE username = ? OR phone = ?`; // 用你的表结构和字段名替换
+    const values = [loginAccount,loginAccount]
     // 插入数据
-    connection.query(selectSql,function (err, result) {
+    connection.query(selectSql, values, function (err, result) {
         if (err) {
             console.error('查询出错: ' + err.stack);
-            return;
+        }else if(result.length>=1){
+            const user = result[0]
+            bcrypt.compare(loginPassword,user.password,(err,isMatch)=>{
+                if(err){
+                    console.error('密码比较时出错')
+                }
+                if (isMatch) {
+                    // 密码匹配，登录成功
+                    res.status(200).json({ message: '密码正确，登录成功' });
+                } else {
+                    // 密码不匹配，登录失败
+                    res.status(401).json({ message: '密码错误，登录失败' });
+                }
+            })
+        }else {
+            res.status(404).json({ message: '未找到用户信息', statusCode: 404 });
         }
-
-        // 处理查询结果
-        console.log('查询结果: ', result);
     });
     connection.end();
 
-    const {loginAccount, loginPassword} = req.body;
-    res.json({message: '登录成功'})
 });
 
 // 将二级路由器挂载到主应用程序的/api路径下

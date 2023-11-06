@@ -37,8 +37,8 @@ loginSwitchButton.forEach((item, index) => {
 
 let accountSubmitButton = document.getElementById('accountSubmit')
 accountSubmitButton.addEventListener('click', () => {
-    let loginAccount = document.getElementById('loginAccount')
-    let loginPassword = document.getElementById('loginPassword')
+    let loginAccount = document.getElementById('loginAccount').value
+    let loginPassword = document.getElementById('loginPassword').value
     let data = {
         loginAccount,
         loginPassword

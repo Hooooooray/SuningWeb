@@ -20,6 +20,11 @@ a:hover {
   color: #ED702D;
 }
 
+.disabled {
+  pointer-events: none;
+  color: #bbb;
+}
+
 .header {
   position: relative;
   width: 100%;

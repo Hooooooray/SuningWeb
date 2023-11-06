@@ -34,3 +34,39 @@ loginSwitchButton.forEach((item, index) => {
         }
     })
 })
+
+let accountSubmitButton = document.getElementById('accountSubmit')
+accountSubmitButton.addEventListener('click', () => {
+    let loginAccount = document.getElementById('loginAccount')
+    let loginPassword = document.getElementById('loginPassword')
+    let data = {
+        loginAccount,
+        loginPassword
+    };
+    let url = 'http://localhost:3000/api/login'
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = '../index.html'
+            return response.json();
+        } else {
+            throw new Error('登录失败');
+        }
+    })
+        .then(responseData => {
+            console.log(responseData);
+        })
+        .catch(error => {
+            console.error('Ajax请求异常: ' + error.message);
+        });
+})
+
+let smsSubmitButton = document.getElementById('smsSubmit')
+smsSubmitButton.addEventListener('click', () => {
+
+})

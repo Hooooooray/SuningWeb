@@ -1,4 +1,4 @@
-let submitBtn = document.getElementById('submitRegister')
+let submitRegisterBtn = document.getElementById('submitRegister')
 let sendMsgBtn = document.getElementById('sendSmsCode')
 
 function doCount() {
@@ -15,13 +15,12 @@ function doCount() {
 
         }
     }, 1000);
-
-
 }
 
 sendMsgBtn.addEventListener('click', () => {
-    let phoneNumber = document.getElementById('setPhone').value
-    let url = 'http://localhost:3000/api/sms'
+    let phoneNumber = document.getElementById('setPhone') || document.getElementById('loginPhone')
+    phoneNumber = phoneNumber.value
+    const url = 'http://localhost:3000/api/sms'
     let data = {
         phoneNumber
     };
@@ -49,9 +48,8 @@ sendMsgBtn.addEventListener('click', () => {
         .catch(error => {
             console.error('请求异常: ' + error.message);
         });
-
 })
-submitBtn.addEventListener('click', () => {
+submitRegisterBtn.addEventListener('click', () => {
     let phoneNumber = document.getElementById('setPhone').value
     let smsCode = document.getElementById('smsCode').value
     let password = document.getElementById('setPassword').value
@@ -60,7 +58,7 @@ submitBtn.addEventListener('click', () => {
         smsCode,
         password
     };
-    let url = 'http://localhost:3000/api/register'
+    const url = 'http://localhost:3000/api/register'
     fetch(url, {
         method: 'POST',
         headers: {
@@ -70,7 +68,8 @@ submitBtn.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = '../index.html'
+                // window.location.href = '../index.html'
+                history.go(-1);
                 return response.json();
             } else if (response.status === 400) {
                 return response.json();
@@ -79,7 +78,8 @@ submitBtn.addEventListener('click', () => {
             }
         })
         .then(responseData => {
-            console.log(responseData);
+            let token = responseData.token
+            localStorage.setItem('token',token)
         })
         .catch(error => {
             console.error('Ajax请求异常: ' + error.message);

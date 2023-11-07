@@ -4,6 +4,7 @@ const cors = require('cors');
 const {exec} = require('child_process');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const secretKey = 'SecretKeyOfBinbinHooray';
 // 创建一个二级路由器
 const authRouter = express.Router();
 
@@ -13,6 +14,14 @@ const app = express();
 app.use(cors());
 // 使用Express中间件来解析请求体中的JSON数据
 app.use(express.json());
+
+const mysqlConnection = {
+    password: 'yyb12345',
+    database: 'suning',
+    port: '3306',
+    host: 'localhost',
+    user: 'root',
+}
 
 // 验证码
 let formattedNumber = {} //存储已发送手机号码对应的验证码
@@ -65,74 +74,106 @@ authRouter.post('/register', (req, res) => {
                 console.error('密码哈希生成失败: ' + err);
                 res.status(500).json({message: '注册失败', error: 'Password hashing error'});
             } else {
-                const connection = mysql.createConnection({
-                    host: 'localhost',
-                    user: 'root',
-                    password: 'yyb12345',
-                    port: '3306',
-                    database: 'suning'
-                });
+                const connection = mysql.createConnection(mysqlConnection);
                 connection.connect();
-                let insertSql = 'INSERT INTO users (password,phone) VALUES (?,?)'; // 用你的表结构和字段名替换
-                const values = [hash, phoneNumber]; // 替换为要插入的数据值
+                let insertSql = 'INSERT INTO users (password, phone) VALUES (?, ?)';
+                const values = [hash, phoneNumber];
                 // 插入数据
                 connection.query(insertSql, values, function (err, result) {
                     if (err) {
                         console.log('[INSERT ERROR] - ', err.message);
+                        res.status(500).json({message: '注册失败', error: err.message});
                         return;
                     }
-                    console.log('--------------------------INSERT----------------------------');
-                    console.log('插入成功，受影响的行数：' + result.affectedRows);
-                    console.log('------------------------------------------------------------\n\n');
-                    res.json({message: '注册成功'});
+                    let selectSql = 'SELECT * FROM users WHERE phone = ?';
+                    connection.query(selectSql, phoneNumber, (err, result) => {
+                        if (err) {
+                            console.error('查询数据库失败: ' + err);
+                            res.status(500).json({message: '注册失败', error: err.message});
+                        } else {
+                            // 用户成功注册并且查询成功，创建JWT令牌
+                            const user = result[0];
+                            const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                            res.json({message: '注册成功', token});
+                        }
+                    });
+                    connection.end();
                 });
-                connection.end();
+
             }
-        })
+        });
     } else {
         res.status(400).json({message: '验证码不正确', statusCode: 400});
     }
-
 });
 
 // 在二级路由器上定义/login路由
-authRouter.post('/login', (req, res) => {
+authRouter.post('/accountLogin', (req, res) => {
     const {loginAccount, loginPassword} = req.body;
-    const connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'yyb12345',
-        port: '3306',
-        database: 'suning'
-    });
+    const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
     let selectSql = `SELECT * FROM users WHERE username = ? OR phone = ?`; // 用你的表结构和字段名替换
-    const values = [loginAccount,loginAccount]
-    // 插入数据
+    const values = [loginAccount, loginAccount]
+    // 查询数据
     connection.query(selectSql, values, function (err, result) {
         if (err) {
             console.error('查询出错: ' + err.stack);
-        }else if(result.length>=1){
+        } else if (result.length >= 1) {
             const user = result[0]
-            bcrypt.compare(loginPassword,user.password,(err,isMatch)=>{
-                if(err){
+            bcrypt.compare(loginPassword, user.password, (err, isMatch) => {
+                if (err) {
                     console.error('密码比较时出错')
                 }
                 if (isMatch) {
                     // 密码匹配，登录成功
-                    res.status(200).json({ message: '密码正确，登录成功' });
+                    const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                    res.status(200).json({message: '密码正确，登录成功', token});
                 } else {
                     // 密码不匹配，登录失败
-                    res.status(401).json({ message: '密码错误，登录失败' });
+                    res.status(401).json({message: '密码错误，登录失败'});
                 }
             })
-        }else {
-            res.status(404).json({ message: '未找到用户信息', statusCode: 404 });
+        } else {
+            res.status(404).json({message: '未找到用户信息', statusCode: 404});
         }
     });
     connection.end();
 
 });
+
+authRouter.post('/smsLogin', (req, res) => {
+    const {phoneNumber, smsCode} = req.body
+
+    const connection = mysql.createConnection(mysqlConnection);
+    connection.connect();
+    let selectSql = `SELECT * FROM users WHERE phone = ?`; // 用你的表结构和字段名替换
+    // 查询数据
+    connection.query(selectSql, phoneNumber, function (err, result) {
+        if (err) {
+            console.error('查询出错: ' + err.stack);
+        } else if (result.length >= 1) {
+            if (smsCode === formattedNumber[phoneNumber]) {
+                res.status(200).json({message: '登录成功', statusCode: 200});
+            } else {
+                res.status(400).json({message: '验证码不正确', statusCode: 400});
+            }
+        } else {
+            res.status(404).json({message: '未找到用户信息,请先注册', statusCode: 404});
+        }
+    });
+    connection.end();
+})
+
+authRouter.get('/home', (req, res) => {
+    const token = req.headers.authorization;
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({message: 'Token is not valid'});
+        }
+        // JWT 验证通过，你可以在 "decoded" 中访问用户数据
+        res.json(decoded);
+    });
+})
 
 // 将二级路由器挂载到主应用程序的/api路径下
 app.use('/api', authRouter);

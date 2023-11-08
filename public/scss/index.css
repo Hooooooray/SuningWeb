@@ -25,6 +25,8 @@ body {
   background-color: #ff7b90;
   height: 100px;
   width: 100%;
+  position: relative;
+  z-index: 999;
 }
 #TOP_ACTIVE a {
   width: 100%;
@@ -133,7 +135,19 @@ body {
   align-items: center;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .username-handle {
+  overflow: hidden;
+  height: 35px;
+  position: relative;
+  z-index: 10;
   padding: 0 10px;
+  transition: height 0.3s ease;
+}
+.ng-toolbar .ng-toolbar-con .ng-toolbar-right .username-handle:hover {
+  background-color: #fff;
+  border: 1px solid #DDDDDD;
+  margin-top: -1px;
+  margin-right: -1px;
+  height: 102px;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .reg-bar-node {
   display: block;

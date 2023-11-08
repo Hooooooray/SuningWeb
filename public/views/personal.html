@@ -32,11 +32,11 @@
             </div>
         </div>
         <div class="ng-toolbar-right">
-            <div class="reg-bar-node">
+            <div class="reg-bar-node" id="reg-bar-node">
                 <a href="login.html">请登录</a>
                 <a href="register.html" class="reg-bbb">注册有礼</a>
             </div>
-            <div class="ng-bar-node-box username-handle" style="display: none">
+            <div class="ng-bar-node-box username-handle" id="username-node-slide" style="display: none">
                 <a class="ng-bar-node" href=""><span>186******05</span><img src="../images/to-bottom.png"
                                                                             alt=""></a>
             </div>
@@ -119,16 +119,17 @@
             <div class="control-group">
                 <div class="control-label">手机：</div>
                 <div class="controls">
-                    <span class="mr5">
-                        186******05
+                    <span id="phoneNumber" class="mr5">
+
                     </span>
                     <a href="">修改</a>
                 </div>
             </div>
             <div class="control-group">
                 <div class="control-label">&nbsp</div>
-                <a href="" class="save-profile-btn">保 存</a>
+                <a href="javascript:void(0)" id="save-profile-btn" class="save-profile-btn">保 存</a>
                 <a href="" class="delete-profile-btn">删 除</a>
+                <div id="basicInfoErr"><i class="error"></i><span></span></div>
             </div>
         </form>
     </div>

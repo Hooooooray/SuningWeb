@@ -144,11 +144,11 @@ body {
   text-decoration: none;
   margin-left: 42px;
 }
-.main-wrap .control-group .userNameErr {
+.main-wrap .control-group .userNameErr, .main-wrap .control-group #basicInfoErr {
   display: flex;
   align-items: center;
 }
-.main-wrap .control-group .userNameErr .error {
+.main-wrap .control-group .userNameErr .error, .main-wrap .control-group #basicInfoErr .error {
   font-style: normal;
   display: inline-block;
   width: 16px;
@@ -156,7 +156,7 @@ body {
   margin: 0 5px 0 10px;
   background: url("../images/tipIcon.png") no-repeat -500px;
 }
-.main-wrap .control-group .userNameErr span {
+.main-wrap .control-group .userNameErr span, .main-wrap .control-group #basicInfoErr span {
   color: #666;
 }
 .main-wrap .form-list {

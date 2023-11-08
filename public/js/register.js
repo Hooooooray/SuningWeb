@@ -68,8 +68,7 @@ submitRegisterBtn.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                // window.location.href = '../index.html'
-                history.go(-1);
+                window.location.href = '../index.html'
                 return response.json();
             } else if (response.status === 400) {
                 return response.json();

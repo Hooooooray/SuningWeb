@@ -170,7 +170,7 @@ body {
       margin-left: 42px;
     }
 
-    .userNameErr{
+    .userNameErr,#basicInfoErr{
       display: flex;
       align-items: center;
       .error{

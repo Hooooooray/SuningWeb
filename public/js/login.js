@@ -52,8 +52,7 @@ accountSubmitButton.addEventListener('click', () => {
         body: JSON.stringify(data)
     }).then(response => {
         if (response.ok) {
-            // window.location.href = '../index.html'
-            history.go(-1);
+            window.location.href = '../index.html'
             return response.json();
         } else {
             throw new Error('登录失败');

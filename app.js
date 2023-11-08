@@ -164,7 +164,7 @@ authRouter.post('/smsLogin', (req, res) => {
     connection.end();
 })
 
-authRouter.get('/home', (req, res) => {
+authRouter.get('/token', (req, res) => {
     const token = req.headers.authorization;
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
@@ -174,6 +174,29 @@ authRouter.get('/home', (req, res) => {
         res.json(decoded);
     });
 })
+
+authRouter.post('/updateUser', (req, res) => {
+    const { username, nickname, gender, userid } = req.body;
+
+    const connection = mysql.createConnection(mysqlConnection);
+    connection.connect();
+
+    let updateSql = `UPDATE users SET username = ?, name = ?, gender = ? WHERE userid = ?`;
+    const values = [username, nickname, gender, userid];
+
+    // 更新数据
+    connection.query(updateSql, values, function (err, result) {
+        if (err) {
+            console.error('更新出错: ' + err.stack);
+        } else {
+            res.status(200).json({message: '更新成功', statusCode: 200});
+        }
+    });
+
+    connection.end();
+});
+
+
 
 // 将二级路由器挂载到主应用程序的/api路径下
 app.use('/api', authRouter);

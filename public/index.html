@@ -42,12 +42,16 @@
             </div>
         </div>
         <div class="ng-toolbar-right">
-            <div class="reg-bar-node">
+            <div class="reg-bar-node" id="reg-bar-node">
                 <a href="views/login.html">请登录</a>
                 <a href="views/register.html" class="reg-bbb">注册有礼</a>
             </div>
-            <div class="ng-bar-node-box username-handle" style="display: none">
-                <a class="ng-bar-node" href=""><span>186******05</span><img src="images/to-bottom.png" alt=""></a>
+            <div class="ng-bar-node-box username-handle" id="username-node-slide" style="display: none">
+                <a class="ng-bar-node" href=""><span></span><img src="images/to-bottom.png" alt=""></a>
+                <ul>
+                    <li><a href="./views/personal.html">账号管理</a></li>
+                    <li><a href="javascript:void(0)" id="logOut">退出登录</a></li>
+                </ul>
             </div>
             <div class="ng-bar-node-box myorder-handle">
                 <a class="ng-bar-node" href=""><span>我的订单</span><img src="images/to-bottom.png" alt=""></a>
@@ -168,7 +172,7 @@
                     <div class="has-login">
                         <div class="user-info">
                             <a href="">
-                                <p class="hi">Hi，<em>186******05</em></p>
+                                <p class="hi">Hi，<em></em></p>
                                 <span>V1</span>
                                 <span>云钻0</span>
                             </a>

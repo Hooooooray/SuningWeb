@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 09/11/2023 21:13:59
+ Date: 09/11/2023 21:30:31
 */
 
 SET NAMES utf8mb4;
@@ -26,6 +26,7 @@ CREATE TABLE `Product` (
   `name` varchar(255) NOT NULL,
   `description` text,
   `price` decimal(10,2) NOT NULL,
+  `storename` varchar(255) DEFAULT NULL,
   `sign` varchar(255) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
   `memory` varchar(50) DEFAULT NULL,
@@ -40,21 +41,21 @@ CREATE TABLE `Product` (
 -- Records of Product
 -- ----------------------------
 BEGIN;
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10001, 'Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 5999.00, 'iPhone15', '黑色', '128G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10002, 'Apple iPhone 15 128G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 5999.00, 'iPhone15', '绿色', '128G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10003, 'Apple iPhone 15 128G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 5999.00, 'iPhone15', '黄色', '128G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10004, 'Apple iPhone 15 128G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 5999.00, 'iPhone15', '粉色', '128G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10005, 'Apple iPhone 15 128G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 5999.00, 'iPhone15', '蓝色', '128G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10006, 'Apple iPhone 15 256G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 6999.00, 'iPhone15', '黑色', '256G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10007, 'Apple iPhone 15 256G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 6999.00, 'iPhone15', '绿色', '256G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10008, 'Apple iPhone 15 256G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 6999.00, 'iPhone15', '黄色', '256G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10009, 'Apple iPhone 15 256G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 6999.00, 'iPhone15', '粉色', '256G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10010, 'Apple iPhone 15 256G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 6999.00, 'iPhone15', '蓝色', '256G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10011, 'Apple iPhone 15 512G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 8999.00, 'iPhone15', '黑色', '512G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10012, 'Apple iPhone 15 512G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, 'iPhone15', '绿色', '512G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10013, 'Apple iPhone 15 512G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 8999.00, 'iPhone15', '黄色', '512G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10014, 'Apple iPhone 15 512G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 8999.00, 'iPhone15', '粉色', '512G', NULL, NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10015, 'Apple iPhone 15 512G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, 'iPhone15', '蓝色', '512G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10001, 'Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 5999.00, '苏宁自营', 'iPhone15', '黑色', '128G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10002, 'Apple iPhone 15 128G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 5999.00, '苏宁自营', 'iPhone15', '绿色', '128G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10003, 'Apple iPhone 15 128G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 5999.00, '苏宁自营', 'iPhone15', '黄色', '128G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10004, 'Apple iPhone 15 128G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 5999.00, '苏宁自营', 'iPhone15', '粉色', '128G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10005, 'Apple iPhone 15 128G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 5999.00, '苏宁自营', 'iPhone15', '蓝色', '128G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10006, 'Apple iPhone 15 256G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 6999.00, '苏宁自营', 'iPhone15', '黑色', '256G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10007, 'Apple iPhone 15 256G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 6999.00, '苏宁自营', 'iPhone15', '绿色', '256G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10008, 'Apple iPhone 15 256G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 6999.00, '苏宁自营', 'iPhone15', '黄色', '256G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10009, 'Apple iPhone 15 256G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 6999.00, '苏宁自营', 'iPhone15', '粉色', '256G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10010, 'Apple iPhone 15 256G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 6999.00, '苏宁自营', 'iPhone15', '蓝色', '256G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10011, 'Apple iPhone 15 512G 黑色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。', 8999.00, '苏宁自营', 'iPhone15', '黑色', '512G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10012, 'Apple iPhone 15 512G 绿色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, '苏宁自营', 'iPhone15', '绿色', '512G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10013, 'Apple iPhone 15 512G 黄色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 8999.00, '苏宁自营', 'iPhone15', '黄色', '512G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10014, 'Apple iPhone 15 512G 粉色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。 ', 8999.00, '苏宁自营', 'iPhone15', '粉色', '512G', NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `sign`, `color`, `memory`, `capacity`, `model`, `specification`, `size`) VALUES (10015, 'Apple iPhone 15 512G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, '苏宁自营', 'iPhone15', '蓝色', '512G', NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------

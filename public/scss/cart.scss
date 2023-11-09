@@ -47,15 +47,16 @@ em {
 .index-header {
 
   .ng-header-con {
-    display: flex;
-    justify-content: space-between;
 
     .ng-search {
-      position: relative;
+      position: absolute;
+      right: 0;
       left: unset;
+      //float: right;
 
       .g-search {
         width: 400px;
+
 
         .search-keyword-box {
           border-radius: 0;

@@ -36,6 +36,7 @@ logOutBtn.addEventListener('click',()=>{
             console.log(response)
             if (response.name){
                 usernameSpan.innerHTML = response.name
+                hi.innerHTML = response.name
             }else {
                 const phone = response.phone
                 usernameSpan.innerHTML = phone.replace(/^(.{3}).{4,}(.{2})$/, '$1******$2')

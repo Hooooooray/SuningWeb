@@ -42,12 +42,9 @@ em {
   font-family: tahoma, serif;
 }
 
-.index-header .ng-header-con {
-  display: flex;
-  justify-content: space-between;
-}
 .index-header .ng-header-con .ng-search {
-  position: relative;
+  position: absolute;
+  right: 0;
   left: unset;
 }
 .index-header .ng-header-con .ng-search .g-search {

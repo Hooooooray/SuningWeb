@@ -5,7 +5,15 @@ let saveProfileBtn = document.getElementById('save-profile-btn')
 const usernameInput = document.getElementById('username')
 const nickNameInput = document.getElementById('nickname')
 let basicInfoErr = document.getElementById('basicInfoErr')
+let usernameSpan = usernameNodeSlide.querySelector('span')
 let userid
+
+let logOutBtn = document.getElementById('logOut')
+
+logOutBtn.addEventListener('click',()=>{
+    localStorage.removeItem("token");
+    window.location.href = './login.html'
+})
 
 window.onload = function () {
     const phoneNumber = document.getElementById('phoneNumber')
@@ -31,8 +39,13 @@ window.onload = function () {
         })
         .then(response => {
             console.log(response)
-            userid = response.userid
             const phone = response.phone
+            if (response.name){
+                usernameSpan.innerHTML = response.name
+            }else {
+                usernameSpan.innerHTML = phone.replace(/^(.{3}).{4,}(.{2})$/, '$1******$2')
+            }
+            userid = response.userid
             phoneNumber.innerHTML = phone.replace(/^(.{3}).{4,}(.{2})$/, '$1******$2')
             const gender = response.gender
             // 根据性别值设置相应的单选按钮选中
@@ -89,8 +102,8 @@ saveProfileBtn.addEventListener('click',()=>{
     })
         .then(responseData => {
             console.log(responseData);
-            // let token = responseData.token
-            // localStorage.setItem('token',token)
+            let token = responseData.token
+            localStorage.setItem('token',token)
             // console.log(token)
         })
         .catch(error => {

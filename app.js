@@ -76,7 +76,7 @@ authRouter.post('/register', (req, res) => {
             } else {
                 const connection = mysql.createConnection(mysqlConnection);
                 connection.connect();
-                let insertSql = 'INSERT INTO users (password, phone) VALUES (?, ?)';
+                let insertSql = 'INSERT INTO User (password, phone) VALUES (?, ?)';
                 const values = [hash, phoneNumber];
                 // 插入数据
                 connection.query(insertSql, values, function (err, result) {
@@ -85,7 +85,7 @@ authRouter.post('/register', (req, res) => {
                         res.status(500).json({message: '注册失败', error: err.message});
                         return;
                     }
-                    let selectSql = 'SELECT * FROM users WHERE phone = ?';
+                    let selectSql = 'SELECT * FROM User WHERE phone = ?';
                     connection.query(selectSql, phoneNumber, (err, result) => {
                         if (err) {
                             console.error('查询数据库失败: ' + err);
@@ -112,7 +112,7 @@ authRouter.post('/accountLogin', (req, res) => {
     const {loginAccount, loginPassword} = req.body;
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
-    let selectSql = `SELECT * FROM users WHERE username = ? OR phone = ?`; // 用你的表结构和字段名替换
+    let selectSql = `SELECT * FROM User WHERE username = ? OR phone = ?`; // 用你的表结构和字段名替换
     const values = [loginAccount, loginAccount]
     // 查询数据
     connection.query(selectSql, values, function (err, result) {
@@ -146,7 +146,7 @@ authRouter.post('/smsLogin', (req, res) => {
 
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
-    let selectSql = `SELECT * FROM users WHERE phone = ?`; // 用你的表结构和字段名替换
+    let selectSql = `SELECT * FROM User WHERE phone = ?`; // 用你的表结构和字段名替换
     // 查询数据
     connection.query(selectSql, phoneNumber, function (err, result) {
         if (err) {
@@ -170,30 +170,43 @@ authRouter.get('/token', (req, res) => {
         if (err) {
             return res.status(401).json({message: 'Token is not valid'});
         }
-        // JWT 验证通过，你可以在 "decoded" 中访问用户数据
         res.json(decoded);
     });
 })
 
 authRouter.post('/updateUser', (req, res) => {
     const { username, nickname, gender, userid } = req.body;
-
+    if(username==null || nickname==null || gender == null || userid==null){
+        res.status(400).json({message:'bad request',statusCode:400})
+    }
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
-
-    let updateSql = `UPDATE users SET username = ?, name = ?, gender = ? WHERE userid = ?`;
+    let updateSql = `UPDATE User SET username = ?, name = ?, gender = ? WHERE userid = ?`;
     const values = [username, nickname, gender, userid];
-
     // 更新数据
     connection.query(updateSql, values, function (err, result) {
         if (err) {
             console.error('更新出错: ' + err.stack);
+            res.status(500).json({message:'更新出错',statusCode:401})
         } else {
-            res.status(200).json({message: '更新成功', statusCode: 200});
+
+            let selectSql = 'SELECT * FROM User WHERE userid = ?';
+            connection.query(selectSql, userid, (err, result) => {
+                if (err) {
+                    console.error('查询数据库失败: ' + err);
+                    res.status(500).json({message: '更新失败', error: err.message});
+                } else {
+                    // 用户成功注册并且查询成功，创建JWT令牌
+                    const user = result[0];
+                    const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                    res.status(200).json({message: '更新成功', statusCode: 200,token});
+                }
+            });
+
+            connection.end();
+
         }
     });
-
-    connection.end();
 });
 
 

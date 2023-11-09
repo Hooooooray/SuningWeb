@@ -140,7 +140,7 @@ body {
   position: relative;
   z-index: 10;
   padding: 0 10px;
-  transition: height 0.3s ease;
+  transition: height 0.3s ease, background-color 0.3s ease;
 }
 .ng-toolbar .ng-toolbar-con .ng-toolbar-right .username-handle:hover {
   background-color: #fff;

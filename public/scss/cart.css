@@ -112,6 +112,9 @@ em {
 .cart-wrapper .m-cart-header .cart-table-header .inner-box .th-op {
   width: 100px;
 }
+.cart-wrapper .m-cart-body .m-store {
+  margin-bottom: 30px;
+}
 .cart-wrapper .m-cart-body .m-store .store-title {
   height: 26px;
   margin-bottom: 7px;

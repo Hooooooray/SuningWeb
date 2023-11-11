@@ -266,7 +266,7 @@ authRouter.post('/cart', (req, res) => {
 authRouter.post('/updateCart', (req, res) => {
     const token = req.headers.authorization;
     // const {productid, selected, quantity} = req.body
-    const { updates } = req.body;
+    const {updates} = req.body;
     jwt.verify(token, secretKey, async (err, decoded) => {
         if (err) {
             return res.status(401).json({message: 'Token is not valid'});
@@ -304,6 +304,39 @@ authRouter.post('/updateCart', (req, res) => {
     })
 
 })
+
+authRouter.post('/deleteFromCart', (req, res) => {
+    const token = req.headers.authorization;
+    const {deletes} = req.body;
+    jwt.verify(token, secretKey, async (err, decoded) => {
+        if (err) {
+            return res.status(401).json({message: 'Token is not valid'});
+        }
+        const userid = decoded.userid;
+        if (!Array.isArray(deletes) || deletes.length === 0) {
+            return res.status(400).json({message: 'Invalid data format'});
+        }
+        const connection = mysql.createConnection(mysqlConnection);
+        connection.connect();
+        try {
+            for (const update of deletes) {
+                const {productid} = update;
+                if (productid !== undefined) {
+                    const deleteFromCartQuery = 'DELETE FROM ShoppingCart WHERE userid = ? AND productid = ?';
+                    const values = [userid, productid];
+                    await promisify(connection.query).bind(connection)(deleteFromCartQuery, values);
+                }
+            }
+            res.status(200).json({message: 'Update successful'});
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({message: 'mysql更新失败', error: error.message});
+        } finally {
+            connection.end();
+        }
+    })
+});
+
 
 function mergeData(cartData, productData, imageData) {
     const mergedData = {};

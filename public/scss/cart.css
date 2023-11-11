@@ -190,10 +190,10 @@ em {
   background: url("../images/lion-cart.png") no-repeat;
 }
 .cart-wrapper .m-cart-body .m-store .cart-list .cart-item .item-main .td-amount .item-amount .minus {
-  background-position: -87px -24px;
+  background-position: -87px 0;
 }
 .cart-wrapper .m-cart-body .m-store .cart-list .cart-item .item-main .td-amount .item-amount .plus {
-  background-position: -111px -24px;
+  background-position: -111px 0;
 }
 .cart-wrapper .m-cart-body .m-store .cart-list .cart-item .item-main .td-amount .item-amount .text-amount {
   width: 26px;

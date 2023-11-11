@@ -5,11 +5,13 @@ const mCartBody = document.querySelector('.m-cart-body')
 let logOutBtn = document.getElementById('logOut')
 let cartData
 
-logOutBtn.addEventListener('click',()=>{
+// 退出登录
+logOutBtn.addEventListener('click', () => {
     localStorage.removeItem("token");
     window.location.href = './login.html'
 })
 
+// 加载购物车函数
 function load() {
     let token = localStorage.getItem('token')
     const url = 'http://localhost:3000/api/cart'
@@ -30,14 +32,16 @@ function load() {
         })
         .then(responseData => {
             // console.log(responseData)
+            // 如果用户设置了昵称则现实昵称，如果用户没设置昵称则默认显示手机号码
             if (responseData.decoded.name) {
                 usernameSpan.innerHTML = responseData.decoded.name
             } else {
                 const phone = responseData.decoded.phone
                 usernameSpan.innerHTML = phone.replace(/^(.{3}).{4,}(.{2})$/, '$1******$2')
             }
+
             cartData = responseData.data
-            // console.log(cartData)
+            console.log(cartData)
             loadCart()
         })
         .catch(err => {
@@ -47,13 +51,14 @@ function load() {
 
 load()
 
+// 加载购物车内容函数
 function loadCart() {
     document.querySelector('.m-cart-body').innerHTML = ''
     let store = []
     let selectedNum = 0
     let selectedCount = 0
     for (let key in cartData) {
-        // console.log(key,cartData[key])
+        // 解析每一条购物车数据
         const selected = cartData[key].selected ? 'checked' : null
         const name = cartData[key].name
         const color = cartData[key].color
@@ -66,13 +71,13 @@ function loadCart() {
         const size = cartData[key].size
         const productid = cartData[key].productid
 
+        // 计算已选商品总数和总价
         if (selected) {
-            selectedNum += 1
+            selectedNum += quantity
             selectedCount += sum
         }
 
-        // console.log(selected,name,color,memory,price,quantity,url,storeName)
-
+        // 每一条购物车商品的页面模版
         const cartListTemplate = `
             <div class="cart-item">
                 <div class="item-main">
@@ -112,9 +117,9 @@ function loadCart() {
                     </div>
                     <div class="td td-amount">
                         <div class="item-amount">
-                            <a href="" class="minus" data-productid="${productid}"></a>
+                            <a href="javascript:void(0)" class="minus" data-productid="${productid}"></a>
                             <input value="${quantity}" type="text" class="text-amount">
-                            <a href="" class="plus" data-productid="${productid}"></a>
+                            <a href="javascript:void(0)" class="plus" data-productid="${productid}"></a>
                         </div>
                     </div>
                     <div class="td td-sum">
@@ -125,7 +130,7 @@ function loadCart() {
                     </div>
                     <div class="td td-op">
                         <a href="">移入关注</a>
-                        <a href="">删除</a>
+                        <a href="javascript:void(0)" class="del-single" data-productid="${productid}">删除</a>
                     </div>
                 </div>
             </div>`
@@ -180,9 +185,6 @@ function loadCart() {
 
     let productCheckBox = document.querySelectorAll('.product-check-box')
     productCheckBox.forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedCount += 1
-        }
         checkbox.addEventListener('click', () => {
             let productid = checkbox.getAttribute('data-productid')
             let selected = checkbox.checked
@@ -204,6 +206,7 @@ function loadCart() {
             })
                 .then(response => {
                     if (response.ok) {
+                        ``
                         // return response.json()
                         load()
                     } else {
@@ -255,5 +258,148 @@ function loadCart() {
         })
     })
 
-}
+    let delSelected = document.getElementById('delSelected')
+    delSelected.addEventListener('click', () => {
+        let productCheckBox = document.querySelectorAll('.product-check-box')
+        let deletes = []
+        productCheckBox.forEach(checkbox => {
+            if (checkbox.checked === true) {
+                let productid = checkbox.getAttribute('data-productid')
+                let data = {
+                    productid
+                }
+                deletes.push(data)
+            }
+        })
+        let token = localStorage.getItem('token')
+        const url = 'http://localhost:3000/api/deleteFromCart'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            body: JSON.stringify({deletes})
+        }).then(response => {
+            if (response.ok) {
+                // return response.json()
+                load()
+            } else {
+                throw new Error('更新购物车失败')
+            }
+        })
+            .catch(err => {
+                console.log(err)
+            })
 
+    })
+
+    let delSingle = document.querySelectorAll('.del-single')
+    delSingle.forEach(del => {
+        del.addEventListener('click', () => {
+            let deletes = []
+            let productid = del.getAttribute('data-productid')
+            let data = {
+                productid
+            }
+            deletes.push(data)
+            let token = localStorage.getItem('token')
+            const url = 'http://localhost:3000/api/deleteFromCart'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({deletes})
+            }).then(response => {
+                if (response.ok) {
+                    // return response.json()
+                    load()
+                } else {
+                    throw new Error('更新购物车失败')
+                }
+            })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
+    })
+
+    let minusButton = document.querySelectorAll('.minus')
+    minusButton.forEach(minus => {
+        let textAmount = minus.nextElementSibling.value
+        if (textAmount <= 1) {
+            minus.style.backgroundPositionY = '-24px'
+            minus.style.pointerEvents = 'none'
+        } else {
+            minus.addEventListener('click', () => {
+                let quantity = textAmount - 1
+                let productid = minus.getAttribute('data-productid')
+                const data = {
+                    productid,
+                    quantity
+                }
+                let updates = [data]
+                let token = localStorage.getItem('token')
+                const url = 'http://localhost:3000/api/updateCart'
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': token,
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    },
+                    body: JSON.stringify({updates})
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            ``
+                            // return response.json()
+                            load()
+                        } else {
+                            throw new Error('更新购物车失败')
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            })
+        }
+    })
+
+    let plusButton = document.querySelectorAll('.plus')
+    plusButton.forEach(plus => {
+        let textAmount = plus.previousElementSibling.value
+        plus.addEventListener('click', () => {
+            let quantity = Number(textAmount) + 1
+            let productid = plus.getAttribute('data-productid')
+            const data = {
+                productid,
+                quantity
+            }
+            let updates = [data]
+            let token = localStorage.getItem('token')
+            const url = 'http://localhost:3000/api/updateCart'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({updates})
+            })
+                .then(response => {
+                    if (response.ok) {
+                        ``
+                        // return response.json()
+                        load()
+                    } else {
+                        throw new Error('更新购物车失败')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
+    })
+}

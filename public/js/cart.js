@@ -44,6 +44,8 @@ load()
 function loadCart() {
     document.querySelector('.m-cart-body').innerHTML = ''
     let store = []
+    let selectedNum = 0
+    let selectedCount = 0
     for (let key in cartData) {
         // console.log(key,cartData[key])
         const selected = cartData[key].selected ? 'checked' : null
@@ -52,12 +54,76 @@ function loadCart() {
         const memory = cartData[key].memory
         const price = Number(cartData[key].price).toFixed(2)
         const quantity = cartData[key].quantity
-        const sum = (price * quantity).toFixed(2)
+        const sum = (price * quantity)
         const url = cartData[key].imageurl
         const storeName = cartData[key].storename
         const size = cartData[key].size
         const productid = cartData[key].productid
+
+        if (selected) {
+            selectedNum += 1
+            selectedCount += sum
+        }
+
         // console.log(selected,name,color,memory,price,quantity,url,storeName)
+
+        const cartListTemplate = `
+            <div class="cart-item">
+                <div class="item-main">
+                    <div class="td td-chk">
+                        <div class="cart-checkbox">
+                            <input ${selected} type="checkbox" class="product-check-box" data-productid="${productid}">
+                        </div>
+                    </div>
+                    <div class="td td-item">
+                        <div class="item-pic">
+                            <a href="">
+                                <img src="${url}" alt="">
+                            </a>
+                        </div>
+                        <div class="item-info">
+                            <a href="">${name}</a>
+                        </div>
+                    </div>
+                    <div class="td td-specs">
+                        <div class="specs-line">
+                            ${color ? `<p>颜色：${color}</p>` : ''} 
+                        </div>
+                        <div class="specs-line">
+                            ${memory ? `<p>内存：${memory}</p>` : ''}
+                        </div>
+                        <div class="specs-line">
+                            ${size ? `<p>尺码：${size}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="td td-price">
+                        <div class="price-line">
+                            <span>
+                                <i>¥</i>
+                                <em>${price}</em>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="td td-amount">
+                        <div class="item-amount">
+                            <a href="" class="minus" data-productid="${productid}"></a>
+                            <input value="${quantity}" type="text" class="text-amount">
+                            <a href="" class="plus" data-productid="${productid}"></a>
+                        </div>
+                    </div>
+                    <div class="td td-sum">
+                        <b class="sn-price">
+                            <i>¥</i>
+                            <em>${sum.toFixed(2)}</em>
+                        </b>
+                    </div>
+                    <div class="td td-op">
+                        <a href="">移入关注</a>
+                        <a href="">删除</a>
+                    </div>
+                </div>
+            </div>`
+
         if (store.indexOf(storeName) === -1) {
             store.push(storeName)
             let mStore = document.createElement('div')
@@ -73,127 +139,25 @@ function loadCart() {
             let cartList = document.createElement('div')
             cartList.classList.add('cart-list')
             cartList.setAttribute('data-productid', productid)
-            cartList.innerHTML = `
-            <div class="cart-item">
-                <div class="item-main">
-                    <div class="td td-chk">
-                        <div class="cart-checkbox">
-                            <input ${selected} type="checkbox" class="product-check-box" data-productid="${productid}">
-                        </div>
-                    </div>
-                    <div class="td td-item">
-                        <div class="item-pic">
-                            <a href="">
-                                <img src="${url}" alt="">
-                            </a>
-                        </div>
-                        <div class="item-info">
-                            <a href="">${name}</a>
-                        </div>
-                    </div>
-                    <div class="td td-specs">
-                        <div class="specs-line">
-                            ${color ? `<p>颜色：${color}</p>` : ''} 
-                        </div>
-                        <div class="specs-line">
-                            ${memory ? `<p>内存：${memory}</p>` : ''}
-                        </div>
-                        <div class="specs-line">
-                            ${size ? `<p>尺码：${size}</p>` : ''}
-                        </div>
-                    </div>
-                    <div class="td td-price">
-                        <div class="price-line">
-                            <span>
-                                <i>¥</i>
-                                <em>${price}</em>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="td td-amount">
-                        <div class="item-amount">
-                            <a href="" class="minus"></a>
-                            <input value="${quantity}" type="text" class="text-amount">
-                            <a href="" class="plus"></a>
-                        </div>
-                    </div>
-                    <div class="td td-sum">
-                        <b class="sn-price">
-                            <i>¥</i>
-                            <em>${sum}</em>
-                        </b>
-                    </div>
-                    <div class="td td-op">
-                        <a href="">移入关注</a>
-                        <a href="">删除</a>
-                    </div>
-                </div>
-            </div>`;
+            cartList.innerHTML = cartListTemplate;
             mStore.appendChild(cartList)
         } else if (store.indexOf(storeName) >= 0) {
             let cartList = document.createElement('div')
             cartList.classList.add('cart-list')
             cartList.setAttribute('data-productid', productid)
-            cartList.innerHTML = `
-            <div class="cart-item">
-                <div class="item-main">
-                    <div class="td td-chk">
-                        <div class="cart-checkbox">
-                            <input ${selected} type="checkbox" class="product-check-box" data-productid="${productid}">
-                        </div>
-                    </div>
-                    <div class="td td-item">
-                        <div class="item-pic">
-                            <a href="">
-                                <img src="${url}" alt="">
-                            </a>
-                        </div>
-                        <div class="item-info">
-                            <a href="">${name}</a>
-                        </div>
-                    </div>
-                    <div class="td td-specs">
-                        <div class="specs-line">
-                            ${color ? `<p>颜色：${color}</p>` : ''} 
-                        </div>
-                        <div class="specs-line">
-                            ${memory ? `<p>内存：${memory}</p>` : ''}
-                        </div>
-                        <div class="specs-line">
-                            ${size ? `<p>尺码：${size}</p>` : ''}
-                        </div>
-                    </div>
-                    <div class="td td-price">
-                        <div class="price-line">
-                            <span>
-                                <i>¥</i>
-                                <em>${price}</em>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="td td-amount">
-                        <div class="item-amount">
-                            <a href="" class="minus"></a>
-                            <input value="${quantity}" type="text" class="text-amount">
-                            <a href="" class="plus"></a>
-                        </div>
-                    </div>
-                    <div class="td td-sum">
-                        <b class="sn-price">
-                            <i>¥</i>
-                            <em>${sum}</em>
-                        </b>
-                    </div>
-                    <div class="td td-op">
-                        <a href="">移入关注</a>
-                        <a href="">删除</a>
-                    </div>
-                </div>
-            </div>`;
+            cartList.innerHTML = cartListTemplate;
             const mStore = mCartBody.querySelector(`[data-store=${storeName}]`)
             mStore.appendChild(cartList)
         }
+
     }
+
+    let nowSelectedGoodsText = document.querySelector('.now-select-goods b')
+    let snPriceText = document.querySelector('#sn-price-count em')
+    nowSelectedGoodsText.innerText = selectedNum
+    snPriceText.innerText = selectedCount.toFixed(2)
+
+
     let mStore = document.querySelectorAll('.m-store')
     mStore.forEach(store => {
         let productCheckBox = store.querySelectorAll('.product-check-box')
@@ -207,9 +171,12 @@ function loadCart() {
         item.checked = Array.from(storeAllCheckBox).every(checkbox => checkbox.checked)
     })
 
+
     let productCheckBox = document.querySelectorAll('.product-check-box')
-    console.log(productCheckBox)
     productCheckBox.forEach(checkbox => {
+        if (checkbox.checked) {
+            selectedCount += 1
+        }
         checkbox.addEventListener('click', () => {
             let productid = checkbox.getAttribute('data-productid')
             let selected = checkbox.checked
@@ -217,7 +184,7 @@ function loadCart() {
                 productid,
                 selected
             }
-            console.log(data)
+            // console.log(data)
             let token = localStorage.getItem('token')
             const url = 'http://localhost:3000/api/updateCart'
             fetch(url, {
@@ -242,7 +209,6 @@ function loadCart() {
                     console.log(err)
                 })
         })
-
     })
 
 }

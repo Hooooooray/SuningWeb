@@ -93,7 +93,7 @@ authRouter.post('/register', (req, res) => {
                         } else {
                             // 用户成功注册并且查询成功，创建JWT令牌
                             const user = result[0];
-                            const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                            const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
                             res.json({message: '注册成功', token});
                         }
                     });
@@ -126,7 +126,7 @@ authRouter.post('/accountLogin', (req, res) => {
                 }
                 if (isMatch) {
                     // 密码匹配，登录成功
-                    const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                    const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
                     res.status(200).json({message: '密码正确，登录成功', token});
                 } else {
                     // 密码不匹配，登录失败
@@ -198,7 +198,7 @@ authRouter.post('/updateUser', (req, res) => {
                 } else {
                     // 用户成功注册并且查询成功，创建JWT令牌
                     const user = result[0];
-                    const token = jwt.sign(user, secretKey, {expiresIn: '1h'});
+                    const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
                     res.status(200).json({message: '更新成功', statusCode: 200, token});
                 }
             });
@@ -226,6 +226,16 @@ authRouter.post('/cart', (req, res) => {
             }
 
             const productIds = cartResults.map(cartItem => cartItem.productid);
+
+            // 检查 productIds 是否为空
+            if (productIds.length === 0) {
+                // 处理购物车中没有产品的情况
+                const responseData = {
+                    decoded: decoded,
+                    data: []
+                };
+                return res.json(responseData);
+            }
 
             const productQuery = 'SELECT * FROM Product WHERE productid IN (?)';
 

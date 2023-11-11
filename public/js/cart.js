@@ -2,7 +2,13 @@ let regBarNode = document.getElementById('reg-bar-node')
 let usernameNodeSlide = document.getElementById('username-node-slide')
 let usernameSpan = usernameNodeSlide.querySelector('span')
 const mCartBody = document.querySelector('.m-cart-body')
+let logOutBtn = document.getElementById('logOut')
 let cartData
+
+logOutBtn.addEventListener('click',()=>{
+    localStorage.removeItem("token");
+    window.location.href = './login.html'
+})
 
 function load() {
     let token = localStorage.getItem('token')
@@ -184,7 +190,8 @@ function loadCart() {
                 productid,
                 selected
             }
-            // console.log(data)
+            let updates = [data]
+            console.log(updates)
             let token = localStorage.getItem('token')
             const url = 'http://localhost:3000/api/updateCart'
             fetch(url, {
@@ -193,7 +200,47 @@ function loadCart() {
                     'Authorization': token,
                     'Content-Type': 'application/json;charset=UTF-8'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({updates})
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // return response.json()
+                        load()
+                    } else {
+                        throw new Error('更新购物车失败')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
+    })
+
+    let storeAllCheckBox = document.querySelectorAll('.store-all-check')
+    storeAllCheckBox.forEach(store => {
+        store.addEventListener('click', () => {
+            console.log(store)
+            let updates = []
+            let selected = store.checked
+            let mStore = store.parentNode.parentNode.parentNode
+            let cartList = mStore.querySelectorAll('.cart-list')
+            for (let cartItem of cartList) {
+                let productid = cartItem.getAttribute('data-productid')
+                let data = {
+                    productid,
+                    selected
+                }
+                updates.push(data)
+            }
+            let token = localStorage.getItem('token')
+            const url = 'http://localhost:3000/api/updateCart'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({updates})
             }).then(response => {
                 if (response.ok) {
                     // return response.json()
@@ -202,9 +249,6 @@ function loadCart() {
                     throw new Error('更新购物车失败')
                 }
             })
-                //     .then(responseData=>{
-                //     console.log(responseData)
-                // })
                 .catch(err => {
                     console.log(err)
                 })

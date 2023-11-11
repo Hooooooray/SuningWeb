@@ -4,6 +4,7 @@ const cors = require('cors');
 const {exec} = require('child_process');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const {promisify} = require("util");
 const secretKey = 'SecretKeyOfBinbinHooray';
 // 创建一个二级路由器
 const authRouter = express.Router();
@@ -99,7 +100,6 @@ authRouter.post('/register', (req, res) => {
                     });
                     connection.end();
                 });
-
             }
         });
     } else {
@@ -143,7 +143,6 @@ authRouter.post('/accountLogin', (req, res) => {
 
 authRouter.post('/smsLogin', (req, res) => {
     const {phoneNumber, smsCode} = req.body
-
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
     let selectSql = `SELECT * FROM User WHERE phone = ?`; // 用你的表结构和字段名替换
@@ -202,9 +201,7 @@ authRouter.post('/updateUser', (req, res) => {
                     res.status(200).json({message: '更新成功', statusCode: 200, token});
                 }
             });
-
             connection.end();
-
         }
     });
 });
@@ -226,7 +223,6 @@ authRouter.post('/cart', (req, res) => {
             }
 
             const productIds = cartResults.map(cartItem => cartItem.productid);
-
             // 检查 productIds 是否为空
             if (productIds.length === 0) {
                 // 处理购物车中没有产品的情况
@@ -238,87 +234,71 @@ authRouter.post('/cart', (req, res) => {
             }
 
             const productQuery = 'SELECT * FROM Product WHERE productid IN (?)';
-
             connection.query(productQuery, [productIds], (productError, productResults) => {
                 if (productError) {
                     console.error(productError);
                     return res.status(500).json({message: '内部服务器错误'});
                 }
-
                 // 提取产品信息中的所有 productid
                 const productImageIds = productResults.map(productItem => productItem.productid);
-
                 // 查询 ProductImage 表，获取与产品匹配的图片信息
                 const productImageQuery = 'SELECT MIN(imageid) as imageid, productid, MIN(imageurl) as imageurl FROM ProductImage WHERE productid IN (?) GROUP BY productid';
-
                 connection.query(productImageQuery, [productImageIds], (imageError, imageResults) => {
                     if (imageError) {
                         console.error(imageError);
                         return res.status(500).json({message: '内部服务器错误'});
                     }
-
-
                     const data = mergeData(cartResults, productResults, imageResults)
                     // 合并 decoded、购物车信息、产品信息和图片信息到一个对象
                     const responseData = {
                         decoded: decoded,
                         data
                     };
-
                     // 将购物车信息、产品信息、图片信息和 decoded 发送回客户端
                     res.json(responseData);
                 });
                 connection.end();
             });
-
         });
-
     });
 })
 
 authRouter.post('/updateCart', (req, res) => {
     const token = req.headers.authorization;
-    const {productid, selected, quantity} = req.body
-    jwt.verify(token, secretKey, (err, decoded) => {
+    // const {productid, selected, quantity} = req.body
+    const { updates } = req.body;
+    jwt.verify(token, secretKey, async (err, decoded) => {
         if (err) {
             return res.status(401).json({message: 'Token is not valid'});
         }
         const userid = decoded.userid;
-        console.log(productid, userid, selected, quantity)
-        if (selected != null && productid != null && userid != null) {
-            const updateSelectedQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ? AND productid = ?'
-            const values = [selected, userid, productid]
-            const connection = mysql.createConnection(mysqlConnection);
-            connection.connect();
-            connection.query(updateSelectedQuery,values,(error,results)=>{
-                if (error) {
-                    console.error(error);
-                    return res.status(500).json({ message: 'mysql更新失败' });
-                }
-                if (results.affectedRows === 1) {
-                    res.json({ message: 'Update successful' });
-                } else {
-                    res.status(404).json({ message: 'Cart item not found' });
-                }
-            })
-            connection.end();
+        if (!Array.isArray(updates) || updates.length === 0) {
+            return res.status(400).json({message: 'Invalid data format'});
         }
-        if (quantity != null && productid != null && userid != null) {
-            const updateSelectedQuery = 'UPDATE ShoppingCart SET quantity = ? WHERE userid = ? AND productid = ?'
-            const values = [quantity, userid, productid]
-            const connection = mysql.createConnection(mysqlConnection);
-            connection.connect();
-            connection.query(updateSelectedQuery,values,(error,results)=>{
-                if (error) {
-                    console.error(error);
-                    return res.status(500).json({ message: 'mysql更新失败' });
+        const connection = mysql.createConnection(mysqlConnection);
+        connection.connect();
+        try {
+            for (const update of updates) {
+                const {productid, selected, quantity} = update;
+                // console.log(productid,selected,quantity)
+                if (productid !== undefined) {
+                    if (selected !== undefined && quantity === undefined) {
+                        const updateSelectedQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ? AND productid = ?';
+                        const values = [selected, userid, productid];
+                        await promisify(connection.query).bind(connection)(updateSelectedQuery, values);
+                    }
+                    if (quantity !== undefined && selected === undefined) {
+                        const updateQuantityQuery = 'UPDATE ShoppingCart SET quantity = ? WHERE userid = ? AND productid = ?';
+                        const values = [quantity, userid, productid];
+                        await promisify(connection.query).bind(connection)(updateQuantityQuery, values);
+                    }
                 }
-                if (results.affectedRows === 1) {
-                    res.json({ message: 'Update successful' });
-                } else {
-                    res.status(404).json({ message: 'Cart item not found' });
-                }
-            })
+            }
+            res.status(200).json({message: 'Update successful'});
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({message: 'mysql更新失败', error: error.message});
+        } finally {
             connection.end();
         }
     })
@@ -360,34 +340,6 @@ function mergeData(cartData, productData, imageData) {
 
     return mergedData;
 }
-
-/*function mergeData(cartResults, productResults, imageResults) {
-    const mergedData = [];
-
-    cartResults.forEach(cartItem => {
-        const productId = cartItem.productid;
-
-        const matchingProduct = productResults.find(productItem => productItem.productid === productId);
-        const matchingImage = imageResults.find(imageItem => imageItem.productid === productId);
-
-        if (matchingProduct) {
-            // 合并数据到一个新对象中
-            const combinedData = {
-                productid: productId,
-                quantity: cartItem.quantity,
-            };
-
-            // 合并相同列名的属性
-            Object.assign(combinedData, matchingProduct);
-            Object.assign(combinedData, matchingImage);
-
-            // 添加合并后的数据到 mergedData 数组中
-            mergedData.push(combinedData);
-        }
-    });
-
-    return mergedData;
-}*/
 
 // 将二级路由器挂载到主应用程序的/api路径下
 app.use('/api', authRouter);

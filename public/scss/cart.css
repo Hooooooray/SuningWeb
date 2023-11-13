@@ -70,6 +70,28 @@ em {
   font-size: 14px;
 }
 
+.cart-empty {
+  width: 1190px;
+  margin: 30px auto 0;
+}
+.cart-empty .cart-empty-content {
+  width: 100%;
+  height: 156px;
+  padding: 47px 0 57px 407px;
+  background: url("../images/cart-empty-bg2.png") 124px 47px no-repeat #fff;
+}
+.cart-empty .cart-empty-content h2 {
+  padding-top: 40px;
+  font: 400 18px/40px "Microsoft YaHei";
+}
+.cart-empty .cart-empty-content h2 a {
+  background-color: #f60;
+  border-radius: 2px;
+  color: #FFF;
+  font-family: "Microsoft YaHei", serif;
+  padding: 5px 12px;
+}
+
 .cart-wrapper {
   width: 1190px;
   min-width: 1190px;

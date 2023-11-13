@@ -126,32 +126,32 @@ body {
   display: inline-block;
   width: 6em;
 }
-#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice {
+#main .proinfo .proinfo-right .price-container .price-promo dd .main-price {
   height: 28px;
   float: left;
   font: 700 30px/25px Tahoma;
   color: #e00;
-  font-family: Arial;
+  font-family: Arial, serif;
 }
-#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice i {
+#main .proinfo .proinfo-right .price-container .price-promo dd .main-price i {
   font-size: 18px;
   font-style: normal;
 }
-#main .proinfo .proinfo-right .price-container .price-promo dd .mainprice span {
+#main .proinfo .proinfo-right .price-container .price-promo dd .main-price span {
   font-size: 24px;
-  font-family: Tahoma;
+  font-family: Tahoma, serif;
 }
 #main .proinfo .proinfo-right .tzm {
   margin-top: 20px;
 }
-#main .proinfo .proinfo-right .tzm .proinfo-color-ex, #main .proinfo .proinfo-right .tzm .proinfo-buytype, #main .proinfo .proinfo-right .tzm .proinfo-num {
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex, #main .proinfo .proinfo-right .tzm .proinfo-memory, #main .proinfo .proinfo-right .tzm .proinfo-size, #main .proinfo .proinfo-right .tzm .proinfo-num {
   padding-top: 5px;
   padding-bottom: 0;
   margin-bottom: 6px;
   display: flex;
   align-items: center;
 }
-#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt, #main .proinfo .proinfo-right .tzm .proinfo-buytype dt, #main .proinfo .proinfo-right .tzm .proinfo-num dt {
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt, #main .proinfo .proinfo-right .tzm .proinfo-memory dt, #main .proinfo .proinfo-right .tzm .proinfo-size dt, #main .proinfo .proinfo-right .tzm .proinfo-num dt {
   float: left;
   width: 70px;
   padding-left: 10px;
@@ -159,7 +159,7 @@ body {
   overflow: hidden;
   font-family: simsun;
 }
-#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt span, #main .proinfo .proinfo-right .tzm .proinfo-buytype dt span, #main .proinfo .proinfo-right .tzm .proinfo-num dt span {
+#main .proinfo .proinfo-right .tzm .proinfo-color-ex dt span, #main .proinfo .proinfo-right .tzm .proinfo-memory dt span, #main .proinfo .proinfo-right .tzm .proinfo-size dt span, #main .proinfo .proinfo-right .tzm .proinfo-num dt span {
   display: inline-block;
   width: 6em;
 }
@@ -173,7 +173,6 @@ body {
   display: flex;
   align-items: center;
   height: 38px;
-  width: 68px;
   line-height: 38px;
   padding: 1px 8px 1px 1px;
   border: 1px solid #ddd;

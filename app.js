@@ -343,6 +343,195 @@ authRouter.post('/deleteFromCart', (req, res) => {
     })
 });
 
+authRouter.get('/product', (req, res) => {
+    const {productid} = req.query;
+    if (!productid) {
+        return res.status(400).json({error: '需要提供产品ID。'});
+    }
+    const query = `
+    SELECT 
+      p.productid,
+      p.name,
+      p.description,
+      p.price,
+      p.storename,
+      p.type,
+      p.sign,
+      p.color,
+      p.memory,
+      p.model,
+      p.specification,
+      p.size,
+      pi.imageurl
+    FROM Product p
+    LEFT JOIN ProductImage pi ON p.productid = pi.productid
+    WHERE p.productid = ?
+  `;
+
+    const connection = mysql.createConnection(mysqlConnection);
+    connection.query(query, [productid], (error, results, fields) => {
+        if (error) {
+            return res.status(500).json({error: '内部服务器错误'});
+        }
+        if (results.length === 0) {
+            return res.status(404).json({error: '找不到产品'});
+        }
+        const productData = {
+            productid: results[0].productid,
+            name: results[0].name,
+            description: results[0].description,
+            price: results[0].price,
+            storename: results[0].storename,
+            type: results[0].type,
+            sign: results[0].sign,
+            color: results[0].color,
+            memory: results[0].memory,
+            model: results[0].model,
+            specification: results[0].specification,
+            size: results[0].size,
+            images: results
+                .filter((result) => result.imageurl !== null)
+                .map((result) => result.imageurl),
+        };
+        // 如果有 sign 值，再查询包含相同 sign 值的图片地址
+        if (productData.sign) {
+            const signQuery = `
+        SELECT imageurl
+        FROM ProductImage
+        WHERE sign = ?
+      `;
+            connection.query(signQuery, [productData.sign], (signError, signResults, signFields) => {
+                if (signError) {
+                    return res.status(500).json({error: '内部服务器错误'});
+                }
+                productData.images = productData.images.concat(
+                    signResults.map((signResult) => signResult.imageurl)
+                );
+
+                res.status(200).json(productData);
+            });
+            connection.end()
+        } else {
+            res.status(200).json(productData);
+            connection.end()
+        }
+    });
+
+});
+
+// 在二级路由器上定义/relevanceProduct路由
+authRouter.get('/relevanceProduct', (req, res) => {
+    const {productid} = req.query;
+
+    if (!productid) {
+        return res.status(400).json({error: '需要提供产品ID。'});
+    }
+
+    const getSignQuery = `
+        SELECT sign
+        FROM Product
+        WHERE productid = ?
+    `;
+
+    const connection = mysql.createConnection(mysqlConnection);
+    connection.query(getSignQuery, [productid], (signError, signResults, signFields) => {
+        if (signError) {
+            return res.status(500).json({error: '内部服务器错误'});
+        }
+
+        if (signResults.length === 0 || !signResults[0].sign) {
+            return res.status(404).json({error: '找不到产品或产品没有sign字段'});
+        }
+
+        const sign = signResults[0].sign;
+
+        const relevanceQuery = `
+            SELECT 
+                p.productid,
+                p.name,
+                p.description,
+                p.price,
+                p.storename,
+                p.type,
+                p.sign,
+                p.color,
+                p.memory,
+                p.model,
+                p.specification,
+                p.size,
+                MIN(pi.imageurl) as imageurl
+            FROM Product p
+            LEFT JOIN ProductImage pi ON p.productid = pi.productid
+            WHERE p.sign = ? 
+            GROUP BY p.productid
+        `;
+
+        connection.query(relevanceQuery, [sign, productid], (error, results, fields) => {
+            if (error) {
+                return res.status(500).json({error: '内部服务器错误'});
+            }
+
+            const relevantProducts = results.map((result) => {
+                return {
+                    productid: result.productid,
+                    name: result.name,
+                    description: result.description,
+                    price: result.price,
+                    storename: result.storename,
+                    type: result.type,
+                    sign: result.sign,
+                    color: result.color,
+                    memory: result.memory,
+                    model: result.model,
+                    specification: result.specification,
+                    size: result.size,
+                    images: [result.imageurl].filter((imageUrl) => imageUrl !== null),
+                };
+            });
+
+            res.status(200).json(relevantProducts);
+        });
+
+        connection.end();
+    });
+
+});
+
+authRouter.get('/findProduct', (req, res) => {
+    const {color, memory, size, sign} = req.query
+    if (color !== undefined && memory !== undefined && size === undefined) {
+        const connection = mysql.createConnection(mysqlConnection);
+        connection.connect();
+        const values = [color, memory, sign]
+        const query = `SELECT productid FROM Product WHERE color = ? AND memory = ? AND sign = ?`
+        connection.query(query, values, (err, result) => {
+            if (err) {
+                console.error('查询出错' + err.stack);
+                res.status(500).json({message: '查询出错', statusCode: 401})
+            } else {
+                const data = result[0]
+                res.status(200).json(data)
+            }
+        })
+        connection.end()
+    }
+    if (size !== undefined && color !== undefined) {
+        const connection = mysql.createConnection(mysqlConnection);
+        connection.connect();
+        const values = [color, size, sign]
+        const query = `SELECT productid FROM Product WHERE color = ? AND size = ? AND sign = ?`
+        connection.query(query, values, (err, result) => {
+            if (err) {
+                console.error('查询出错' + err.stack);
+                res.status(500).json({message: '查询出错', statusCode: 401})
+            } else {
+                const data = result[0]
+                res.status(200).json(data)
+            }
+        })
+        connection.end()
+    }
+})
 
 function mergeData(cartData, productData, imageData) {
     const mergedData = {};

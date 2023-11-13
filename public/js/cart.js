@@ -53,10 +53,19 @@ load()
 
 // 加载购物车内容函数
 function loadCart() {
-    document.querySelector('.m-cart-body').innerHTML = ''
+    let cartWrapper = document.querySelector('.cart-wrapper')
+    let cartEmpty = document.querySelector('.cart-empty')
+    if (Object.keys(cartData).length === 0){
+        cartWrapper.style.display = 'none'
+        cartEmpty.style.display = 'block'
+        return
+    }
+    cartWrapper.style.display = 'block'
+    cartEmpty.style.display = 'none'
     let store = []
     let selectedNum = 0
     let selectedCount = 0
+    document.querySelector('.m-cart-body').innerHTML = ''
     for (let key in cartData) {
         // 解析每一条购物车数据
         const selected = cartData[key].selected ? 'checked' : null

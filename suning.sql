@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 10/11/2023 21:47:55
+ Date: 13/11/2023 20:53:56
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `Product` (
   `specification` varchar(50) DEFAULT NULL,
   `size` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`productid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10019 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10021 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of Product
@@ -58,7 +58,9 @@ INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`,
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10015, 'Apple iPhone 15 512G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, '苏宁自营', '手机', 'iPhone15', '蓝色', '512G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10016, '小米14 徕卡光学镜头 光影猎人900 徕卡75mm浮动长焦 骁龙8Gen3 12+256 白色 小米手机 红米手机 5G', '旗舰产品，货量有限，小米澎湃OS 骁龙8Gen', 4299.00, '苏宁自营', '手机', '小米14', '白色', '12+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10017, '小米14 徕卡光学镜头 光影猎人900 徕卡75mm浮动长焦 骁龙8Gen3 12+256 雪山粉 小米手机 红米手机 5G', '旗舰产品，货量有限，小米澎湃OS 骁龙8Gen', 4299.00, '苏宁自营', '手机', '小米14', '粉色', '12+256G', NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10018, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', NULL, '奶白色', NULL, NULL, NULL, 'M');
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10018, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'S');
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10019, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'M');
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10020, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'L');
 COMMIT;
 
 -- ----------------------------
@@ -73,7 +75,7 @@ CREATE TABLE `ProductImage` (
   PRIMARY KEY (`imageid`) USING BTREE,
   KEY `productid` (`productid`),
   CONSTRAINT `productimage_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `Product` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of ProductImage
@@ -113,20 +115,30 @@ INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (32, 10015, 'https://images.hooray.top/iPhone15/iPhone15_BLUE_001.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (33, 10015, 'https://images.hooray.top/iPhone15/iPhone15_BLUE_002.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (34, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_01.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (35, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_02.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (36, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_03.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (37, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_04.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (38, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_05.png', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (35, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (36, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (37, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (38, 10016, 'https://images.hooray.top/Xiaomi14/Xiaomi14_WHITE_05.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (39, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_01.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (40, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_02.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (41, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_03.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (42, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_04.png', NULL);
-INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (43, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_05.png', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (40, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (41, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (42, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (43, 10017, 'https://images.hooray.top/Xiaomi14/Xiaomi14_PINK_05.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (44, 10018, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_01.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (45, 10018, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (46, 10018, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (47, 10018, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (48, 10018, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (49, 10019, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_01.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (50, 10019, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (51, 10019, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (52, 10019, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (53, 10019, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (54, 10020, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_01.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (55, 10020, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (56, 10020, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (57, 10020, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (58, 10020, 'https://images.hooray.top/%E8%AF%AD%E5%A8%84%E7%99%BD%E8%89%B2%E5%8F%8C%E9%9D%A2%E5%A4%A7%E8%A1%A3/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -144,7 +156,7 @@ CREATE TABLE `ShoppingCart` (
   KEY `productid` (`productid`),
   CONSTRAINT `shoppingcart_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `User` (`userid`),
   CONSTRAINT `shoppingcart_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `Product` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of ShoppingCart
@@ -154,6 +166,7 @@ INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `select
 INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (2, 1, 10016, 1, 1);
 INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (3, 1, 10008, 2, 1);
 INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (4, 1, 10018, 1, 1);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (16, 1, 10019, 1, 1);
 COMMIT;
 
 -- ----------------------------

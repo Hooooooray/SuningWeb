@@ -287,11 +287,17 @@ authRouter.post('/updateCart', (req, res) => {
                         const values = [selected, userid, productid];
                         await promisify(connection.query).bind(connection)(updateSelectedQuery, values);
                     }
-                    if (quantity !== undefined && selected === undefined) {
+                    if (quantity !== undefined && quantity >= 1 && selected === undefined) {
                         const updateQuantityQuery = 'UPDATE ShoppingCart SET quantity = ? WHERE userid = ? AND productid = ?';
                         const values = [quantity, userid, productid];
                         await promisify(connection.query).bind(connection)(updateQuantityQuery, values);
+                    } else {
+                        throw new Error();
                     }
+                } else if (selected !== undefined && quantity === undefined) {
+                    const updateQuantityQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ?';
+                    const values = [selected, userid];
+                    await promisify(connection.query).bind(connection)(updateQuantityQuery, values);
                 }
             }
             res.status(200).json({message: 'Update successful'});

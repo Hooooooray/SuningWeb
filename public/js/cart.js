@@ -177,9 +177,37 @@ function loadCart() {
     })
 
     let allCheckBox = document.querySelectorAll('.all-check-box')
-    allCheckBox.forEach(item => {
+    allCheckBox.forEach(checkbox => {
         let storeAllCheckBox = document.querySelectorAll('.store-all-check')
-        item.checked = Array.from(storeAllCheckBox).every(checkbox => checkbox.checked)
+        checkbox.checked = Array.from(storeAllCheckBox).every(check => check.checked)
+        checkbox.addEventListener('click',()=>{
+            let selected = checkbox.checked
+            const data = {
+                selected
+            }
+            let updates = [data]
+            let token = localStorage.getItem('token')
+            const url = 'http://localhost:3000/api/updateCart'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({updates})
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // return response.json()
+                        load()
+                    } else {
+                        throw new Error('更新购物车失败')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        })
     })
 
 
@@ -206,7 +234,6 @@ function loadCart() {
             })
                 .then(response => {
                     if (response.ok) {
-                        ``
                         // return response.json()
                         load()
                     } else {

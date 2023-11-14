@@ -22,6 +22,14 @@ let proinfoMemory = document.querySelector('.proinfo-memory')
 let proinfoSize = document.querySelector('.proinfo-size')
 let primaryColor, primaryMemory, primarySize, primaryModel, primarySpecification, primarySign, primaryId
 
+let searchSubmit = document.querySelector('.searchSubmit')
+
+searchSubmit.addEventListener('click',()=>{
+    let searchKeyword = document.querySelector('.search-keyword')
+    let keyword = searchKeyword.value
+    window.location.href = `./search.html?keyword=${keyword}`
+})
+
 minusButton.addEventListener('click', () => {
     let productNumInput = document.querySelector('.num-con input')
     let num = productNumInput.value
@@ -84,7 +92,7 @@ addCartButton.addEventListener('click', () => {
             closeOverlay.style.display = 'block'
             return response.json()
         } else if (response.status === 401) {
-            location.href = './login.html'
+            location.href = `./login.html?returnUrl=/product.html&productid=${primaryId}`
         }
     }).then(responseData => {
         console.log(responseData)

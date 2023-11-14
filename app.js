@@ -33,7 +33,7 @@ app.get('/api', (req, res) => {
     res.send('HelloWorld')
 })
 
-// 在二级路由器上定义/sms路由
+// 短信验证码发送
 authRouter.post('/sms', (req, res) => {
     // 获取当前时间戳
     const currentTime = Date.now();
@@ -65,7 +65,7 @@ authRouter.post('/sms', (req, res) => {
     }
 })
 
-// 在二级路由器上定义/register路由
+// 注册
 authRouter.post('/register', (req, res) => {
     const {phoneNumber, smsCode, password} = req.body;
 
@@ -107,7 +107,7 @@ authRouter.post('/register', (req, res) => {
     }
 });
 
-// 在二级路由器上定义/login路由
+// 账号密码登录
 authRouter.post('/accountLogin', (req, res) => {
     const {loginAccount, loginPassword} = req.body;
     const connection = mysql.createConnection(mysqlConnection);
@@ -141,6 +141,7 @@ authRouter.post('/accountLogin', (req, res) => {
 
 });
 
+// 短信登录
 authRouter.post('/smsLogin', (req, res) => {
     const {phoneNumber, smsCode} = req.body
     const connection = mysql.createConnection(mysqlConnection);
@@ -163,6 +164,7 @@ authRouter.post('/smsLogin', (req, res) => {
     connection.end();
 })
 
+// 验证token
 authRouter.post('/token', (req, res) => {
     const token = req.headers.authorization;
     jwt.verify(token, secretKey, (err, decoded) => {
@@ -173,6 +175,7 @@ authRouter.post('/token', (req, res) => {
     });
 })
 
+// 更新用户信息
 authRouter.post('/updateUser', (req, res) => {
     const {username, nickname, gender, userid} = req.body;
     if (username == null || nickname == null || gender == null || userid == null) {
@@ -206,6 +209,7 @@ authRouter.post('/updateUser', (req, res) => {
     });
 });
 
+// 购物车加载
 authRouter.post('/cart', (req, res) => {
     const token = req.headers.authorization;
     jwt.verify(token, secretKey, (err, decoded) => {
@@ -263,6 +267,7 @@ authRouter.post('/cart', (req, res) => {
     });
 })
 
+// 更新购物车信息
 authRouter.post('/updateCart', (req, res) => {
     const token = req.headers.authorization;
     // const {productid, selected, quantity} = req.body
@@ -292,7 +297,7 @@ authRouter.post('/updateCart', (req, res) => {
                         const values = [quantity, userid, productid];
                         await promisify(connection.query).bind(connection)(updateQuantityQuery, values);
                     } else {
-                        throw new Error();
+                        // throw new Error();
                     }
                 } else if (selected !== undefined && quantity === undefined) {
                     const updateQuantityQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ?';
@@ -311,6 +316,7 @@ authRouter.post('/updateCart', (req, res) => {
 
 })
 
+// 删除购物车中的商品
 authRouter.post('/deleteFromCart', (req, res) => {
     const token = req.headers.authorization;
     const {deletes} = req.body;
@@ -343,6 +349,7 @@ authRouter.post('/deleteFromCart', (req, res) => {
     })
 });
 
+// 根据productid获取商品信息
 authRouter.get('/product', (req, res) => {
     const {productid} = req.query;
     if (!productid) {
@@ -419,7 +426,7 @@ authRouter.get('/product', (req, res) => {
 
 });
 
-// 在二级路由器上定义/relevanceProduct路由
+// 根据productid获取和该productid对应商品的相关商品的信息
 authRouter.get('/relevanceProduct', (req, res) => {
     const {productid} = req.query;
 
@@ -497,6 +504,7 @@ authRouter.get('/relevanceProduct', (req, res) => {
 
 });
 
+// 根据所提供特定的信息查找商品
 authRouter.get('/findProduct', (req, res) => {
     const {color, memory, size, sign} = req.query
     if (color !== undefined && memory !== undefined && size === undefined) {
@@ -534,6 +542,7 @@ authRouter.get('/findProduct', (req, res) => {
     }
 })
 
+// 将商品插入到购物车
 authRouter.post('/insertCart', (req, res) => {
     const token = req.headers.authorization;
     const {productid,quantity} = req.body;
@@ -558,8 +567,110 @@ authRouter.post('/insertCart', (req, res) => {
         })
         connection.end()
     })
-
 })
+
+authRouter.get('/search', (req, res) => {
+    const { keyword, page } = req.query;
+    const itemsPerPage = 20;
+    const currentPage = parseInt(page) || 1; // 默认当前页为第一页
+
+    if (!keyword) {
+        return res.status(400).json({ message: '关键词不能为空', statusCode: 400 });
+    }
+
+    const connection = mysql.createConnection(mysqlConnection);
+    connection.connect();
+
+    // 更新查询以进行大小写不敏感的匹配
+    const countQuery = `
+        SELECT COUNT(DISTINCT p.productid) as total
+        FROM Product p
+        LEFT JOIN ProductImage pi ON p.productid = pi.productid
+        WHERE LOWER(p.name) LIKE CONCAT('%', LOWER(?), '%') 
+           OR LOWER(p.description) LIKE CONCAT('%', LOWER(?), '%') 
+           OR LOWER(p.type) LIKE CONCAT('%', LOWER(?), '%')
+           OR LOWER(p.sign) LIKE CONCAT('%', LOWER(?), '%')
+           OR LOWER(p.color) LIKE CONCAT('%', LOWER(?), '%')
+    `;
+
+    const countValues = [keyword, keyword, keyword, keyword, keyword];
+
+    connection.query(countQuery, countValues, (countError, countResults) => {
+        if (countError) {
+            console.error(countError);
+            return res.status(500).json({ message: '内部服务器错误' });
+        }
+
+        const totalResults = countResults[0].total;
+        const totalPages = Math.ceil(totalResults / itemsPerPage);
+        const offset = (currentPage - 1) * itemsPerPage;
+
+        // 更新查询以进行大小写不敏感的匹配
+        const searchQuery = `
+            SELECT 
+                p.productid,
+                p.name,
+                p.description,
+                p.price,
+                p.storename,
+                p.type,
+                p.sign,
+                p.color,
+                p.memory,
+                p.model,
+                p.specification,
+                p.size,
+                MIN(pi.imageurl) as imageurl
+            FROM Product p
+            LEFT JOIN ProductImage pi ON p.productid = pi.productid
+            WHERE LOWER(p.name) LIKE CONCAT('%', LOWER(?), '%') 
+               OR LOWER(p.description) LIKE CONCAT('%', LOWER(?), '%') 
+               OR LOWER(p.type) LIKE CONCAT('%', LOWER(?), '%')
+               OR LOWER(p.sign) LIKE CONCAT('%', LOWER(?), '%')
+               OR LOWER(p.color) LIKE CONCAT('%', LOWER(?), '%')
+            GROUP BY p.productid
+            LIMIT ?, ?
+        `;
+
+        const searchValues = [keyword, keyword, keyword, keyword, keyword, offset, itemsPerPage];
+
+        connection.query(searchQuery, searchValues, (searchError, results) => {
+            if (searchError) {
+                console.error(searchError);
+                return res.status(500).json({ message: '内部服务器错误' });
+            }
+
+            const searchResults = results.map((result) => {
+                return {
+                    productid: result.productid,
+                    name: result.name,
+                    description: result.description,
+                    price: result.price,
+                    storename: result.storename,
+                    type: result.type,
+                    sign: result.sign,
+                    color: result.color,
+                    memory: result.memory,
+                    model: result.model,
+                    specification: result.specification,
+                    size: result.size,
+                    imageurl: result.imageurl,
+                };
+            });
+
+            res.status(200).json({
+                currentPage,
+                totalPages,
+                results: searchResults,
+            });
+        });
+        connection.end();
+    });
+
+
+});
+
+
 
 function mergeData(cartData, productData, imageData) {
     const mergedData = {};

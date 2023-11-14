@@ -4,6 +4,13 @@ let usernameSpan = usernameNodeSlide.querySelector('span')
 const mCartBody = document.querySelector('.m-cart-body')
 let logOutBtn = document.getElementById('logOut')
 let cartData
+let searchSubmit = document.querySelector('.searchSubmit')
+
+searchSubmit.addEventListener('click',()=>{
+    let searchKeyword = document.querySelector('.search-keyword')
+    let keyword = searchKeyword.value
+    window.location.href = `./search.html?keyword=${keyword}`
+})
 
 // 退出登录
 logOutBtn.addEventListener('click', () => {
@@ -26,8 +33,8 @@ function load() {
                 regBarNode.style.display = 'none'
                 usernameNodeSlide.style.display = 'block'
                 return response.json()
-            } else {
-                location.href = './login.html'
+            } else if(response.status === 401) {
+                location.href = './login.html?returnUrl=/cart.html'
             }
         })
         .then(responseData => {

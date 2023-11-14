@@ -9,6 +9,13 @@ let usernameNodeSlide = document.getElementById('username-node-slide')
 let usernameSpan = usernameNodeSlide.querySelector('span')
 let hi = document.querySelector('.hi em')
 let logOutBtn = document.getElementById('logOut')
+let searchSubmit = document.querySelector('.searchSubmit')
+
+searchSubmit.addEventListener('click',()=>{
+    let searchKeyword = document.querySelector('.search-keyword')
+    let keyword = searchKeyword.value
+    window.location.href = `./views/search.html?keyword=${keyword}`
+})
 
 logOutBtn.addEventListener('click',()=>{
     localStorage.removeItem("token");

@@ -52,7 +52,15 @@ accountSubmitButton.addEventListener('click', () => {
         body: JSON.stringify(data)
     }).then(response => {
         if (response.ok) {
-            window.location.href = '../index.html'
+            let urlParams = new URL(window.location.href);
+            let url = urlParams.searchParams.get('returnUrl');
+            let productid = urlParams.searchParams.get('productid')
+            if(url !==null){
+                window.location.href = `../views${url}${productid ? `?productid=${encodeURIComponent(productid)}` : ''}`
+            }else {
+                window.location.href = '../index.html'
+            }
+
             return response.json();
         } else {
             throw new Error('登录失败');

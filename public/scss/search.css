@@ -139,7 +139,7 @@ em, i {
 }
 #main #product-wrap .product-list .general .item-wrap {
   width: 220px;
-  height: 432px;
+  height: 366px;
   margin: 40px 22px 30px 0;
   position: relative;
 }
@@ -261,6 +261,7 @@ em, i {
 }
 #main #product-wrap .product-list .sn-pager {
   width: 100%;
+  margin-bottom: 40px;
 }
 #main #product-wrap .product-list .sn-pager .search-page {
   width: 100%;

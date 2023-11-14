@@ -38,13 +38,16 @@
                 </div>
             </div>
             <div class="ng-toolbar-right">
-                <div class="reg-bar-node">
+                <div class="reg-bar-node" id="reg-bar-node">
                     <a href="login.html">请登录</a>
                     <a href="register.html" class="reg-bbb">注册有礼</a>
                 </div>
-                <div class="ng-bar-node-box username-handle" style="display: none">
-                    <a class="ng-bar-node" href=""><span>186******05</span><img src="../images/to-bottom.png"
-                                                                                alt=""></a>
+                <div class="ng-bar-node-box username-handle" id="username-node-slide" style="display: none">
+                    <a class="ng-bar-node" href=""><span></span><img src="../images/to-bottom.png" alt=""></a>
+                    <ul>
+                        <li><a href="./personal.html">账号管理</a></li>
+                        <li><a href="javascript:void(0)" id="logOut">退出登录</a></li>
+                    </ul>
                 </div>
                 <div class="ng-bar-node-box myorder-handle">
                     <a class="ng-bar-node" href=""><span>我的订单</span><img src="../images/to-bottom.png"
@@ -56,7 +59,7 @@
                 </div>
                 <div class="ng-bar-node-box"><a class="sn-huiyuan" href="">苏宁会员</a></div>
                 <div class="ng-bar-node-box cart-handle">
-                    <a class="ng-bar-node" href=""><img class="cart-ico" src="../images/cart.png"
+                    <a class="ng-bar-node" href="./cart.html"><img class="cart-ico" src="../images/cart.png"
                                                         alt=""><span>购物车</span><img
                             src="../images/to-bottom.png"
                             alt=""></a>
@@ -205,7 +208,7 @@
     <div id="product-wrap">
         <div class="product-list">
             <ul class="general">
-                <li class="item-wrap">
+<!--                <li class="item-wrap">
                     <div class="item-bg">
                         <div class="product-box">
                             <div class="img-block">
@@ -221,13 +224,6 @@
                             <div class="title-selling-point">
                                 <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
                             </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
                             <div class="store-stock">
                                 <a href="" class="store-class">
                                     苏宁自营
@@ -238,337 +234,50 @@
                             </div>
                         </div>
                     </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-wrap">
-                    <div class="item-bg">
-                        <div class="product-box">
-                            <div class="img-block">
-                                <a href="" class="sellPoint">
-                                    <img src="../images/SKU_黑色_01.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="price-box">
-                                <div class="def-price">
-                                    <i>¥</i>5538<i>.00</i>
-                                </div>
-                            </div>
-                            <div class="title-selling-point">
-                                <a href="">Apple iPhone 15 128G 黑色 移动联通电信手机 5G全网通手机</a>
-                            </div>
-                            <div class="evaluate-old">
-                                <div class="info-evaluate">
-                                    <a href="">
-                                        <i>1400+</i>评价
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="store-stock">
-                                <a href="" class="store-class">
-                                    苏宁自营
-                                </a>
-                            </div>
-                            <div class="res-opt">
-                                <a href="" class="btn-gwc"><i></i>加入购物车</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
+                </li>-->
             </ul>
             <div class="sn-pager">
                 <div class="search-page">
-                    <a href="" id="prePage" class="prev"><b></b></a>
-                    <a href="">1<em class="lion"></em></a>
-                    <a href="">2<em class="lion"></em></a>
-                    <a href="" class="current">3 <em class="lion"></em></a>
-                    <a href="">4<em class="lion"></em></a>
-                    <span>...</span>
-                    <a href="">49<em class="lion"></em></a>
-                    <a href="" id="nextPage" class="next"><b></b></a>
-                    <span class="page-more">
-                        共49页
-                        <a href="">跳转到</a>
-                        <input type="number" id="bottomPage">
-                    </span>
-                    <a href=""  class="page-more ensure">确定</a>
+<!--                    <a href="" id="prePage" class="prev"><b></b></a>-->
+<!--                    <a href="" class="current">1<em class="lion"></em></a>-->
+<!--                    <a href="">2<em class="lion"></em></a>-->
+<!--                    <a href="">3 <em class="lion"></em></a>-->
+<!--                    <a href="">4<em class="lion"></em></a>-->
+<!--                    <a href="" id="nextPage" class="next"><b></b></a>-->
+<!--                    <span class="page-more">-->
+<!--                        共49页-->
+<!--                        <a href="">跳转到</a>-->
+<!--                        <input type="number" id="bottomPage">-->
+<!--                    </span>-->
+<!--                    <a href=""  class="page-more ensure">确定</a>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="../js/magnify.js"></script>
+<div class="m-dialog">
+    <div class="container">
+        <div class="title">
+            <h3>温馨提示</h3>
+            <a href="javascript:void(0)" class="btn-close"></a>
+        </div>
+        <div class="content">
+            <div class="nostore-rd">
+                <div class="add-cart-hd">
+                    <div class="tip-left">
+                        <i class="tip-succ"></i>
+                        <span>已成功加入购物车！</span>
+                    </div>
+                    <a href="./cart.html" class="go-cart">去购物车结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="close-overlay"></div>
+
+<script src="../js/search.js"></script>
 </body>
 </html>

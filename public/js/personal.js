@@ -23,7 +23,7 @@ window.onload = function () {
     let token = localStorage.getItem('token')
     const url = 'http://localhost:3000/api/token'
     fetch(url, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Authorization': token
         },

@@ -163,7 +163,7 @@ authRouter.post('/smsLogin', (req, res) => {
     connection.end();
 })
 
-authRouter.get('/token', (req, res) => {
+authRouter.post('/token', (req, res) => {
     const token = req.headers.authorization;
     jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
@@ -519,6 +519,7 @@ authRouter.get('/findProduct', (req, res) => {
         const connection = mysql.createConnection(mysqlConnection);
         connection.connect();
         const values = [color, size, sign]
+        console.log(values)
         const query = `SELECT productid FROM Product WHERE color = ? AND size = ? AND sign = ?`
         connection.query(query, values, (err, result) => {
             if (err) {
@@ -531,6 +532,33 @@ authRouter.get('/findProduct', (req, res) => {
         })
         connection.end()
     }
+})
+
+authRouter.post('/insertCart', (req, res) => {
+    const token = req.headers.authorization;
+    const {productid,quantity} = req.body;
+    jwt.verify(token, secretKey, async (err, decoded) => {
+        if (err) {
+            return res.status(401).json({message: 'Token is not valid'});
+        }
+        const userid = decoded.userid;
+        const connection = mysql.createConnection(mysqlConnection);
+        connection.connect();
+        // 如果该用户已经添加过这个商品，则更新商品的数量，而不是插入重复数据
+        const insertOrUpdateQuery = `
+            INSERT INTO ShoppingCart (userid, productid, quantity, selected)
+            VALUES (?, ?, ?, 1)
+            ON DUPLICATE KEY UPDATE quantity = quantity + ?;
+        `;
+        connection.query(insertOrUpdateQuery, [userid,productid,quantity,quantity], (err, result) => {
+            if (err) {
+                return res.status(500).json({message: '插入失败'})
+            }
+            return res.status(200).json({message: '插入成功'})
+        })
+        connection.end()
+    })
+
 })
 
 function mergeData(cartData, productData, imageData) {

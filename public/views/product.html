@@ -34,13 +34,16 @@
                 </div>
             </div>
             <div class="ng-toolbar-right">
-                <div class="reg-bar-node">
+                <div class="reg-bar-node" id="reg-bar-node">
                     <a href="login.html">请登录</a>
                     <a href="register.html" class="reg-bbb">注册有礼</a>
                 </div>
-                <div class="ng-bar-node-box username-handle" style="display: none">
-                    <a class="ng-bar-node" href=""><span>186******05</span><img src="../images/to-bottom.png"
-                                                                                alt=""></a>
+                <div class="ng-bar-node-box username-handle" id="username-node-slide" style="display: none">
+                    <a class="ng-bar-node" href=""><span></span><img src="../images/to-bottom.png" alt=""></a>
+                    <ul>
+                        <li><a href="./personal.html">账号管理</a></li>
+                        <li><a href="javascript:void(0)" id="logOut">退出登录</a></li>
+                    </ul>
                 </div>
                 <div class="ng-bar-node-box myorder-handle">
                     <a class="ng-bar-node" href=""><span>我的订单</span><img src="../images/to-bottom.png" alt=""></a>
@@ -50,9 +53,10 @@
                 </div>
                 <div class="ng-bar-node-box"><a class="sn-huiyuan" href="">苏宁会员</a></div>
                 <div class="ng-bar-node-box cart-handle">
-                    <a class="ng-bar-node" href=""><img class="cart-ico" src="../images/cart.png"
-                                                        alt=""><span>购物车</span><img src="../images/to-bottom.png"
-                                                                                       alt=""></a>
+                    <a class="ng-bar-node" href="./cart.html"><img class="cart-ico" src="../images/cart.png"
+                                                                   alt=""><span>购物车</span><img
+                            src="../images/to-bottom.png"
+                            alt=""></a>
                 </div>
                 <div class="ng-bar-node-box yifubao"><a href="">易付宝</a></div>
                 <div class="ng-bar-node-box qiyecaigou"><a href="">企业采购</a></div>
@@ -81,68 +85,68 @@
     </div>
 
     <!--分类导航-->
-<!--    <div class="ng-nav-bg">
-            <div class="ng-nav-bar">
-                <div class="index-sort">
-                    <a href="" class="index-all-hook"><img src="../public/images/type.png" alt=""><span>分类</span></a>
-                    <div class="dacu-list-wrapper">
-                        <div class="index-sort-list-box">
-                            <ul class="index-list">
-                                <li><img class="icon" src="../public/images/type1.png" alt=""><a href="">冰箱</a><span>/&nbsp</span><a
-                                        href="">洗衣机</a><span>/&nbsp</span><a
-                                        href="">空调</a></li>
-                                <li><img class="icon" src="../public/images/type2.png" alt=""><a href="">电视</a><span>/&nbsp</span><a
-                                        href="">视听影音</a></li>
-                                <li><img class="icon" src="../public/images/type3.png" alt=""><a href="">手机</a><span>/&nbsp</span><a
-                                        href="">配件</a><span>/&nbsp</span><a
-                                        href="">运营商</a></li>
-                                <li><img class="icon" src="../public/images/type4.png" alt=""><a href="">厨房大电</a><span>/&nbsp</span><a
-                                        href="">卫浴</a><span>/&nbsp</span><a
-                                        href="">饮水</a></li>
-                                <li><img class="icon" src="../public/images/type5.png" alt=""><a href="">厨房小电</a><span>/&nbsp</span><a
-                                        href="">生活电器</a></li>
-                                <li><img class="icon" src="../public/images/type6.png" alt=""><a href="">电脑</a><span>/&nbsp</span><a
-                                        href="">相机</a><span>/&nbsp</span><a
-                                        href="">配件</a></li>
-                                <li><img class="icon" src="../public/images/type7.png" alt=""><a href="">家具</a><span>/&nbsp</span><a
-                                        href="">家装</a><span>/&nbsp</span><a
-                                        href="">家纺</a><span>/&nbsp</span><a
-                                        href="">灯具</a></li>
-                                <li><img class="icon" src="../public/images/type8.png" alt=""><a href="">食品</a><span>/&nbsp</span><a
-                                        href="">酒水</a><span>/&nbsp</span><a
-                                        href="">生鲜</a></li>
-                                <li><img class="icon" src="../public/images/type9.png" alt=""><a href="">母婴</a><span>/&nbsp</span><a
-                                        href="">玩具</a><span>/&nbsp</span><a
-                                        href="">童装</a><span>/&nbsp</span><a
-                                        href="">童床</a></li>
-                                <li><img class="icon" src="../public/images/type10.png" alt=""><a href="">美妆</a><span>/&nbsp</span><a
-                                        href="">个护</a><span>/&nbsp</span><a
-                                        href="">清洁</a><span>/&nbsp</span><a
-                                        href="">宠物</a></li>
-                                <li><img class="icon" src="../public/images/type11.png" alt=""><a href="">女装</a><span>/&nbsp</span><a
-                                        href="">男装</a><span>/&nbsp</span><a
-                                        href="">内衣</a><span>/&nbsp</span><a
-                                        href="">鞋靴</a></li>
-                                <li><img class="icon" src="../public/images/type12.png" alt=""><a href="">运动</a><span>/&nbsp</span><a
-                                        href="">户外</a><span>/&nbsp</span><a
-                                        href="">汽车</a><span>/&nbsp</span><a
-                                        href="">工具</a></li>
-                                <li><img class="icon" src="../public/images/type13.png" alt=""><a href="">箱包</a><span>/&nbsp</span><a
-                                        href="">钟表</a><span>/&nbsp</span><a
-                                        href="">珠宝</a></li>
-                                <li><img class="icon" src="../public/images/type14.png" alt=""><a href="">清洗</a><span>/&nbsp</span><a
-                                        href="">维修</a><span>/&nbsp</span><a
-                                        href="">安装</a><span>/&nbsp</span><a
-                                        href="">洗衣</a></li>
-                                <li><img class="icon" src="../public/images/type15.png" alt=""><a
-                                        href="">滋补保健</a><span>/&nbsp</span><a
-                                        href="">健康服务</a></li>
-                            </ul>
+    <!--    <div class="ng-nav-bg">
+                <div class="ng-nav-bar">
+                    <div class="index-sort">
+                        <a href="" class="index-all-hook"><img src="../public/images/type.png" alt=""><span>分类</span></a>
+                        <div class="dacu-list-wrapper">
+                            <div class="index-sort-list-box">
+                                <ul class="index-list">
+                                    <li><img class="icon" src="../public/images/type1.png" alt=""><a href="">冰箱</a><span>/&nbsp</span><a
+                                            href="">洗衣机</a><span>/&nbsp</span><a
+                                            href="">空调</a></li>
+                                    <li><img class="icon" src="../public/images/type2.png" alt=""><a href="">电视</a><span>/&nbsp</span><a
+                                            href="">视听影音</a></li>
+                                    <li><img class="icon" src="../public/images/type3.png" alt=""><a href="">手机</a><span>/&nbsp</span><a
+                                            href="">配件</a><span>/&nbsp</span><a
+                                            href="">运营商</a></li>
+                                    <li><img class="icon" src="../public/images/type4.png" alt=""><a href="">厨房大电</a><span>/&nbsp</span><a
+                                            href="">卫浴</a><span>/&nbsp</span><a
+                                            href="">饮水</a></li>
+                                    <li><img class="icon" src="../public/images/type5.png" alt=""><a href="">厨房小电</a><span>/&nbsp</span><a
+                                            href="">生活电器</a></li>
+                                    <li><img class="icon" src="../public/images/type6.png" alt=""><a href="">电脑</a><span>/&nbsp</span><a
+                                            href="">相机</a><span>/&nbsp</span><a
+                                            href="">配件</a></li>
+                                    <li><img class="icon" src="../public/images/type7.png" alt=""><a href="">家具</a><span>/&nbsp</span><a
+                                            href="">家装</a><span>/&nbsp</span><a
+                                            href="">家纺</a><span>/&nbsp</span><a
+                                            href="">灯具</a></li>
+                                    <li><img class="icon" src="../public/images/type8.png" alt=""><a href="">食品</a><span>/&nbsp</span><a
+                                            href="">酒水</a><span>/&nbsp</span><a
+                                            href="">生鲜</a></li>
+                                    <li><img class="icon" src="../public/images/type9.png" alt=""><a href="">母婴</a><span>/&nbsp</span><a
+                                            href="">玩具</a><span>/&nbsp</span><a
+                                            href="">童装</a><span>/&nbsp</span><a
+                                            href="">童床</a></li>
+                                    <li><img class="icon" src="../public/images/type10.png" alt=""><a href="">美妆</a><span>/&nbsp</span><a
+                                            href="">个护</a><span>/&nbsp</span><a
+                                            href="">清洁</a><span>/&nbsp</span><a
+                                            href="">宠物</a></li>
+                                    <li><img class="icon" src="../public/images/type11.png" alt=""><a href="">女装</a><span>/&nbsp</span><a
+                                            href="">男装</a><span>/&nbsp</span><a
+                                            href="">内衣</a><span>/&nbsp</span><a
+                                            href="">鞋靴</a></li>
+                                    <li><img class="icon" src="../public/images/type12.png" alt=""><a href="">运动</a><span>/&nbsp</span><a
+                                            href="">户外</a><span>/&nbsp</span><a
+                                            href="">汽车</a><span>/&nbsp</span><a
+                                            href="">工具</a></li>
+                                    <li><img class="icon" src="../public/images/type13.png" alt=""><a href="">箱包</a><span>/&nbsp</span><a
+                                            href="">钟表</a><span>/&nbsp</span><a
+                                            href="">珠宝</a></li>
+                                    <li><img class="icon" src="../public/images/type14.png" alt=""><a href="">清洗</a><span>/&nbsp</span><a
+                                            href="">维修</a><span>/&nbsp</span><a
+                                            href="">安装</a><span>/&nbsp</span><a
+                                            href="">洗衣</a></li>
+                                    <li><img class="icon" src="../public/images/type15.png" alt=""><a
+                                            href="">滋补保健</a><span>/&nbsp</span><a
+                                            href="">健康服务</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>-->
+            </div>-->
 
     <div class="sf-navfull">
         <div class="sf-navbar">
@@ -155,7 +159,7 @@
         </div>
     </div>
 
-<!--    <div class="breadcrumb"></div>-->
+    <!--    <div class="breadcrumb"></div>-->
 
     <div class="proinfo">
         <div class="proinfo-left">
@@ -229,20 +233,42 @@
                 <div class="proinfo-num">
                     <dt><span class="w2">数量</span></dt>
                     <div class="num-con">
-                        <a href="" class="minus"></a>
+                        <a href="javascript:void(0)" class="minus"></a>
                         <input type="text" name="" id="" value="1">
-                        <a href="" class="plus"></a>
+                        <a href="javascript:void(0)" class="plus"></a>
                     </div>
                 </div>
 
                 <div class="mainbtns">
                     <a href="" class="buy-now">立即购买</a>
-                    <a href="" class="add-cart">加入购物车</a>
+                    <a href="javascript:void(0)" id="addCart" class="add-cart">加入购物车</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="m-dialog">
+    <div class="container">
+        <div class="title">
+            <h3>温馨提示</h3>
+            <a href="javascript:void(0)" class="btn-close"></a>
+        </div>
+        <div class="content">
+            <div class="nostore-rd">
+                <div class="add-cart-hd">
+                    <div class="tip-left">
+                        <i class="tip-succ"></i>
+                        <span>已成功加入购物车！</span>
+                    </div>
+                    <a href="./cart.html" class="go-cart">去购物车结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="close-overlay"></div>
 
 <script src="../js/product.js"></script>
 <script src="../js/magnify.js"></script>

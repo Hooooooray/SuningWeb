@@ -5,22 +5,132 @@ let zy = document.querySelector('.zy')
 let itemName = document.querySelector('.item-name')
 let desc = document.querySelector('.desc')
 let mainPrice = document.querySelector('.main-price')
-let tzm = document.querySelector('.tzm')
+let addCartButton = document.getElementById('addCart')
+let logOutBtn = document.getElementById('logOut')
+let token = localStorage.getItem('token')
+let regBarNode = document.getElementById('reg-bar-node')
+let usernameNodeSlide = document.getElementById('username-node-slide')
+let usernameSpan = usernameNodeSlide.querySelector('span')
+let btnCloseButton = document.querySelector('.btn-close')
+let mDialog = document.querySelector('.m-dialog')
+let closeOverlay = document.querySelector('.close-overlay')
+let minusButton = document.querySelector('.minus')
+let plusButton = document.querySelector('.plus')
+let numConInput = document.querySelector('.num-con input')
 let proinfoColorEx = document.querySelector('.proinfo-color-ex')
 let proinfoMemory = document.querySelector('.proinfo-memory')
 let proinfoSize = document.querySelector('.proinfo-size')
-let primaryColor, primaryMemory, primarySize, primaryModel, primarySpecification,primarySign
+let primaryColor, primaryMemory, primarySize, primaryModel, primarySpecification, primarySign, primaryId
 
-let urlParams = new URL(window.location.href);
+minusButton.addEventListener('click', () => {
+    let productNumInput = document.querySelector('.num-con input')
+    let num = productNumInput.value
+    if (num > 1) {
+        productNumInput.value--
+    }
+    if (productNumInput.value <= 1){
+        minusButton.style.backgroundPositionX = '-970px'
+    }else {
+        minusButton.style.backgroundPositionX = '-1014px'
+    }
+})
+
+plusButton.addEventListener('click', () => {
+    let productNumInput = document.querySelector('.num-con input')
+    productNumInput.value++
+    if (productNumInput.value <= 1){
+        minusButton.style.backgroundPositionX = '-970px'
+    }else {
+        minusButton.style.backgroundPositionX = '-1014px'
+    }
+})
+
+numConInput.addEventListener('blur',()=>{
+    let productNumInput = document.querySelector('.num-con input')
+    let num = productNumInput.value
+    if (num <= 1){
+        minusButton.style.backgroundPositionX = '-970px'
+    }else {
+        minusButton.style.backgroundPositionX = '-1014px'
+    }
+})
+
+btnCloseButton.addEventListener('click', () => {
+    mDialog.style.display = 'none'
+    closeOverlay.style.display = 'none'
+})
+logOutBtn.addEventListener('click', () => {
+    localStorage.removeItem("token");
+    window.location.href = './login.html'
+})
+addCartButton.addEventListener('click', () => {
+    let token = localStorage.getItem('token')
+    let quantity = document.querySelector('.num-con input').value
+    const insertUrl = 'http://localhost:3000/api/insertCart'
+    let data = {
+        productid: primaryId,
+        quantity
+    }
+    fetch(insertUrl, {
+        method: 'POST',
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        if (response.ok) {
+            mDialog.style.display = 'block'
+            closeOverlay.style.display = 'block'
+            return response.json()
+        } else if (response.status === 401) {
+            location.href = './login.html'
+        }
+    }).then(responseData => {
+        console.log(responseData)
+    }).catch(err => {
+        console.log(err)
+    })
+})
 
 // 获取参数值
+let urlParams = new URL(window.location.href);
 let productId = urlParams.searchParams.get('productid');
 
 // 构建请求 URL
 const apiUrl1 = `http://localhost:3000/api/product?productid=${productId}`;
 const apiUrl2 = `http://localhost:3000/api/relevanceProduct?productid=${productId}`;
+const tokenUrl = 'http://localhost:3000/api/token'
 
-// 发起 GET 请求
+// 通过token验证用户身份
+fetch(tokenUrl, {
+    method: 'POST',
+    headers: {
+        'Authorization': token
+    },
+})
+    .then(response => {
+        if (response.ok) {
+            regBarNode.style.display = 'none'
+            usernameNodeSlide.style.display = 'block'
+            return response.json()
+        }
+    })
+    .then(response => {
+        console.log(response)
+        if (response.name) {
+            usernameSpan.innerHTML = response.name
+        } else {
+            const phone = response.phone
+            usernameSpan.innerHTML = phone.replace(/^(.{3}).{4,}(.{2})$/, '$1******$2')
+        }
+
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+// 通过 Promise 链的方式串联多个异步操作，实现了多个异步请求的顺序执行
 fetch(apiUrl1)
     .then(response => {
         if (!response.ok) {
@@ -54,7 +164,8 @@ fetch(apiUrl1)
         primaryModel = responseData.model
         primarySpecification = responseData.specification
         primarySign = responseData.sign
-
+        primaryId = responseData.productid
+        // 返回第二个请求
         return fetch(apiUrl2).then(response => response.json());
     })
     .then(relevanceProductData => {
@@ -89,10 +200,10 @@ fetch(apiUrl1)
                     buyType.appendChild(li)
                 }
             }
-            if (relevance.size){
+            if (relevance.size) {
                 proinfoSize.style.display = 'flex'
                 let buyType = proinfoSize.querySelector('.buy-type')
-                if (existSize.indexOf(relevance.size) === -1){
+                if (existSize.indexOf(relevance.size) === -1) {
                     existSize.push(relevance.size)
                     let li = document.createElement('li')
                     li.innerHTML = `<a href="javascript:void(0)" data-size="${relevance.size}" class="${relevance.size === primarySize ? 'selected' : ''}" href="">
@@ -103,47 +214,104 @@ fetch(apiUrl1)
             }
         }
         let colorA = document.querySelectorAll('.proinfo-color-ex a')
-        colorA.forEach(item=>{
-            item.addEventListener('click',()=>{
+        colorA.forEach(item => {
+            item.addEventListener('click', () => {
                 let color = item.getAttribute('data-color')
-                let memorySelected = document.querySelector('.proinfo-memory .selected')
-                let memory = memorySelected.getAttribute('data-memory')
-                const apiUrl3 = `http://localhost:3000/api/findProduct?color=${color}&memory=${memory}&sign=${primarySign}`;
-                fetch(apiUrl3)
-                    .then(response => response.json())
-                    .then(responseData => {
-                        let productid = responseData.productid
-                        let newUrl = new URL(window.location.href);
-                        newUrl.searchParams.set('productid', productid);
-                        // 将修改后的 URL 更新到地址栏
-                        history.replaceState({}, '', newUrl.href);
-                        location.reload()
-                    })
-                    .catch(error => {
-                        console.error('获取数据错误:', error);
-                    });
+                if (primaryMemory) {
+                    let memorySelected = document.querySelector('.proinfo-memory .selected')
+                    let memory = memorySelected.getAttribute('data-memory')
+                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
+                    fetch(apiUrl3)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            let productid = responseData.productid
+                            if (productid !== primaryId) {
+                                let newUrl = new URL(window.location.href);
+                                newUrl.searchParams.set('productid', productid);
+                                // 将修改后的 URL 更新到地址栏
+                                history.replaceState({}, '', newUrl.href);
+                                location.reload()
+                            }
+                        })
+                        .catch(error => {
+                            console.error('获取数据错误:', error);
+                        });
+                }
+                if (primarySize) {
+                    let sizeSelected = document.querySelector('.proinfo-size .selected')
+                    let size = sizeSelected.getAttribute('data-size')
+                    console.log(color, size)
+                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
+                    fetch(apiUrl3)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            let productid = responseData.productid
+                            if (productid !== primaryId) {
+                                let newUrl = new URL(window.location.href);
+                                newUrl.searchParams.set('productid', productid);
+                                // 将修改后的 URL 更新到地址栏
+                                history.replaceState({}, '', newUrl.href);
+                                location.reload()
+                            }
+                        })
+                        .catch(error => {
+                            console.error('获取数据错误:', error);
+                        });
+                }
+
+
             })
         })
         let memoryA = document.querySelectorAll('.proinfo-memory a')
-        memoryA.forEach(item=>{
-            item.addEventListener('click',()=>{
+        memoryA.forEach(item => {
+            item.addEventListener('click', () => {
                 let memory = item.getAttribute('data-memory')
-                let colorSelected = document.querySelector('.proinfo-color-ex .selected')
-                let color = colorSelected.getAttribute('data-color')
-                const apiUrl3 = `http://localhost:3000/api/findProduct?color=${color}&memory=${memory}&sign=${primarySign}`;
-                fetch(apiUrl3)
-                    .then(response => response.json())
-                    .then(responseData => {
-                        let productid = responseData.productid
-                        let newUrl = new URL(window.location.href);
-                        newUrl.searchParams.set('productid', productid);
-                        // 将修改后的 URL 更新到地址栏
-                        history.replaceState({}, '', newUrl.href);
-                        location.reload()
-                    })
-                    .catch(error => {
-                        console.error('获取数据错误:', error);
-                    });
+                if (primaryColor) {
+                    let colorSelected = document.querySelector('.proinfo-color-ex .selected')
+                    let color = colorSelected.getAttribute('data-color')
+                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
+                    fetch(apiUrl3)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            let productid = responseData.productid
+                            if (productid !== primaryId) {
+                                let newUrl = new URL(window.location.href);
+                                newUrl.searchParams.set('productid', productid);
+                                // 将修改后的 URL 更新到地址栏
+                                history.replaceState({}, '', newUrl.href);
+                                location.reload()
+                            }
+                        })
+                        .catch(error => {
+                            console.error('获取数据错误:', error);
+                        });
+                }
+            })
+        })
+        let sizeA = document.querySelectorAll('.proinfo-size a')
+        sizeA.forEach(item => {
+            item.addEventListener('click', () => {
+                let size = item.getAttribute('data-size')
+                if (primaryColor) {
+                    let colorSelected = document.querySelector('.proinfo-color-ex .selected')
+                    let color = colorSelected.getAttribute('data-color')
+                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
+                    fetch(apiUrl3)
+                        .then(response => response.json())
+                        .then(responseData => {
+                            let productid = responseData.productid
+                            if (productid !== primaryId) {
+                                let newUrl = new URL(window.location.href);
+                                newUrl.searchParams.set('productid', productid);
+                                // 将修改后的 URL 更新到地址栏
+                                history.replaceState({}, '', newUrl.href);
+                                location.reload()
+                            }
+                        })
+                        .catch(error => {
+                            console.error('获取数据错误:', error);
+                        });
+                }
             })
         })
     })

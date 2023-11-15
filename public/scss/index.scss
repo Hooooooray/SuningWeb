@@ -670,6 +670,10 @@ body {
   position: relative;
   min-width: 1190px;
 
+  #swiperScreen{
+    height: 476px;
+  }
+
   .swiper-wrapper {
     .swiper-slide {
       display: flex;

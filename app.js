@@ -185,6 +185,7 @@ authRouter.post('/token', (req, res) => {
 // 更新用户信息
 authRouter.post('/updateUser', (req, res) => {
     const {username, nickname, gender, userid} = req.body;
+    // 如果用户未更改任何信息，则返回错误信息
     if (username == null || nickname == null || gender == null || userid == null) {
         res.status(400).json({message: 'bad request', statusCode: 400})
     }
@@ -198,14 +199,13 @@ authRouter.post('/updateUser', (req, res) => {
             console.error('更新出错: ' + err.stack);
             res.status(500).json({message: '更新出错', statusCode: 401})
         } else {
-
             let selectSql = 'SELECT * FROM User WHERE userid = ?';
             connection.query(selectSql, userid, (err, result) => {
                 if (err) {
                     console.error('查询数据库失败: ' + err);
                     res.status(500).json({message: '更新失败', error: err.message});
                 } else {
-                    // 用户成功注册并且查询成功，创建JWT令牌
+                    // 更新用户的token
                     const user = result[0];
                     const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
                     res.status(200).json({message: '更新成功', statusCode: 200, token});
@@ -371,6 +371,7 @@ authRouter.get('/product', (req, res) => {
     if (!productid) {
         return res.status(400).json({error: '需要提供产品ID。'});
     }
+    // LEFT JOIN 对于 Product 表的每一行，都会尝试与 ProductImage 表中的相应行进行匹配。如果匹配成功，则将两个表中的相关列合并到结果集中。
     const query = `
     SELECT 
       p.productid,
@@ -399,6 +400,8 @@ authRouter.get('/product', (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({error: '找不到产品'});
         }
+        // console.log(results)
+        // filter 方法用于过滤数组中的元素，map 方法用于对数组中的每个元素执行给定的函数，并返回一个新数组
         const productData = {
             productid: results[0].productid,
             name: results[0].name,
@@ -597,7 +600,7 @@ authRouter.get('/search', (req, res) => {
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
 
-    // 更新查询以进行大小写不敏感的匹配
+    // 大小写不敏感的匹配，通过name,description,type,sign,color,storename字段匹配进行搜索
     const countQuery = `
         SELECT COUNT(DISTINCT p.productid) as total
         FROM Product p
@@ -611,18 +614,17 @@ authRouter.get('/search', (req, res) => {
     `;
 
     const countValues = [keyword, keyword, keyword, keyword, keyword, keyword];
-
     connection.query(countQuery, countValues, (countError, countResults) => {
         if (countError) {
             console.error(countError);
             return res.status(500).json({ message: '内部服务器错误' });
         }
-
+        // 分页处理
         const totalResults = countResults[0].total;
         const totalPages = Math.ceil(totalResults / itemsPerPage);
         const offset = (currentPage - 1) * itemsPerPage;
 
-        // 更新查询以进行大小写不敏感的匹配
+        // 大小写不敏感的匹配，查询具体页数对应的20条数据，LIMIT ?,? 第一个值是偏移量，第二个是返回行数
         const searchQuery = `
             SELECT 
                 p.productid,
@@ -647,6 +649,7 @@ authRouter.get('/search', (req, res) => {
                OR LOWER(p.color) LIKE CONCAT('%', LOWER(?), '%')
                OR LOWER(p.storename) LIKE CONCAT('%', LOWER(?), '%')
             GROUP BY p.productid
+            ORDER BY RAND()
             LIMIT ?, ?
         `;
 

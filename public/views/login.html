@@ -46,7 +46,10 @@
             <div class="pc-login" style="display: none;">
                 <!--账号密码登录-->
                 <div class="username-login" style="display: block">
-                    <div style="height: 40px;width: 312px;"></div>
+                    <div class="login-error" id="accountError">
+                        <i></i>
+                        <span>error</span>
+                    </div>
                     <div class="username-box">
                         <div class="input-box">
                             <input id="loginAccount" type="text" placeholder="用户名/手机/邮箱">
@@ -74,7 +77,10 @@
                 </div>
                 <!--手机验证码登录-->
                 <div class="phone-login" style="display: none">
-                    <div style="height: 40px;width: 312px;"></div>
+                    <div class="login-error" id="phoneError">
+                        <i></i>
+                        <span>error</span>
+                    </div>
                     <div class="phone-box">
                         <div class="input-box">
                             <input id="loginPhone" type="text" placeholder="手机号码">

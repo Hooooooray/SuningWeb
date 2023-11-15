@@ -4,6 +4,21 @@ let pcLoginDiv = document.querySelector('.pc-login')
 let loginSwitchButton = document.querySelectorAll('.login-switch')
 let usernameLoginDiv = document.querySelector('.username-login')
 let phoneLoginDiv = document.querySelector('.phone-login')
+const phoneRegex = /^[1-9][0-9]{10}$/;
+
+let loginPhoneInput = document.getElementById('loginPhone')
+loginPhoneInput.addEventListener('blur',()=>{
+    let phoneNumber = document.getElementById('loginPhone').value
+    if (phoneRegex.test(phoneNumber)){
+        let phoneError = document.getElementById('phoneError')
+        phoneError.style.visibility = 'hidden'
+    }else {
+        let phoneError = document.getElementById('phoneError')
+        phoneError.style.visibility = 'visible'
+        let phoneErrorSpan = phoneError.querySelector('span')
+        phoneErrorSpan.innerHTML = '格式不正确，请输入正确的手机号'
+    }
+})
 
 tabItemButton.forEach((element, index) => {
     element.addEventListener('click', () => {
@@ -61,7 +76,11 @@ accountSubmitButton.addEventListener('click', () => {
                 window.location.href = '../index.html'
             }
             return response.json();
-        } else {
+        }  else {
+            let accountError = document.getElementById('accountError')
+            accountError.style.visibility = 'visible'
+            let accountErrorSpan = accountError.querySelector('span')
+            accountErrorSpan.innerHTML = '账户名与密码不匹配，请重新输入！'
             throw new Error('登录失败');
         }
     })
@@ -69,7 +88,7 @@ accountSubmitButton.addEventListener('click', () => {
             // console.log(responseData);
             let token = responseData.token
             localStorage.setItem('token',token)
-            console.log(token)
+            // console.log(token)
         })
         .catch(error => {
             console.error('Ajax请求异常: ' + error.message);
@@ -97,34 +116,41 @@ let sendMsgBtn = document.getElementById('sendSmsCode')
 
 sendMsgBtn.addEventListener('click', () => {
     let phoneNumber = document.getElementById('loginPhone').value
-    const url = 'http://localhost:3000/api/sms';
-    let data = {
-        phoneNumber
-    };
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        body: JSON.stringify(data)
-    }).then(response => {
-        if (response.ok) {
-            doCount();
-            return response.json();
-        } else if (response.status === 400) {
-            return response.json();
-        } else if (response.status === 429) {
-            return response.json();
-        } else {
-            throw new Error('发送失败');
-        }
-    })
-        .then(responseData => {
-            console.log(responseData);
+    if (phoneRegex.test(phoneNumber)){
+        const url = 'http://localhost:3000/api/sms';
+        let data = {
+            phoneNumber
+        };
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            if (response.ok) {
+                doCount();
+                return response.json();
+            } else if (response.status === 400) {
+                return response.json();
+            } else if (response.status === 429) {
+                return response.json();
+            } else {
+                throw new Error('发送失败');
+            }
         })
-        .catch(error => {
-            console.error('请求异常: ' + error.message);
-        });
+            .then(responseData => {
+                console.log(responseData);
+            })
+            .catch(error => {
+                console.error('请求异常: ' + error.message);
+            });
+    }else {
+        let phoneError = document.getElementById('phoneError')
+        phoneError.style.visibility = 'visible'
+        let phoneErrorSpan = phoneError.querySelector('span')
+        phoneErrorSpan.innerText = '格式不正确，请输入正确的手机号'
+    }
 })
 
 
@@ -156,6 +182,10 @@ smsSubmitButton.addEventListener('click', () => {
                 }
                 return response.json();
             } else if (response.status === 400) {
+                let phoneError = document.getElementById('phoneError')
+                phoneError.style.visibility = 'visible'
+                let phoneErrorSpan = phoneError.querySelector('span')
+                phoneErrorSpan.innerHTML = '验证码不正确'
                 return response.json();
             }else if (response.status === 404) {
                 return response.json();

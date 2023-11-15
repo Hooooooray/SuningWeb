@@ -552,6 +552,9 @@ body {
   position: relative;
   min-width: 1190px;
 }
+.swiper #swiperScreen {
+  height: 476px;
+}
 .swiper .swiper-wrapper .swiper-slide {
   display: flex;
   justify-content: center;

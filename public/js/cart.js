@@ -38,7 +38,7 @@ function load() {
             }
         })
         .then(responseData => {
-            // console.log(responseData)
+            console.log(responseData)
             // 如果用户设置了昵称则现实昵称，如果用户没设置昵称则默认显示手机号码
             if (responseData.decoded.name) {
                 usernameSpan.innerHTML = responseData.decoded.name

@@ -70,6 +70,7 @@ authRouter.post('/register', (req, res) => {
     const {phoneNumber, smsCode, password} = req.body;
 
     if (smsCode === formattedNumber[phoneNumber]) {
+        // 生成密码的哈希值
         bcrypt.hash(password, 10, (err, hash) => {
             if (err) {
                 console.error('密码哈希生成失败: ' + err);
@@ -112,6 +113,7 @@ authRouter.post('/accountLogin', (req, res) => {
     const {loginAccount, loginPassword} = req.body;
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
+    // 通过sql语句查询用户输入的是用户名还是手机号
     let selectSql = `SELECT * FROM User WHERE username = ? OR phone = ?`; // 用你的表结构和字段名替换
     const values = [loginAccount, loginAccount]
     // 查询数据
@@ -120,12 +122,13 @@ authRouter.post('/accountLogin', (req, res) => {
             console.error('查询出错: ' + err.stack);
         } else if (result.length >= 1) {
             const user = result[0]
+            // bcrypt.compare解析数据库中存放的密码的哈希值，并与用户输入的密码比较是否匹配
             bcrypt.compare(loginPassword, user.password, (err, isMatch) => {
                 if (err) {
                     console.error('密码比较时出错')
                 }
                 if (isMatch) {
-                    // 密码匹配，登录成功
+                    // 密码匹配，登录成功，生成token
                     const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
                     res.status(200).json({message: '密码正确，登录成功', token});
                 } else {
@@ -146,14 +149,18 @@ authRouter.post('/smsLogin', (req, res) => {
     const {phoneNumber, smsCode} = req.body
     const connection = mysql.createConnection(mysqlConnection);
     connection.connect();
-    let selectSql = `SELECT * FROM User WHERE phone = ?`; // 用你的表结构和字段名替换
+    // 先通过一遍查询验证这个密码是否已经注册,如果查询到顺便保存查询结果用于生成token
+    let selectSql = `SELECT * FROM User WHERE phone = ?`;
     // 查询数据
     connection.query(selectSql, phoneNumber, function (err, result) {
         if (err) {
             console.error('查询出错: ' + err.stack);
         } else if (result.length >= 1) {
+            // 如果验证码匹配则登录成功
             if (smsCode === formattedNumber[phoneNumber]) {
-                res.status(200).json({message: '登录成功', statusCode: 200});
+                const user = result[0];
+                const token = jwt.sign(user, secretKey, {expiresIn: '24h'});
+                res.status(200).json({message: '登录成功', statusCode: 200,token});
             } else {
                 res.status(400).json({message: '验证码不正确', statusCode: 400});
             }
@@ -272,6 +279,7 @@ authRouter.post('/updateCart', (req, res) => {
     const token = req.headers.authorization;
     // const {productid, selected, quantity} = req.body
     const {updates} = req.body;
+    // 使用 async/await 处理异步操作，同时使用了 promisify 来将回调式的 MySQL 查询转换为 Promises 风格
     jwt.verify(token, secretKey, async (err, decoded) => {
         if (err) {
             return res.status(401).json({message: 'Token is not valid'});
@@ -287,11 +295,15 @@ authRouter.post('/updateCart', (req, res) => {
                 const {productid, selected, quantity} = update;
                 // console.log(productid,selected,quantity)
                 if (productid !== undefined) {
+                    // 改变单个或多个购物车项选中状态
                     if (selected !== undefined && quantity === undefined) {
                         const updateSelectedQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ? AND productid = ?';
                         const values = [selected, userid, productid];
+                        // 使用promisify来将connection.query方法转换成 Promise 风格，以便于在 async/await 语法中使用。
+                        // 通过 .bind(connection)，确保 connection.query 在调用时有正确的上下文，
                         await promisify(connection.query).bind(connection)(updateSelectedQuery, values);
                     }
+                    // 改变数量
                     if (quantity !== undefined && quantity >= 1 && selected === undefined) {
                         const updateQuantityQuery = 'UPDATE ShoppingCart SET quantity = ? WHERE userid = ? AND productid = ?';
                         const values = [quantity, userid, productid];
@@ -299,7 +311,9 @@ authRouter.post('/updateCart', (req, res) => {
                     } else {
                         // throw new Error();
                     }
-                } else if (selected !== undefined && quantity === undefined) {
+                }
+                // 全选或全不选
+                else if (selected !== undefined && quantity === undefined) {
                     const updateQuantityQuery = 'UPDATE ShoppingCart SET selected = ? WHERE userid = ?';
                     const values = [selected, userid];
                     await promisify(connection.query).bind(connection)(updateQuantityQuery, values);
@@ -309,7 +323,9 @@ authRouter.post('/updateCart', (req, res) => {
         } catch (error) {
             console.error(error);
             res.status(500).json({message: 'mysql更新失败', error: error.message});
-        } finally {
+        }
+        // 在 finally 块中关闭数据库连接，确保释放资源
+        finally {
             connection.end();
         }
     })
@@ -678,6 +694,7 @@ function mergeData(cartData, productData, imageData) {
     const mergedData = {};
 
     // 合并购物车信息
+    // 用多个Object.assign将多个源对象的属性复制到目标对象（浅拷贝）
     for (const cartItem of cartData) {
         const productId = cartItem.productid;
         if (!mergedData[productId]) {

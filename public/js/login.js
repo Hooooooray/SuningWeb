@@ -60,7 +60,6 @@ accountSubmitButton.addEventListener('click', () => {
             }else {
                 window.location.href = '../index.html'
             }
-
             return response.json();
         } else {
             throw new Error('登录失败');
@@ -147,7 +146,14 @@ smsSubmitButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                // window.location.href = '../index.html'
+                let urlParams = new URL(window.location.href);
+                let url = urlParams.searchParams.get('returnUrl');
+                let productid = urlParams.searchParams.get('productid')
+                if(url !==null){
+                    window.location.href = `../views${url}${productid ? `?productid=${encodeURIComponent(productid)}` : ''}`
+                }else {
+                    window.location.href = '../index.html'
+                }
                 return response.json();
             } else if (response.status === 400) {
                 return response.json();
@@ -158,7 +164,8 @@ smsSubmitButton.addEventListener('click', () => {
             }
         })
         .then(responseData => {
-            console.log(responseData);
+            let token = responseData.token
+            localStorage.setItem('token',token)
         })
         .catch(error => {
             console.error('Ajax请求异常: ' + error.message);

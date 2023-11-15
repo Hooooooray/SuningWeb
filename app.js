@@ -591,9 +591,10 @@ authRouter.get('/search', (req, res) => {
            OR LOWER(p.type) LIKE CONCAT('%', LOWER(?), '%')
            OR LOWER(p.sign) LIKE CONCAT('%', LOWER(?), '%')
            OR LOWER(p.color) LIKE CONCAT('%', LOWER(?), '%')
+           OR LOWER(p.storename) LIKE CONCAT('%', LOWER(?), '%')
     `;
 
-    const countValues = [keyword, keyword, keyword, keyword, keyword];
+    const countValues = [keyword, keyword, keyword, keyword, keyword, keyword];
 
     connection.query(countQuery, countValues, (countError, countResults) => {
         if (countError) {
@@ -628,11 +629,12 @@ authRouter.get('/search', (req, res) => {
                OR LOWER(p.type) LIKE CONCAT('%', LOWER(?), '%')
                OR LOWER(p.sign) LIKE CONCAT('%', LOWER(?), '%')
                OR LOWER(p.color) LIKE CONCAT('%', LOWER(?), '%')
+               OR LOWER(p.storename) LIKE CONCAT('%', LOWER(?), '%')
             GROUP BY p.productid
             LIMIT ?, ?
         `;
 
-        const searchValues = [keyword, keyword, keyword, keyword, keyword, offset, itemsPerPage];
+        const searchValues = [keyword, keyword, keyword, keyword, keyword, keyword, offset, itemsPerPage];
 
         connection.query(searchQuery, searchValues, (searchError, results) => {
             if (searchError) {

@@ -19,9 +19,9 @@ export default class Client {
   static createClient(accessKeyId: string, accessKeySecret: string): Dysmsapi20170525 {
     let config = new $OpenApi.Config({
       // 必填，您的 AccessKey ID
-      accessKeyId: "LTAI5tC2GZdveoTAuuCg3NJY",
+      accessKeyId: "",
       // 必填，您的 AccessKey Secret
-      accessKeySecret: "imlfirsOrv2D2vCfXn8JB6AJQjgOuu",
+      accessKeySecret: "",
     });
     // Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi
     config.endpoint = `dysmsapi.aliyuncs.com`;
@@ -40,8 +40,8 @@ export default class Client {
     // 声明formattedNumber存储Node.js中的一个全局对象数组process.argv索引值为3中的数据
     const formattedNumber = process.argv[3]
     let sendSmsRequest = new $Dysmsapi20170525.SendSmsRequest({
-      signName: "hooray",
-      templateCode: "SMS_462675213",
+      signName: "",
+      templateCode: "",
       phoneNumbers: phoneNumber,
       templateParam: `{"code":"${formattedNumber}"}`,
     });

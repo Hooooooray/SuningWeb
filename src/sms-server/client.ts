@@ -40,8 +40,8 @@ export default class Client {
     // 声明formattedNumber存储Node.js中的一个全局对象数组process.argv索引值为3中的数据
     const formattedNumber = process.argv[3]
     let sendSmsRequest = new $Dysmsapi20170525.SendSmsRequest({
-      signName: "",
-      templateCode: "",
+      signName: "hooray",
+      templateCode: "SMS_462675213",
       phoneNumbers: phoneNumber,
       templateParam: `{"code":"${formattedNumber}"}`,
     });

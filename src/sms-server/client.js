@@ -54,9 +54,9 @@ var Client = /** @class */ (function () {
     Client.createClient = function (accessKeyId, accessKeySecret) {
         var config = new $OpenApi.Config({
             // 必填，您的 AccessKey ID
-            accessKeyId: "",
+            accessKeyId: "LTAI5tC2GZdveoTAuuCg3NJY",
             // 必填，您的 AccessKey Secret
-            accessKeySecret: "",
+            accessKeySecret: "imlfirsOrv2D2vCfXn8JB6AJQjgOuu",
         });
         // Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi
         config.endpoint = "dysmsapi.aliyuncs.com";
@@ -74,8 +74,8 @@ var Client = /** @class */ (function () {
                         phoneNumber = process.argv[2];
                         formattedNumber = process.argv[3];
                         sendSmsRequest = new $Dysmsapi20170525.SendSmsRequest({
-                            signName: "",
-                            templateCode: "",
+                            signName: "hooray",
+                            templateCode: "SMS_462675213",
                             phoneNumbers: phoneNumber,
                             templateParam: "{\"code\":\"".concat(formattedNumber, "\"}"),
                         });

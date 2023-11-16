@@ -1,35 +1,13 @@
-let imgZoomMainImg = document.querySelector('.img-zoom-main img')
-let imgZoomPopImg = document.querySelector('.img-zoom-pop img')
-let ulImgList = document.querySelectorAll('.ul-container li img')
-let zy = document.querySelector('.zy')
-let itemName = document.querySelector('.item-name')
-let desc = document.querySelector('.desc')
-let mainPrice = document.querySelector('.main-price')
-let addCartButton = document.getElementById('addCart')
-let logOutBtn = document.getElementById('logOut')
-let token = localStorage.getItem('token')
-let regBarNode = document.getElementById('reg-bar-node')
-let usernameNodeSlide = document.getElementById('username-node-slide')
-let usernameSpan = usernameNodeSlide.querySelector('span')
-let btnCloseButton = document.querySelector('.btn-close')
-let mDialog = document.querySelector('.m-dialog')
-let closeOverlay = document.querySelector('.close-overlay')
-let minusButton = document.querySelector('.minus')
-let plusButton = document.querySelector('.plus')
-let numConInput = document.querySelector('.num-con input')
-let proinfoColorEx = document.querySelector('.proinfo-color-ex')
-let proinfoMemory = document.querySelector('.proinfo-memory')
-let proinfoSize = document.querySelector('.proinfo-size')
-let primaryColor, primaryMemory, primarySize, primaryModel, primarySpecification, primarySign, primaryId
-
+// 搜索确认
 let searchSubmit = document.querySelector('.searchSubmit')
-
 searchSubmit.addEventListener('click',()=>{
     let searchKeyword = document.querySelector('.search-keyword')
     let keyword = searchKeyword.value
     window.location.href = `./search.html?keyword=${keyword}`
 })
 
+// 数量减1
+let minusButton = document.querySelector('.minus')
 minusButton.addEventListener('click', () => {
     let productNumInput = document.querySelector('.num-con input')
     let num = productNumInput.value
@@ -42,7 +20,9 @@ minusButton.addEventListener('click', () => {
         minusButton.style.backgroundPositionX = '-1014px'
     }
 })
+let plusButton = document.querySelector('.plus')
 
+// 数量加1
 plusButton.addEventListener('click', () => {
     let productNumInput = document.querySelector('.num-con input')
     productNumInput.value++
@@ -53,6 +33,8 @@ plusButton.addEventListener('click', () => {
     }
 })
 
+// 监听输入框的值，控制加减按钮的可点击状态
+let numConInput = document.querySelector('.num-con input')
 numConInput.addEventListener('blur',()=>{
     let productNumInput = document.querySelector('.num-con input')
     let num = productNumInput.value
@@ -63,14 +45,24 @@ numConInput.addEventListener('blur',()=>{
     }
 })
 
+// 加入购物车成功的确认框
+let mDialog = document.querySelector('.m-dialog')
+let closeOverlay = document.querySelector('.close-overlay')
+let btnCloseButton = document.querySelector('.btn-close')
 btnCloseButton.addEventListener('click', () => {
     mDialog.style.display = 'none'
     closeOverlay.style.display = 'none'
 })
+
+// 退出登录按钮
+let logOutBtn = document.getElementById('logOut')
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem("token");
     window.location.href = './login.html'
 })
+
+// 加入购物车
+let addCartButton = document.getElementById('addCart')
 addCartButton.addEventListener('click', () => {
     let token = localStorage.getItem('token')
     let quantity = document.querySelector('.num-con input').value
@@ -105,12 +97,15 @@ addCartButton.addEventListener('click', () => {
 let urlParams = new URL(window.location.href);
 let productId = urlParams.searchParams.get('productid');
 
-// 构建请求 URL
-const apiUrl1 = `http://localhost:3000/api/product?productid=${productId}`;
-const apiUrl2 = `http://localhost:3000/api/relevanceProduct?productid=${productId}`;
-const tokenUrl = 'http://localhost:3000/api/token'
-
 // 通过token验证用户身份
+let token = localStorage.getItem('token')
+const tokenUrl = 'http://localhost:3000/api/token'
+// 用户信息显示
+let regBarNode = document.getElementById('reg-bar-node')
+let usernameNodeSlide = document.getElementById('username-node-slide')
+let usernameSpan = usernameNodeSlide.querySelector('span')
+
+// 验证token
 fetch(tokenUrl, {
     method: 'POST',
     headers: {
@@ -138,6 +133,22 @@ fetch(tokenUrl, {
         console.log(err)
     })
 
+
+// 构建请求 URL
+const apiUrl1 = `http://localhost:3000/api/product?productid=${productId}`;
+const apiUrl2 = `http://localhost:3000/api/relevanceProduct?productid=${productId}`;
+// 商品主图和放大
+let imgZoomMainImg = document.querySelector('.img-zoom-main img')
+let imgZoomPopImg = document.querySelector('.img-zoom-pop img')
+// tab切换图片
+let ulImgList = document.querySelectorAll('.ul-container li img')
+// 自营标识
+let zy = document.querySelector('.zy')
+// 商品名字，描述，价格
+let itemName = document.querySelector('.item-name')
+let desc = document.querySelector('.desc')
+let mainPrice = document.querySelector('.main-price')
+let primaryColor, primaryMemory, primarySize, primaryModel, primarySpecification, primarySign, primaryId
 // 通过 Promise 链的方式串联多个异步操作，实现了多个异步请求的顺序执行
 fetch(apiUrl1)
     .then(response => {
@@ -148,7 +159,6 @@ fetch(apiUrl1)
     })
     .then(responseData => {
         console.log(responseData);
-        const mainPriceTemplate = `<i>¥</i>5538.<span>00</span>`
         let price = responseData.price.split('.')
         mainPrice.innerHTML = `<i>¥</i>${price[0]}.<span>${price[1]}</span>`
         imgZoomMainImg.src = responseData.images[0]
@@ -181,6 +191,9 @@ fetch(apiUrl1)
         let existColor = []
         let existMemory = []
         let existSize = []
+        let proinfoColorEx = document.querySelector('.proinfo-color-ex')
+        let proinfoMemory = document.querySelector('.proinfo-memory')
+        let proinfoSize = document.querySelector('.proinfo-size')
         for (let relevance of relevanceProductData) {
             if (relevance.color) {
                 proinfoColorEx.style.display = 'flex'

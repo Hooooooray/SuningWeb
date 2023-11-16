@@ -5,6 +5,7 @@ const {exec} = require('child_process');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {promisify} = require("util");
+const {join} = require("path");
 const secretKey = 'SecretKeyOfBinbinHooray';
 // 创建一个二级路由器
 const authRouter = express.Router();
@@ -15,6 +16,8 @@ const app = express();
 app.use(cors());
 // 使用Express中间件来解析请求体中的JSON数据
 app.use(express.json());
+// 设置静态资源目录
+app.use(express.static(join(__dirname, 'public')));
 
 const mysqlConnection = {
     password: 'yyb12345',
@@ -661,6 +664,9 @@ authRouter.get('/search', (req, res) => {
                 return res.status(500).json({ message: '内部服务器错误' });
             }
 
+            console.log(results)
+
+            // 被提每个result对象中的属性，并用于创建一个新的对象。
             const searchResults = results.map((result) => {
                 return {
                     productid: result.productid,
@@ -690,8 +696,6 @@ authRouter.get('/search', (req, res) => {
 
 
 });
-
-
 
 function mergeData(cartData, productData, imageData) {
     const mergedData = {};

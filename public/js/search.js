@@ -1,34 +1,34 @@
-let urlParams = new URL(window.location.href);
-let keyword = urlParams.searchParams.get('keyword');
-let page = Number(urlParams.searchParams.get('page')) || 1
-const searchUrl = `http://localhost:3000/api/search?keyword=${keyword}${page !=null ? `&page=${page}` : ''}`
-let logOutBtn = document.getElementById('logOut')
-let general = document.querySelector('.general')
-let searchSubmitButton = document.querySelector('.searchSubmit')
+// 用户信息显示
 let regBarNode = document.getElementById('reg-bar-node')
 let usernameNodeSlide = document.getElementById('username-node-slide')
 let usernameSpan = usernameNodeSlide.querySelector('span')
-let mDialog = document.querySelector('.m-dialog')
-let closeOverlay = document.querySelector('.close-overlay')
-let btnCloseButton = document.querySelector('.btn-close')
-let token = localStorage.getItem('token')
-const tokenUrl = 'http://localhost:3000/api/token'
-searchSubmitButton.addEventListener('click',()=>{
+
+// 点击搜索按钮
+let searchSubmitButton = document.querySelector('.searchSubmit')
+searchSubmitButton.addEventListener('click', () => {
     let keyword = document.querySelector('.search-keyword').value
     window.location.href = `./search.html?keyword=${keyword}`
 })
 
+// 退出登录按钮
+let logOutBtn = document.getElementById('logOut')
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem("token");
     window.location.href = './login.html'
 })
 
+// 加入购物车成功提示框
+let mDialog = document.querySelector('.m-dialog')
+let closeOverlay = document.querySelector('.close-overlay')
+let btnCloseButton = document.querySelector('.btn-close')
 btnCloseButton.addEventListener('click', () => {
     mDialog.style.display = 'none'
     closeOverlay.style.display = 'none'
 })
 
 // 通过token验证用户身份
+let token = localStorage.getItem('token')
+const tokenUrl = 'http://localhost:3000/api/token'
 fetch(tokenUrl, {
     method: 'POST',
     headers: {
@@ -56,6 +56,12 @@ fetch(tokenUrl, {
         console.log(err)
     })
 
+//获取URL对象以及参数
+let urlParams = new URL(window.location.href);
+let keyword = urlParams.searchParams.get('keyword');
+let page = Number(urlParams.searchParams.get('page')) || 1
+// 传参keyword为必要值，page为可选值
+const searchUrl = `http://localhost:3000/api/search?keyword=${keyword}${page != null ? `&page=${page}` : ''}`
 fetch(searchUrl)
     .then(response => {
         if (!response.ok) {
@@ -65,7 +71,10 @@ fetch(searchUrl)
     })
     .then(data => {
         console.log(data);
-        for(let product of data.results){
+        // 商品列表的容器
+        let general = document.querySelector('.general')
+        // 渲染搜索结果
+        for (let product of data.results) {
             // console.log(product)
             let price = product.price.split('.')
             let itemWrap = document.createElement('li')
@@ -97,9 +106,10 @@ fetch(searchUrl)
                     </div>`
             general.appendChild(itemWrap)
         }
+        // 根据渲染的商品加入购物车
         let btnGwc = document.querySelectorAll('.btn-gwc')
-        btnGwc.forEach(item=>{
-            item.addEventListener('click',()=>{
+        btnGwc.forEach(item => {
+            item.addEventListener('click', () => {
                 let token = localStorage.getItem('token')
                 let productid = item.getAttribute('data-productid')
                 let quantity = 1
@@ -132,15 +142,17 @@ fetch(searchUrl)
             })
         })
 
+        // 分页器
         let searchPage = document.querySelector('.search-page')
         let prev = document.createElement('a')
-        // 上一页
-        if(data.currentPage > 1){
-            prev.setAttribute('href','javascript:void(0)')
+        // 上一页按钮，如果为第一页则不渲染
+        if (data.currentPage > 1) {
+            prev.setAttribute('href', 'javascript:void(0)')
             prev.classList.add('prev')
             prev.innerHTML = `<b></b>`
-            let prevPage = data.currentPage-1
-            prev.addEventListener('click',()=>{
+            // 点击上一页，currentPage的值减1并同步到地址栏
+            let prevPage = data.currentPage - 1
+            prev.addEventListener('click', () => {
                 let newUrl = new URL(window.location.href);
                 newUrl.searchParams.set('page', String(prevPage));
                 // 将修改后的 URL 更新到地址栏
@@ -149,15 +161,16 @@ fetch(searchUrl)
             })
             searchPage.appendChild(prev)
         }
-        // 具体页码
-        for(let renderPage=1;renderPage<=data.totalPages;renderPage++){
+        // 动态渲染具体页码
+        for (let renderPage = 1; renderPage <= data.totalPages; renderPage++) {
             let aPage = document.createElement('a')
-            aPage.setAttribute('href','javascript:void(0)')
-            if (renderPage === page){
+            aPage.setAttribute('href', 'javascript:void(0)')
+            if (renderPage === page) {
                 aPage.classList.add('current')
             }
             aPage.innerHTML = `${renderPage}<em class="lion"></em>`
-            aPage.addEventListener('click',()=>{
+            // 点击页码，将点击的页码同步到地址栏并刷新页面
+            aPage.addEventListener('click', () => {
                 let newUrl = new URL(window.location.href);
                 newUrl.searchParams.set('page', String(renderPage));
                 // 将修改后的 URL 更新到地址栏
@@ -166,14 +179,15 @@ fetch(searchUrl)
             })
             searchPage.appendChild(aPage)
         }
-        // 下一页
-        if(data.currentPage<data.totalPages){
+        // 下一页按钮，如果为最后一页则不显示
+        if (data.currentPage < data.totalPages) {
             let next = document.createElement('a')
-            next.setAttribute('href','javascript:void(0)')
+            next.setAttribute('href', 'javascript:void(0)')
             next.classList.add('next')
             next.innerHTML = `<b></b>`
-            let nextPage = data.currentPage+1
-            next.addEventListener('click',()=>{
+            // 点击下一页，currentPage的值加1并同步到地址栏
+            let nextPage = data.currentPage + 1
+            next.addEventListener('click', () => {
                 let newUrl = new URL(window.location.href);
                 newUrl.searchParams.set('page', String(nextPage));
                 // 将修改后的 URL 更新到地址栏
@@ -182,21 +196,21 @@ fetch(searchUrl)
             })
             searchPage.appendChild(next)
         }
-        // 跳转
+        // 跳转页码框
         let pageMore = document.createElement('span')
         pageMore.classList.add('page-more')
-        pageMore.innerHTML=`共${data.totalPages}页,
+        pageMore.innerHTML = `共${data.totalPages}页,
                         <a href="javascript:void(0)">跳转到</a>
                         <input type="number" id="bottomPage">`
         searchPage.appendChild(pageMore)
         // 确认
         let ensure = document.createElement('a')
-        ensure.classList.add('page-more','ensure')
+        ensure.classList.add('page-more', 'ensure')
         ensure.innerText = '确定'
-        ensure.setAttribute('href','javascript:void(0)')
-        ensure.addEventListener('click',()=>{
+        ensure.setAttribute('href', 'javascript:void(0)')
+        ensure.addEventListener('click', () => {
             let toPage = document.getElementById('bottomPage').value
-            if(toPage>=1&&toPage<=data.totalPages){
+            if (toPage >= 1 && toPage <= data.totalPages) {
                 let newUrl = new URL(window.location.href);
                 newUrl.searchParams.set('page', String(toPage));
                 // 将修改后的 URL 更新到地址栏

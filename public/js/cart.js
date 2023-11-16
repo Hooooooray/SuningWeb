@@ -104,12 +104,12 @@ function loadCart() {
                     </div>
                     <div class="td td-item">
                         <div class="item-pic">
-                            <a href="">
+                            <a href="./product.html?productid=${productid}">
                                 <img src="${url}" alt="">
                             </a>
                         </div>
                         <div class="item-info">
-                            <a href="">${name}</a>
+                            <a href="./product.html?productid=${productid}">${name}</a>
                         </div>
                     </div>
                     <div class="td td-specs">

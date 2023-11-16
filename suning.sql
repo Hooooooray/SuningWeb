@@ -11,7 +11,7 @@
  Target Server Version : 80034 (8.0.34)
  File Encoding         : 65001
 
- Date: 14/11/2023 22:01:00
+ Date: 16/11/2023 16:00:01
 */
 
 SET NAMES utf8mb4;
@@ -35,7 +35,7 @@ CREATE TABLE `Product` (
   `specification` varchar(50) DEFAULT NULL,
   `size` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`productid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10030 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10033 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of Product
@@ -58,9 +58,9 @@ INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`,
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10015, 'Apple iPhone 15 512G 蓝色 移动联通电信手机 5G全网通手机', '全新4800万像素主摄上位，开心上镜，大作上手；A16仿生芯片，Pro级实力认证。  ', 8999.00, '苏宁自营', '手机', 'iPhone15', '蓝色', '512G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10016, '小米14 徕卡光学镜头 光影猎人900 徕卡75mm浮动长焦 骁龙8Gen3 12+256 白色 小米手机 红米手机 5G', '旗舰产品，货量有限，小米澎湃OS 骁龙8Gen', 4299.00, '苏宁自营', '手机', 'Xiaomi14', '白色', '12+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10017, '小米14 徕卡光学镜头 光影猎人900 徕卡75mm浮动长焦 骁龙8Gen3 12+256 雪山粉 小米手机 红米手机 5G', '旗舰产品，货量有限，小米澎湃OS 骁龙8Gen', 4299.00, '苏宁自营', '手机', 'Xiaomi14', '粉色', '12+256G', NULL, NULL, NULL);
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10018, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'S');
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10018, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 S', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'S');
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10019, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'M');
-INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10020, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 M', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'L');
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10020, '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色 L', '【大促进行中】品质保障，放心购买！', 284.00, '银湖女装专营店', '衣服', '语娄白色双面呢大衣女中长款小个子2023新款加厚高级感毛呢外套 奶白色', '奶白色', NULL, NULL, NULL, 'L');
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10021, 'OPPO Reno10 灿烂金 8GB+256GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头', 1999.00, '苏宁自营', '手机', 'OPPOReno10', '灿烂金', '8+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10022, 'OPPO Reno10 灿烂金 12GB+256GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头', 2539.00, '苏宁自营', '手机', 'OPPOReno10', '灿烂金', '12+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10023, 'OPPO Reno10 灿烂金 12GB+512GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头', 2739.00, '苏宁自营', '手机', 'OPPOReno10', '灿烂金', '12+512G', NULL, NULL, NULL);
@@ -70,6 +70,9 @@ INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`,
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10027, 'OPPO Reno10 月海黑 8GB+256GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 ', 1999.00, '苏宁自营', '手机', 'OPPOReno10', '月海黑', '8+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10028, 'OPPO Reno10 月海黑 12GB+256GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 ', 2539.00, '苏宁自营', '手机', 'OPPOReno10', '月海黑', '12+256G', NULL, NULL, NULL);
 INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10029, 'OPPO Reno10 月海黑 12GB+512GB 5G手机 120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头 全网通游戏拍照学生oppo手机', '120Hz OLED 超清曲面屏 超光影长焦镜头 6400 万水光人像镜头', 2739.00, '苏宁自营', '手机', 'OPPOReno10', '月海黑', '12+512G', NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10030, '维达超韧抽取面巾3层S码100抽×20包纸巾抽纸卫生纸整箱家用纸巾超韧抽纸', '苏宁定制 超韧品质 家居蓝神 湿水不易破', 39.90, '苏宁超市', '纸巾', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10031, 'Freeplus 芙丽芳丝 净润洗面奶 100g 孕妇可用 补水保湿 调节水油平衡 氨基酸洁面 弱酸性 日本原装进口', '日本原装进口 萃取植物养肤成分，另肌肤温润平和。泡沫细腻有很强亲水性，易冲洗不易有紧绷感~', 89.90, '苏宁国际', '洗面奶,护肤品', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `Product` (`productid`, `name`, `description`, `price`, `storename`, `type`, `sign`, `color`, `memory`, `model`, `specification`, `size`) VALUES (10032, '[人气大红瓶]SK-II 美之匙R.N.A.超肌能大红瓶面霜紧致活肤面霜 80g/瓶 sk2 紧肤淡皱 任何肤质通用', '紧致淡纹减淡细纹，立体紧致 提升肌肤水润光泽 焕发年轻光彩，适合任何肤质！', 868.00, '苏宁国际', '肤面霜,护肤品', NULL, NULL, NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -84,7 +87,7 @@ CREATE TABLE `ProductImage` (
   PRIMARY KEY (`imageid`) USING BTREE,
   KEY `productid` (`productid`),
   CONSTRAINT `productimage_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `Product` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of ProductImage
@@ -193,6 +196,21 @@ INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (101, 10029, 'https://images.hooray.top/OPPO_Reno10_%E6%9C%88%E6%B5%B7%E9%BB%91/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (102, 10029, 'https://images.hooray.top/OPPO_Reno10_%E6%9C%88%E6%B5%B7%E9%BB%91/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
 INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (103, 10029, 'https://images.hooray.top/OPPO_Reno10_%E6%9C%88%E6%B5%B7%E9%BB%91/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (104, 10030, 'https://images.hooray.top/%E7%BB%B4%E8%BE%BE%E8%B6%85%E9%9F%A7%E6%8A%BD%E5%8F%96%E9%9D%A2%E5%B7%BE3%E5%B1%82S%E7%A0%81100%E6%8A%BD/%E4%B8%BB%E5%9B%BE_01.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (105, 10030, 'https://images.hooray.top/%E7%BB%B4%E8%BE%BE%E8%B6%85%E9%9F%A7%E6%8A%BD%E5%8F%96%E9%9D%A2%E5%B7%BE3%E5%B1%82S%E7%A0%81100%E6%8A%BD/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (106, 10030, 'https://images.hooray.top/%E7%BB%B4%E8%BE%BE%E8%B6%85%E9%9F%A7%E6%8A%BD%E5%8F%96%E9%9D%A2%E5%B7%BE3%E5%B1%82S%E7%A0%81100%E6%8A%BD/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (107, 10030, 'https://images.hooray.top/%E7%BB%B4%E8%BE%BE%E8%B6%85%E9%9F%A7%E6%8A%BD%E5%8F%96%E9%9D%A2%E5%B7%BE3%E5%B1%82S%E7%A0%81100%E6%8A%BD/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (108, 10030, 'https://images.hooray.top/%E7%BB%B4%E8%BE%BE%E8%B6%85%E9%9F%A7%E6%8A%BD%E5%8F%96%E9%9D%A2%E5%B7%BE3%E5%B1%82S%E7%A0%81100%E6%8A%BD/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (109, 10031, 'https://images.hooray.top/Freeplus_%E8%8A%99%E4%B8%BD%E8%8A%B3%E4%B8%9D_%E5%87%80%E6%B6%A6%E6%B4%97%E9%9D%A2%E5%A5%B6_100g_/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (110, 10031, 'https://images.hooray.top/Freeplus_%E8%8A%99%E4%B8%BD%E8%8A%B3%E4%B8%9D_%E5%87%80%E6%B6%A6%E6%B4%97%E9%9D%A2%E5%A5%B6_100g_/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (111, 10031, 'https://images.hooray.top/Freeplus_%E8%8A%99%E4%B8%BD%E8%8A%B3%E4%B8%9D_%E5%87%80%E6%B6%A6%E6%B4%97%E9%9D%A2%E5%A5%B6_100g_/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (112, 10031, 'https://images.hooray.top/Freeplus_%E8%8A%99%E4%B8%BD%E8%8A%B3%E4%B8%9D_%E5%87%80%E6%B6%A6%E6%B4%97%E9%9D%A2%E5%A5%B6_100g_/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (113, 10031, 'https://images.hooray.top/Freeplus_%E8%8A%99%E4%B8%BD%E8%8A%B3%E4%B8%9D_%E5%87%80%E6%B6%A6%E6%B4%97%E9%9D%A2%E5%A5%B6_100g_/%E4%B8%BB%E5%9B%BE_06.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (114, 10032, 'https://images.hooray.top/SK-II_%E7%BE%8E%E4%B9%8B%E5%8C%99R.N.A.%E8%B6%85%E8%82%8C%E8%83%BD%E5%A4%A7%E7%BA%A2%E7%93%B6%E9%9D%A2%E9%9C%9C%E7%B4%A7%E8%87%B4%E6%B4%BB%E8%82%A4%E9%9D%A2%E9%9C%9C/%E4%B8%BB%E5%9B%BE_02.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (115, 10032, 'https://images.hooray.top/SK-II_%E7%BE%8E%E4%B9%8B%E5%8C%99R.N.A.%E8%B6%85%E8%82%8C%E8%83%BD%E5%A4%A7%E7%BA%A2%E7%93%B6%E9%9D%A2%E9%9C%9C%E7%B4%A7%E8%87%B4%E6%B4%BB%E8%82%A4%E9%9D%A2%E9%9C%9C/%E4%B8%BB%E5%9B%BE_03.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (116, 10032, 'https://images.hooray.top/SK-II_%E7%BE%8E%E4%B9%8B%E5%8C%99R.N.A.%E8%B6%85%E8%82%8C%E8%83%BD%E5%A4%A7%E7%BA%A2%E7%93%B6%E9%9D%A2%E9%9C%9C%E7%B4%A7%E8%87%B4%E6%B4%BB%E8%82%A4%E9%9D%A2%E9%9C%9C/%E4%B8%BB%E5%9B%BE_04.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (117, 10032, 'https://images.hooray.top/SK-II_%E7%BE%8E%E4%B9%8B%E5%8C%99R.N.A.%E8%B6%85%E8%82%8C%E8%83%BD%E5%A4%A7%E7%BA%A2%E7%93%B6%E9%9D%A2%E9%9C%9C%E7%B4%A7%E8%87%B4%E6%B4%BB%E8%82%A4%E9%9D%A2%E9%9C%9C/%E4%B8%BB%E5%9B%BE_05.jpg', NULL);
+INSERT INTO `ProductImage` (`imageid`, `productid`, `imageurl`, `sign`) VALUES (118, 10032, 'https://images.hooray.top/SK-II_%E7%BE%8E%E4%B9%8B%E5%8C%99R.N.A.%E8%B6%85%E8%82%8C%E8%83%BD%E5%A4%A7%E7%BA%A2%E7%93%B6%E9%9D%A2%E9%9C%9C%E7%B4%A7%E8%87%B4%E6%B4%BB%E8%82%A4%E9%9D%A2%E9%9C%9C/%E4%B8%BB%E5%9B%BE_06.jpg', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -210,17 +228,18 @@ CREATE TABLE `ShoppingCart` (
   KEY `productid` (`productid`),
   CONSTRAINT `shoppingcart_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `User` (`userid`),
   CONSTRAINT `shoppingcart_ibfk_2` FOREIGN KEY (`productid`) REFERENCES `Product` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of ShoppingCart
 -- ----------------------------
 BEGIN;
-INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (67, 1, 10002, 2, 0);
-INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (68, 1, 10004, 1, 0);
-INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (69, 1, 10021, 1, 0);
-INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (70, 1, 10016, 1, 0);
-INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (71, 1, 10019, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (81, 25, 10013, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (82, 25, 10024, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (83, 25, 10016, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (84, 25, 10031, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (85, 25, 10030, 1, 0);
+INSERT INTO `ShoppingCart` (`cartid`, `userid`, `productid`, `quantity`, `selected`) VALUES (86, 25, 10032, 1, 0);
 COMMIT;
 
 -- ----------------------------
@@ -237,15 +256,13 @@ CREATE TABLE `User` (
   PRIMARY KEY (`userid`),
   UNIQUE KEY `phone` (`phone`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of User
 -- ----------------------------
 BEGIN;
-INSERT INTO `User` (`userid`, `username`, `password`, `phone`, `name`, `gender`) VALUES (1, 'admin', '$2b$10$x1dUEGZexBKQewX89429zOfNZtN63QEqRDfLy18Lkqqwm9cxIgon.', '18677439605', 'Binbin', 2);
-INSERT INTO `User` (`userid`, `username`, `password`, `phone`, `name`, `gender`) VALUES (6, 'CXK', '$2b$10$PTPJbFB5/8us31e5/gU57.NpkwgafH2UHBJzkGj6S5ivVsryPAGfu', '18677439608', '蔡徐坤', 0);
-INSERT INTO `User` (`userid`, `username`, `password`, `phone`, `name`, `gender`) VALUES (19, NULL, '$2b$10$k262nikyRdEedztydDVbde3XWRPBcEZvAyLwbHjKpvBB.p6fqiK.C', '13877413948', NULL, 2);
+INSERT INTO `User` (`userid`, `username`, `password`, `phone`, `name`, `gender`) VALUES (25, 'admin', '$2b$10$H2Q28UA5ZE2h53lWzw9hEuQ2.eyANz5lhqCOWReLDsu4.8Q3H00M.', '18677439605', '杨云彬', 2);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

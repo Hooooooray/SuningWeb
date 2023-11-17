@@ -41,6 +41,13 @@ git@github.com:Hooooooray/SuningWeb.git
 ```text
 用户名:admin 手机号:18677439605 密码:yyb12345
 ```
+数据库中的图片地址来源于个人搭建的图床\
+个人图床地址
+```text
+https://images.hooray.top
+```
+域名后面为图片位于图床的具体地址，比如\
+https://images.hooray.top/iPhone15/iPhone15_GREEN_001.jpg
 
 数据库设计：
 * Product表：

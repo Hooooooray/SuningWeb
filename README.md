@@ -10,13 +10,16 @@ node app.js
 ```shell
 nodemon app.js
 ```
+然后浏览器打开\
+http://localhost:3000/
+
 如果需要使用阿里云短信服务 \
 请在client.ts替换以下属性的值
 ```js
 accessKeyId: "" //访问者身份标识
 accessKeySecret: "" //访问者密钥
-signName:"hooray" //短信签名
-templateCode:"SMS_462675213" //短信模板的代码
+signName:"" //短信签名
+templateCode:"" //短信模板的代码
 ```
 然后执行tsc命令将client.ts编译成javascript代码
 ```shell

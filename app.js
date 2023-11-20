@@ -738,7 +738,7 @@ function mergeData(cartData, productData, imageData) {
 app.use('/api', authRouter);
 
 // 启动Express服务器
-const port = 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Express服务器正在监听端口 ${port}`);
 });

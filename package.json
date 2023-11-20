@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +21,6 @@
     "@alicloud/tea-console": "^1.0.0",
     "@alicloud/tea-typescript": "^1.7.1",
     "@alicloud/tea-util": "^1.4.7",
-    "@vercel/node": "^3.0.11",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

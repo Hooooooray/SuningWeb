@@ -21,7 +21,7 @@ window.onload = function () {
     const usernameInput = document.getElementById('username')
     const nickNameInput = document.getElementById('nickname')
     let token = localStorage.getItem('token')
-    const url = 'http://localhost:3000/api/token'
+    const url = '/api/token'
     fetch(url, {
         method: 'POST',
         headers: {
@@ -80,7 +80,7 @@ saveProfileBtn.addEventListener('click',()=>{
         gender,
         userid
     }
-    let url = 'http://localhost:3000/api/updateUser'
+    let url = '/api/updateUser'
     fetch(url, {
         method: 'POST',
         headers: {

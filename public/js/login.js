@@ -58,7 +58,7 @@ accountSubmitButton.addEventListener('click', () => {
         loginAccount,
         loginPassword
     };
-    let url = 'http://localhost:3000/api/accountLogin'
+    let url = '/api/accountLogin'
     fetch(url, {
         method: 'POST',
         headers: {
@@ -117,7 +117,7 @@ let sendMsgBtn = document.getElementById('sendSmsCode')
 sendMsgBtn.addEventListener('click', () => {
     let phoneNumber = document.getElementById('loginPhone').value
     if (phoneRegex.test(phoneNumber)){
-        const url = 'http://localhost:3000/api/sms';
+        const url = '/api/sms';
         let data = {
             phoneNumber
         };
@@ -162,7 +162,7 @@ smsSubmitButton.addEventListener('click', () => {
         phoneNumber,
         smsCode
     };
-    const url = 'http://localhost:3000/api/smsLogin'
+    const url = '/api/smsLogin'
     fetch(url, {
         method: 'POST',
         headers: {

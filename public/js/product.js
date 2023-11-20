@@ -66,7 +66,7 @@ let addCartButton = document.getElementById('addCart')
 addCartButton.addEventListener('click', () => {
     let token = localStorage.getItem('token')
     let quantity = document.querySelector('.num-con input').value
-    const insertUrl = 'http://localhost:3000/api/insertCart'
+    const insertUrl = '/api/insertCart'
     let data = {
         productid: primaryId,
         quantity
@@ -99,7 +99,7 @@ let productId = urlParams.searchParams.get('productid');
 
 // 通过token验证用户身份
 let token = localStorage.getItem('token')
-const tokenUrl = 'http://localhost:3000/api/token'
+const tokenUrl = '/api/token'
 // 用户信息显示
 let regBarNode = document.getElementById('reg-bar-node')
 let usernameNodeSlide = document.getElementById('username-node-slide')
@@ -135,8 +135,8 @@ fetch(tokenUrl, {
 
 
 // 构建请求 URL
-const apiUrl1 = `http://localhost:3000/api/product?productid=${productId}`;
-const apiUrl2 = `http://localhost:3000/api/relevanceProduct?productid=${productId}`;
+const apiUrl1 = `/api/product?productid=${productId}`;
+const apiUrl2 = `/api/relevanceProduct?productid=${productId}`;
 // 商品主图和放大
 let imgZoomMainImg = document.querySelector('.img-zoom-main img')
 let imgZoomPopImg = document.querySelector('.img-zoom-pop img')
@@ -241,7 +241,7 @@ fetch(apiUrl1)
                 if (primaryMemory) {
                     let memorySelected = document.querySelector('.proinfo-memory .selected')
                     let memory = memorySelected.getAttribute('data-memory')
-                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
+                    const apiUrl3 = `/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
                     fetch(apiUrl3)
                         .then(response => response.json())
                         .then(responseData => {
@@ -262,7 +262,7 @@ fetch(apiUrl1)
                     let sizeSelected = document.querySelector('.proinfo-size .selected')
                     let size = sizeSelected.getAttribute('data-size')
                     console.log(color, size)
-                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
+                    const apiUrl3 = `/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
                     fetch(apiUrl3)
                         .then(response => response.json())
                         .then(responseData => {
@@ -290,7 +290,7 @@ fetch(apiUrl1)
                 if (primaryColor) {
                     let colorSelected = document.querySelector('.proinfo-color-ex .selected')
                     let color = colorSelected.getAttribute('data-color')
-                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
+                    const apiUrl3 = `/api/findProduct?color=${encodeURIComponent(color)}&memory=${encodeURIComponent(memory)}&sign=${encodeURIComponent(primarySign)}`;
                     fetch(apiUrl3)
                         .then(response => response.json())
                         .then(responseData => {
@@ -316,7 +316,7 @@ fetch(apiUrl1)
                 if (primaryColor) {
                     let colorSelected = document.querySelector('.proinfo-color-ex .selected')
                     let color = colorSelected.getAttribute('data-color')
-                    const apiUrl3 = `http://localhost:3000/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
+                    const apiUrl3 = `/api/findProduct?color=${encodeURIComponent(color)}&size=${encodeURIComponent(size)}&sign=${encodeURIComponent(primarySign)}`;
                     fetch(apiUrl3)
                         .then(response => response.json())
                         .then(responseData => {

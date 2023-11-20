@@ -52,7 +52,7 @@ window.onload = function () {
     // 获取localStorage中的token，判断用户是否登录，并控制相应的显示部分
     let token = localStorage.getItem('token')
     console.log(token)
-    const url = 'http://localhost:3000/api/token'
+    const url = '/api/token'
     fetch(url, {
         method: 'POST',
         headers: {

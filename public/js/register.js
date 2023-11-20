@@ -20,7 +20,7 @@ function doCount() {
 sendMsgBtn.addEventListener('click', () => {
     let phoneNumber = document.getElementById('setPhone') || document.getElementById('loginPhone')
     phoneNumber = phoneNumber.value
-    const url = 'http://localhost:3000/api/sms'
+    const url = '/api/sms'
     let data = {
         phoneNumber
     };
@@ -58,7 +58,7 @@ submitRegisterBtn.addEventListener('click', () => {
         smsCode,
         password
     };
-    const url = 'http://localhost:3000/api/register'
+    const url = '/api/register'
     fetch(url, {
         method: 'POST',
         headers: {

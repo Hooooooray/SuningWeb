@@ -21,7 +21,7 @@ logOutBtn.addEventListener('click', () => {
 // 加载购物车函数
 function load() {
     let token = localStorage.getItem('token')
-    const url = 'http://localhost:3000/api/cart'
+    const url = '/api/cart'
     fetch(url, {
         method: 'POST',
         headers: {
@@ -203,7 +203,7 @@ function loadCart() {
             }
             let updates = [data]
             let token = localStorage.getItem('token')
-            const url = 'http://localhost:3000/api/updateCart'
+            const url = '/api/updateCart'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -239,7 +239,7 @@ function loadCart() {
             let updates = [data]
             console.log(updates)
             let token = localStorage.getItem('token')
-            const url = 'http://localhost:3000/api/updateCart'
+            const url = '/api/updateCart'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -279,7 +279,7 @@ function loadCart() {
                 updates.push(data)
             }
             let token = localStorage.getItem('token')
-            const url = 'http://localhost:3000/api/updateCart'
+            const url = '/api/updateCart'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -315,7 +315,7 @@ function loadCart() {
             }
         })
         let token = localStorage.getItem('token')
-        const url = 'http://localhost:3000/api/deleteFromCart'
+        const url = '/api/deleteFromCart'
         fetch(url, {
             method: 'POST',
             headers: {
@@ -347,7 +347,7 @@ function loadCart() {
             }
             deletes.push(data)
             let token = localStorage.getItem('token')
-            const url = 'http://localhost:3000/api/deleteFromCart'
+            const url = '/api/deleteFromCart'
             fetch(url, {
                 method: 'POST',
                 headers: {
@@ -385,7 +385,7 @@ function loadCart() {
                 }
                 let updates = [data]
                 let token = localStorage.getItem('token')
-                const url = 'http://localhost:3000/api/updateCart'
+                const url = '/api/updateCart'
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -422,7 +422,7 @@ function loadCart() {
             }
             let updates = [data]
             let token = localStorage.getItem('token')
-            const url = 'http://localhost:3000/api/updateCart'
+            const url = '/api/updateCart'
             fetch(url, {
                 method: 'POST',
                 headers: {

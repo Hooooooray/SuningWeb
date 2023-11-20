@@ -28,7 +28,7 @@ btnCloseButton.addEventListener('click', () => {
 
 // 通过token验证用户身份
 let token = localStorage.getItem('token')
-const tokenUrl = 'http://localhost:3000/api/token'
+const tokenUrl = '/api/token'
 fetch(tokenUrl, {
     method: 'POST',
     headers: {
@@ -61,7 +61,7 @@ let urlParams = new URL(window.location.href);
 let keyword = urlParams.searchParams.get('keyword');
 let page = Number(urlParams.searchParams.get('page')) || 1
 // 传参keyword为必要值，page为可选值
-const searchUrl = `http://localhost:3000/api/search?keyword=${keyword}${page != null ? `&page=${page}` : ''}`
+const searchUrl = `/api/search?keyword=${keyword}${page != null ? `&page=${page}` : ''}`
 fetch(searchUrl)
     .then(response => {
         if (!response.ok) {
@@ -113,7 +113,7 @@ fetch(searchUrl)
                 let token = localStorage.getItem('token')
                 let productid = item.getAttribute('data-productid')
                 let quantity = 1
-                const insertUrl = 'http://localhost:3000/api/insertCart'
+                const insertUrl = '/api/insertCart'
                 let data = {
                     productid: productid,
                     quantity
